@@ -9,8 +9,7 @@
         "format": "prettier -w src/**/*.js",
         "lint": "eslint src/**/*.js",
         "test": "npm run test-e2e",
-        "test-e2e": "cypress open",
-        "prepare": "husky install"
+        "test-e2e": "cypress open"
     },
     "repository": {
         "type": "git",

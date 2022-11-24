@@ -20,7 +20,6 @@ ___
 - Sass
 - Prettier
 - ESLint
-- Lint-staged
 - Husky
 - Cypress
 
