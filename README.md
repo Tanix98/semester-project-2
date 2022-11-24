@@ -17,6 +17,7 @@ ___
 - HTML
 - Vanilla JavaScript
 - Bootstrap
+- Sass
 - Prettier
 - ESLint
 - Lint-staged
