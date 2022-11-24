@@ -2,7 +2,7 @@
 
 ## Auction website
 
-![Markdown Logo](/resources/icons/logo.svg)
+![Markdown Logo](/resources/icons/sah_logo.svg)
 
 ### Website created for a fictional company called Scandinavian Auction House. Users can register, create listings and bid on them with credits. Unregistered users can only view listings.
 
