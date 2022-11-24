@@ -14,6 +14,9 @@ ___
 
 ### Built with:
 
+- HTML
+- Vanilla JavaScript
+- Bootstrap
 - Prettier
 - ESLint
 - Lint-staged
@@ -22,7 +25,7 @@ ___
 
 ## Setting up the project locally
 
-1. Clone the workflow branch:
+1. Clone the dev branch:
 
 ```bash
 git clone -b dev --single-branch https://github.com/Tanix98/semester-project-2
