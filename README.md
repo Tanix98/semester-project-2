@@ -1,6 +1,41 @@
 # Semester Project 2
 
-## Scandinavian Auction House, an auction website
+## Auction website
 
-### Installation
+### Website created for a fictional company called Scandinavian Auction House. Users can register, create listings and bid on them with credits. Unregistered users can only view listings.
+___
 
+
+## Developer info
+
+### Built with:
+
+- Prettier
+- ESLint
+- Lint-staged
+- Husky
+- Cypress
+
+## Setting up the project locally
+
+1. Clone the workflow branch:
+
+```bash
+git clone -b dev --single-branch https://github.com/Tanix98/semester-project-2
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Build project
+
+```bash
+npm run build
+```
+
+4. Copy save hook for Prettier and ESLint (optional) 
+
+The Prettier and ESLint save hook configuration can be copied over from .vscode/settings.json.default to your own workspace settings file.
