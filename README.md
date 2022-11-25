@@ -2,26 +2,26 @@
 
 ## Auction website
 
-![Markdown Logo](/resources/icons/sah_logo.svg)
+![Markdown Logo](/resources/icons/logo.svg)
 
 ### Website created for a fictional company called Scandinavian Auction House. Users can register, create listings and bid on them with credits. Unregistered users can only view listings.
 
 [Credit to icons8.com for the "no image" icon](https://icons8.com/icon/122635/no-image "icons8.com")
-___
 
+---
 
 ## Developer info
 
 ### Built with:
 
-- HTML
-- Vanilla JavaScript
-- Bootstrap
-- Sass
-- Prettier
-- ESLint
-- Husky
-- Cypress
+-   HTML
+-   Vanilla JavaScript
+-   Bootstrap
+-   Sass
+-   Prettier
+-   ESLint
+-   Husky
+-   Cypress
 
 ## Setting up the project locally
 
@@ -43,6 +43,6 @@ npm install
 npm run build
 ```
 
-4. Copy save hook for Prettier and ESLint (optional) 
+4. Copy save hook for Prettier and ESLint (optional)
 
 The Prettier and ESLint save hook configuration can be copied over from .vscode/settings.json.default to your own workspace settings file.
