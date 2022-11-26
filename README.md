@@ -23,7 +23,7 @@
 -   Husky
 -   Cypress
 
-## Setting up the project locally
+### Setting up the project locally
 
 1. Clone the dev branch:
 

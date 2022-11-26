@@ -55,13 +55,13 @@ footer {
 .button-blue-border {
   color: map-get($colors, cblue);
   background-color: transparent;
-  border: 3px solid map-get($colors, cblue);
+  border: 2px solid map-get($colors, cblue);
 }
 
 .button-blue-border:hover {
   color: white;
   background-color: map-get($colors, cbluehover);
-  border: 3px solid map-get($colors, cbluehover);
+  border: 2px solid map-get($colors, cbluehover);
 }
 
 .button-green {
@@ -77,13 +77,13 @@ footer {
 .button-green-border {
   color: map-get($colors, cgreen);
   background-color: transparent;
-  border: 3px solid map-get($colors, cgreen);
+  border: 2px solid map-get($colors, cgreen);
 }
 
 .button-green-border:hover {
   color: white;
   background-color: map-get($colors, cgreenhover);
-  border: 3px solid map-get($colors, cgreenhover);
+  border: 2px solid map-get($colors, cgreenhover);
 }
 
 .header-buttons {
@@ -93,4 +93,5 @@ footer {
 .form-control {
   border: 2px solid map-get($colors, cdark) !important;
   color: map-get($colors, cdark) !important;
+  height: 35px;
 }

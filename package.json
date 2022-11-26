@@ -22,7 +22,8 @@
     },
     "homepage": "https://github.com/Tanix98/semester-project-2#readme",
     "dependencies": {
-        "bootstrap": "^5.2.3"
+        "bootstrap": "^5.2.3",
+        "bootstrap-icons": "^1.10.2"
     },
     "devDependencies": {
         "cypress": "^11.2.0",
