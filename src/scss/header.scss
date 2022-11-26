@@ -1,0 +1,12 @@
+@import "variables";
+
+.header-buttons {
+  font-size: 14px;
+}
+
+.hamburger-menu-button {
+  height: 40px;
+  width: 40px;
+  filter: invert(100%) sepia(0%) saturate(7470%) hue-rotate(125deg)
+    brightness(103%) contrast(98%);
+}
