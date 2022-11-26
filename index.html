@@ -55,12 +55,12 @@
       </div>
       <div class="d-none col d-sm-flex justify-content-end">
         <button
-          class="d-none header-buttons button-green-border rounded-3 inter-semiBold"
+          class="header-buttons button-green-border rounded-3 inter-semiBold"
           id="header-login-button"
         >
           Log in / Register
         </button>
-        <div class="d-flex gap-2">
+        <div class="d-none gap-2">
           <button
             class="header-buttons button-blue-border rounded-3 inter-semiBold"
             id="header-create-listing-button"
@@ -122,6 +122,59 @@
           >
         </div>
       </div>
+    </div>
+    <div class="ps-2 pe-2 mt-4 mb-4">
+      <div
+        id="segmented-sort-buttons"
+        class="d-flex flex-column flex-sm-row gap-4 align-items-center justify-content-sm-center inter-regular"
+      >
+        <form
+          class="segmented-button rounded-2 d-flex align-items-center justify-content-center p-1 gap-2"
+        >
+          <div class="d-flex align-items-center gap-1">
+            <input
+              type="radio"
+              name="date_created"
+              value="date_descending"
+              id="date_descending"
+              checked
+            />
+            <label for="date_descending">Date created &#8595;</label>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <input
+              type="radio"
+              name="date_created"
+              value="date_ascending"
+              id="date_ascending"
+            />
+            <label for="date_ascending">Date created &#8593;</label>
+          </div>
+        </form>
+        <form
+          class="segmented-button rounded-2 d-flex align-items-center justify-content-around p-1 gap-2"
+        >
+          <div class="d-flex align-items-center gap-1">
+            <input
+              type="radio"
+              name="end_date"
+              value="enddate_descending"
+              id="enddate_descending"
+            />
+            <label for="enddate_descending">End date &#8595;</label>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <input
+              type="radio"
+              name="end_date"
+              value="enddate_ascending"
+              id="enddate_ascending"
+            />
+            <label for="enddate_ascending">End date &#8593;</label>
+          </div>
+        </form>
+      </div>
+      <div id="listings"></div>
     </div>
     <footer
       class="inter-medium d-flex gap-1 gap-sm-0 flex-column flex-sm-row align-items-center p-2"

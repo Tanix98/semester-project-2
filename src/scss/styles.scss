@@ -25,5 +25,8 @@ footer {
 .form-control {
   border: 1.5px solid map-get($colors, cdark) !important;
   color: map-get($colors, cdark) !important;
+}
+
+.form-control-height {
   height: 35px;
 }

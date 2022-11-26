@@ -50,3 +50,13 @@
   background-color: map-get($colors, cgreenhover);
   border: 2px solid map-get($colors, cgreenhover);
 }
+
+.segmented-button {
+  color: white;
+  background-color: map-get($colors, cdark);
+  width: 290px;
+}
+
+#date-ascending:checked + label {
+  color: rgb(243, 13, 13);
+}

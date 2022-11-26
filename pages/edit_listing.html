@@ -123,6 +123,58 @@
         </div>
       </div>
     </div>
+    <div class="container mt-4 mb-4">
+      <div class="d-flex justify-content-center">
+        <form
+          class="form-group d-flex flex-column gap-2 col-12 col-sm-10 col-md-6 col-lg-5"
+        >
+          <h1 class="text-center">Edit listing</h1>
+          <div>
+            <label for="title" class="inter-medium">Title</label>
+            <input
+              type="text"
+              name="title"
+              placeholder="Title"
+              class="form-control form-control-height inter-regular border-3"
+            />
+          </div>
+          <div>
+            <label for="imageUrl" class="inter-medium">Image url</label>
+            <input
+              type="url"
+              name="imageUrl"
+              placeholder="Image url"
+              class="form-control form-control-height inter-regular"
+            />
+          </div>
+          <div>
+            <label for="tags" class="inter-medium">Tags</label>
+            <input
+              type="textarea"
+              name="tags"
+              placeholder="Tags"
+              class="form-control form-control-height inter-regular"
+            />
+          </div>
+          <div>
+            <label for="description" class="inter-medium">Description</label>
+            <textarea
+              rows="4"
+              cols="50"
+              name="description"
+              placeholder="Description"
+              class="form-control inter-regular"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="button-green form-button-medium inter-medium rounded-2 mt-4 m-auto"
+          >
+            Edit listing
+          </button>
+        </form>
+      </div>
+    </div>
     <footer
       class="inter-medium d-flex gap-1 gap-sm-0 flex-column flex-sm-row align-items-center p-2"
     >
