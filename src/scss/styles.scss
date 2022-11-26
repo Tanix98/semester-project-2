@@ -1,0 +1,96 @@
+@import "variables";
+
+body {
+  background-color: map-get($colors, cbody) !important;
+  margin-top: 70px !important;
+  margin-bottom: 111px !important;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+header {
+  background-color: map-get($colors, cdark);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 55px;
+}
+
+.header-logo {
+  max-height: 36px;
+}
+
+footer {
+  color: white;
+  background-color: map-get($colors, cgrey);
+  font-size: 10px;
+  min-height: 40px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin-top: 70px !important;
+}
+
+.form-button-medium {
+  border: none;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.button-blue {
+  color: white;
+  background-color: map-get($colors, cblue);
+}
+
+.button-blue:hover {
+  background-color: map-get($colors, cbluehover);
+}
+
+.button-blue-border {
+  color: map-get($colors, cblue);
+  background-color: transparent;
+  border: 3px solid map-get($colors, cblue);
+}
+
+.button-blue-border:hover {
+  color: white;
+  background-color: map-get($colors, cbluehover);
+  border: 3px solid map-get($colors, cbluehover);
+}
+
+.button-green {
+  color: white;
+  background-color: transparent;
+  background-color: map-get($colors, cgreen);
+}
+
+.button-green:hover {
+  background-color: map-get($colors, cgreenhover);
+}
+
+.button-green-border {
+  color: map-get($colors, cgreen);
+  background-color: transparent;
+  border: 3px solid map-get($colors, cgreen);
+}
+
+.button-green-border:hover {
+  color: white;
+  background-color: map-get($colors, cgreenhover);
+  border: 3px solid map-get($colors, cgreenhover);
+}
+
+.header-buttons {
+  font-size: 14px;
+}
+
+.form-control {
+  border: 2px solid map-get($colors, cdark) !important;
+  color: map-get($colors, cdark) !important;
+}

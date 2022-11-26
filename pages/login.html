@@ -6,6 +6,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Scandinavian Auction House</title>
     <link rel="icon" href="/resources/icons/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Krub:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/dist/css/styles.css" />
+    <link rel="stylesheet" href="/dist/css/colors.css" />
+    <link rel="stylesheet" href="/dist/css/fonts.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <script src="/src/js/header.js" defer type="module"></script>
   </head>
-  <body></body>
+  <body>
+    <header class="d-flex align-items-center">
+      <div class="col-8 col-sm-4 m-auto m-sm-0">
+        <a
+          href="/index.html"
+          class="m-auto d-flex d-sm-block justify-content-center"
+        >
+          <img
+            src="/resources/icons/logo.svg"
+            alt="Scandiavian Auction House logo"
+            class="header-logo ps-sm-3"
+          />
+        </a>
+      </div>
+      <div class="d-none col-4 d-sm-flex justify-content-center">
+        <input
+          type="text"
+          class="rounded-1 border-0"
+          id="searchbar-placeholder"
+        />
+      </div>
+      <div class="d-none pe-3 col-4 d-sm-flex justify-content-end">
+        <button
+          class="d-none header-buttons button-green-border rounded-3 inter-semiBold"
+          id="header-login-button"
+        >
+          Log in / Register
+        </button>
+        <div class="d-flex gap-2">
+          <button
+            class="header-buttons button-blue-border rounded-3 inter-semiBold"
+            id="header-create-listing-button"
+          >
+            Create listing
+          </button>
+          <button
+            class="header-buttons button-green-border rounded-3 inter-semiBold"
+          >
+            Credits
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="container mt-4 mb-4">
+      <div
+        class="d-flex flex-column flex-sm-row gap-3 gap-sm-5 justify-content-center"
+      >
+        <form
+          class="form-group d-flex flex-column gap-2 m-auto m-sm-0 col-11 col-sm-6 col-md-4"
+        >
+          <h1 class="text-center">Log in</h1>
+          <div>
+            <label for="email" class="inter-medium">Email</label>
+            <input
+              type="email"
+              aria-describedby="emailHelp"
+              placeholder="Email"
+              class="form-control inter-regular"
+              required
+            />
+          </div>
+          <div>
+            <label for="password" class="inter-medium">Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              class="form-control inter-regular"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="button-green form-button-medium inter-medium rounded-2 mt-4 m-auto"
+          >
+            Log in
+          </button>
+        </form>
+        <form
+          class="form-group d-flex flex-column gap-2 m-auto m-sm-0 col-11 col-sm-6 col-md-4"
+        >
+          <h1 class="text-center">Register user</h1>
+          <div>
+            <label for="name" class="inter-medium">Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              class="form-control inter-regular border-3"
+              required
+            />
+          </div>
+          <div>
+            <label for="email" class="inter-medium">Email</label>
+            <input
+              type="email"
+              name="email"
+              aria-describedby="emailHelp"
+              placeholder="Email"
+              class="form-control inter-regular"
+              required
+            />
+          </div>
+          <div>
+            <label for="password" class="inter-medium">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              class="form-control inter-regular"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="button-blue form-button-medium inter-medium rounded-2 mt-4 m-auto"
+          >
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+    <footer
+      class="inter-medium d-flex gap-1 gap-sm-0 flex-column flex-sm-row align-items-center p-2"
+    >
+      <p
+        class="col-sm-5 col-md-4 col-lg-3 mb-0 m-auto m-sm-0 text-center text-sm-start"
+      >
+        ©2004-2022 Scandinavian Auction House
+      </p>
+      <div class="d-flex col-sm-6 col-md-4 col-md-6 col-md-4 m-auto m-sm-0">
+        <p class="mb-0 m-auto text-center text-sm-start">
+          Any questions can be sent to<a
+            href="mailto:support@sahco.com"
+            class="text-white ps-1"
+            >support@sahco.com</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>

@@ -1,0 +1,41 @@
+@import "variables";
+
+h1 h2 h3 p {
+  color: map-get($colors, cdark);
+}
+
+h1 {
+  font-family: "Krub";
+  font-weight: 700;
+  font-size: 32px !important;
+}
+
+.krub-semiBold {
+  font-family: "Krub";
+  font-weight: 600;
+}
+
+.krub-bold {
+  font-family: "Krub";
+  font-weight: 700;
+}
+
+.inter-regular {
+  font-family: "Inter";
+  font-weight: 400;
+}
+
+.inter-medium {
+  font-family: "Inter";
+  font-weight: 500;
+}
+
+.inter-semiBold {
+  font-family: "Inter";
+  font-weight: 600;
+}
+
+.inter-extraBold {
+  font-family: "Inter";
+  font-weight: 800;
+}

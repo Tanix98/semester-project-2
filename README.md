@@ -10,7 +10,7 @@
 
 ---
 
-## Developer info
+## Developer & tester info
 
 ### Built with:
 
@@ -43,6 +43,12 @@ npm install
 npm run build
 ```
 
-4. Copy save hook for Prettier and ESLint (optional)
+4. Run Cypress tests (optional)
+
+```bash
+npm run test-e2e
+```
+
+5. Copy save hook for Prettier and ESLint (optional)
 
 The Prettier and ESLint save hook configuration can be copied over from .vscode/settings.json.default to your own workspace settings file.
