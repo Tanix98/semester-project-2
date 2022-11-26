@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Krub:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Krub:wght@600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -24,15 +24,15 @@
     <script src="/src/js/header.js" defer type="module"></script>
   </head>
   <body>
-    <header class="d-flex align-items-center">
-      <div class="d-block d-sm-none">
+    <header class="d-flex align-items-center p-2 p-md-3 gap-1">
+      <div class="d-flex d-sm-none col ps-3">
         <input
           type="image"
           src="/resources/icons/hamburger_menu_button.svg"
           class="hamburger-menu-button"
         />
       </div>
-      <div class="col-8 col-sm-4 m-auto m-sm-0">
+      <div class="col m-auto m-sm-0">
         <a
           href="/index.html"
           class="m-auto d-flex d-sm-block justify-content-center"
@@ -41,18 +41,19 @@
             src="/resources/icons/logo.svg"
             role="img"
             alt="Scandiavian Auction House logo"
-            class="header-logo ps-sm-2 ps-md-3"
+            class="header-logo"
           />
         </a>
       </div>
-      <div class="d-none col-4 d-sm-flex justify-content-center">
+      <div class="d-block d-sm-none col"></div>
+      <div class="d-none col d-sm-flex justify-content-center">
         <input
           type="text"
           class="rounded-1 border-0"
           id="searchbar-placeholder"
         />
       </div>
-      <div class="d-none pe-2 pe-md-3 col-4 d-sm-flex justify-content-end">
+      <div class="d-none col d-sm-flex justify-content-end">
         <button
           class="d-none header-buttons button-green-border rounded-3 inter-semiBold"
           id="header-login-button"
@@ -74,6 +75,54 @@
         </div>
       </div>
     </header>
+    <div
+      class="hamburger-menu flex-column align-items-center"
+      style="display: none"
+    >
+      <div class="margin-top">
+        <div class="d-flex justify-content-center mt-5">
+          <input
+            type="text"
+            class="rounded-1 border-0"
+            id="searchbar-placeholder-mobile"
+          />
+        </div>
+        <div
+          class="d-none flex-column text-center mt-4"
+          id="mobile-menu-signed-out"
+        >
+          <a href="/index.html" class="hamburger-nav inter-bold">Homepage</a>
+          <hr class="divider" />
+          <a
+            href="/pages/login.html"
+            class="hamburger-nav hamburger-nav-green inter-bold green-color"
+            >Log in / Register</a
+          >
+        </div>
+        <div
+          class="d-flex flex-column text-center mt-4"
+          id="mobile-menu-signed-in"
+        >
+          <a href="/index.html" class="hamburger-nav inter-bold">Homepage</a>
+          <hr class="divider" />
+          <a href="/pages/my_profile.html" class="hamburger-nav inter-bold"
+            >My profile</a
+          >
+          <hr class="divider" />
+          <a href="/pages/create_listing.html" class="hamburger-nav inter-bold"
+            >Create listing</a
+          >
+          <hr class="divider" />
+          <a href="" class="hamburger-nav inter-bold">Credits</a>
+          <hr class="divider" />
+          <a
+            href=""
+            class="hamburger-nav hamburger-nav-red inter-bold red-color"
+            >Log out</a
+          >
+        </div>
+      </div>
+    </div>
     <div class="container mt-4 mb-4">
       <div
         class="d-flex flex-column flex-sm-row gap-3 gap-sm-5 justify-content-center"

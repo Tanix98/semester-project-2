@@ -1,20 +1,20 @@
 @import "variables";
 
 .brown-color {
-  color: map-get($colors, cbrown);
+  color: map-get($colors, cbrown) !important;
 }
 .greyGreen-color {
-  color: map-get($colors, cgreyGreen);
+  color: map-get($colors, cgreyGreen) !important;
 }
 .dark-color {
-  color: map-get($colors, cdark);
+  color: map-get($colors, cdark) !important;
 }
 .blue-color {
-  color: map-get($colors, cblue);
+  color: map-get($colors, cblue) !important;
 }
 .green-color {
-  color: map-get($colors, cgreen);
+  color: map-get($colors, cgreen) !important;
 }
 .red-color {
-  color: map-get($colors, cred);
+  color: map-get($colors, cred) !important;
 }

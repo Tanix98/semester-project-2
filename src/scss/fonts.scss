@@ -5,37 +5,42 @@ h1 h2 h3 p {
 }
 
 h1 {
-  font-family: "Krub";
+  font-family: "Krub", Helvetica;
   font-weight: 700;
   font-size: 32px !important;
 }
 
 .krub-semiBold {
-  font-family: "Krub";
+  font-family: "Krub", Helvetica;
   font-weight: 600;
 }
 
 .krub-bold {
-  font-family: "Krub";
+  font-family: "Krub", Helvetica;
   font-weight: 700;
 }
 
 .inter-regular {
-  font-family: "Inter";
+  font-family: "Inter", Arial;
   font-weight: 400;
 }
 
 .inter-medium {
-  font-family: "Inter";
+  font-family: "Inter", Arial;
   font-weight: 500;
 }
 
 .inter-semiBold {
-  font-family: "Inter";
+  font-family: "Inter", Arial;
   font-weight: 600;
 }
 
+.inter-bold {
+  font-family: "Inter", Arial;
+  font-weight: 700;
+}
+
 .inter-extraBold {
-  font-family: "Inter";
+  font-family: "Inter", Arial;
   font-weight: 800;
 }

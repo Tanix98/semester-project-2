@@ -1,12 +1,63 @@
 @import "variables";
 
+header {
+  background-color: map-get($colors, cdark);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 55px;
+  z-index: 2;
+}
+
+.header-logo {
+  max-height: 36px;
+}
+
 .header-buttons {
   font-size: 14px;
 }
 
 .hamburger-menu-button {
-  height: 40px;
-  width: 40px;
-  filter: invert(100%) sepia(0%) saturate(7470%) hue-rotate(125deg)
-    brightness(103%) contrast(98%);
+  height: 36px;
+  width: 36px;
+}
+
+.hamburger-menu {
+  background-color: map-get($colors, cdark);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.hamburger-nav {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.hamburger-nav:hover {
+  color: rgb(237, 233, 233);
+}
+
+.hamburger-nav-green:hover {
+  color: map-get($colors, cgreenhover) !important;
+}
+
+.hamburger-nav-red:hover {
+  color: map-get($colors, credhover) !important;
+}
+
+.margin-top {
+  margin-top: 55px;
+}
+
+.divider {
+  border-top: 2px solid white;
+  border-radius: 5px;
+  opacity: 100;
+  margin: 6px;
 }

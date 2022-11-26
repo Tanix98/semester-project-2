@@ -11,19 +11,6 @@ html {
   min-height: 100%;
 }
 
-header {
-  background-color: map-get($colors, cdark);
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 55px;
-}
-
-.header-logo {
-  max-height: 36px;
-}
-
 footer {
   color: white;
   background-color: map-get($colors, cgrey);
@@ -36,7 +23,7 @@ footer {
 }
 
 .form-control {
-  border: 2px solid map-get($colors, cdark) !important;
+  border: 1.5px solid map-get($colors, cdark) !important;
   color: map-get($colors, cdark) !important;
   height: 35px;
 }
