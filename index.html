@@ -21,7 +21,18 @@
     <link rel="stylesheet" href="/dist/css/colors.css" />
     <link rel="stylesheet" href="/dist/css/fonts.css" />
     <link rel="stylesheet" href="/dist/css/buttons.css" />
-    <script src="/src/js/header.js" defer type="module"></script>
+    <link rel="stylesheet" href="/dist/css/listings.css" />
+    <script
+      defer
+      src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+      type="module"
+    ></script>
+    <script defer src="/src/js/header.js" type="module"></script>
+    <script
+      defer
+      src="/src/js/components/sort-listings.js"
+      type="module"
+    ></script>
   </head>
   <body>
     <header class="d-flex align-items-center p-2 p-md-3 gap-1">
@@ -55,20 +66,20 @@
       </div>
       <div class="d-none col d-sm-flex justify-content-end">
         <button
-          class="header-buttons button-green-border rounded-3 inter-semiBold"
+          class="header-buttons button-green-border rounded-2 inter-semiBold"
           id="header-login-button"
         >
           Log in / Register
         </button>
         <div class="d-none gap-2">
           <button
-            class="header-buttons button-blue-border rounded-3 inter-semiBold"
+            class="header-buttons button-blue-border rounded-2 inter-semiBold"
             id="header-create-listing-button"
           >
             Create listing
           </button>
           <button
-            class="header-buttons button-green-border rounded-3 inter-semiBold"
+            class="header-buttons button-green-border rounded-2 inter-semiBold"
           >
             Credits
           </button>
@@ -124,57 +135,110 @@
       </div>
     </div>
     <div class="ps-2 pe-2 mt-4 mb-4">
-      <div
-        id="segmented-sort-buttons"
-        class="d-flex flex-column flex-sm-row gap-4 align-items-center justify-content-sm-center inter-regular"
-      >
-        <form
-          class="segmented-button rounded-2 d-flex align-items-center justify-content-center p-1 gap-2"
+      <h1>Listings</h1>
+      <div class="dropdown m-auto d-flex justify-content-center">
+        <button
+          class="btn dropdown-toggle dropdown-button-custom button-dark inter-semiBold d-flex align-items-center justify-content-center"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          title="Sort listings"
         >
-          <div class="d-flex align-items-center gap-1">
-            <input
-              type="radio"
-              name="date_created"
-              value="date_descending"
-              id="date_descending"
-              checked
-            />
-            <label for="date_descending">Date created &#8595;</label>
-          </div>
-          <div class="d-flex align-items-center gap-1">
-            <input
-              type="radio"
-              name="date_created"
-              value="date_ascending"
-              id="date_ascending"
-            />
-            <label for="date_ascending">Date created &#8593;</label>
-          </div>
-        </form>
-        <form
-          class="segmented-button rounded-2 d-flex align-items-center justify-content-around p-1 gap-2"
+          &#8595; Date created
+        </button>
+        <ul
+          class="dropdown-menu pt-1 pb-1 inter-regular"
+          aria-labelledby="dropdown menu list"
+          id="dropdown-sort-list"
         >
-          <div class="d-flex align-items-center gap-1">
-            <input
-              type="radio"
-              name="end_date"
-              value="enddate_descending"
-              id="enddate_descending"
-            />
-            <label for="enddate_descending">End date &#8595;</label>
-          </div>
-          <div class="d-flex align-items-center gap-1">
-            <input
-              type="radio"
-              name="end_date"
-              value="enddate_ascending"
-              id="enddate_ascending"
-            />
-            <label for="enddate_ascending">End date &#8593;</label>
-          </div>
-        </form>
+          <li id="date-created-descending">
+            <a
+              class="dropdown-item d-flex dropdown-sort-item dropdown-sort-item-selected"
+              href="#"
+              title="Sort by: date created descending"
+              >&#8595; Date created</a
+            >
+          </li>
+          <div class="dropdown-divider mt-1 mb-1"></div>
+          <li id="date-created-ascending">
+            <a
+              class="dropdown-item d-flex dropdown-sort-item"
+              href="#"
+              title="Sort by: date created ascending"
+              >&#8593; Date created</a
+            >
+          </li>
+          <div class="dropdown-divider mt-1 mb-1"></div>
+          <li id="end-date-descending">
+            <a
+              class="dropdown-item d-flex dropdown-sort-item"
+              href="#"
+              title="Sort by: end date descending"
+              >&#8595; End date</a
+            >
+          </li>
+          <div class="dropdown-divider mt-1 mb-1"></div>
+          <li id="end-date-ascending">
+            <a
+              class="dropdown-item d-flex dropdown-sort-item"
+              href="#"
+              title="Sort by: end date ascending"
+              >&#8593; End date</a
+            >
+          </li>
+        </ul>
       </div>
-      <div id="listings"></div>
+      <div id="listings" class="mt-3 m-auto d-flex justify-content-center row">
+        <div class="listing-card mb-3">
+          <div class="d-flex justify-content-center align-items-center">
+            <a href="#"
+              ><img
+                src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
+                class="rounded-2"
+            /></a>
+          </div>
+          <div>
+            <a href="#" class="krub-bold">Old vintage Sony TV</a>
+            <div class="d-flex justify-content-between">
+              <a href="#" class="inter-regular">Ends at: 02.12, 23:59</a>
+              <a href="#" class="inter-regular">Bids: 6</a>
+            </div>
+          </div>
+        </div>
+        <div class="listing-card mb-3">
+          <div class="d-flex justify-content-center align-items-center">
+            <a href="#"
+              ><img
+                src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
+                class="rounded-2"
+            /></a>
+          </div>
+          <div>
+            <a href="#" class="krub-bold">Old vintage Sony TV</a>
+            <div class="d-flex justify-content-between">
+              <a href="#" class="inter-regular">Ends at: 02.12, 23:59</a>
+              <a href="#" class="inter-regular">Bids: 6</a>
+            </div>
+          </div>
+        </div>
+        <div class="listing-card mb-3">
+          <div class="d-flex justify-content-center align-items-center">
+            <a href="#"
+              ><img
+                src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
+                class="rounded-2"
+            /></a>
+          </div>
+          <div>
+            <a href="#" class="krub-bold">Old vintage Sony TV</a>
+            <div class="d-flex justify-content-between">
+              <a href="#" class="inter-regular">Ends at: 02.12, 23:59</a>
+              <a href="#" class="inter-regular">Bids: 6</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <footer
       class="inter-medium d-flex gap-1 gap-sm-0 flex-column flex-sm-row align-items-center p-2"

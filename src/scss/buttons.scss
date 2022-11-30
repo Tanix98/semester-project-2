@@ -51,12 +51,19 @@
   border: 2px solid map-get($colors, cgreenhover);
 }
 
-.segmented-button {
-  color: white;
-  background-color: map-get($colors, cdark);
-  width: 290px;
+/*.button-dark {
+    color: map-get($colors, cdark);
+    background-color: transparent;
+    border: 3px solid map-get($colors, cdark);
+}*/
+.button-dark {
+  color: white !important;
+  background-color: map-get($colors, cdark) !important;
+  border: 3px solid map-get($colors, cdark) !important;
 }
 
-#date-ascending:checked + label {
-  color: rgb(243, 13, 13);
+.button-dark:hover {
+  color: white !important;
+  background-color: map-get($colors, cdark) !important;
+  border: 3px solid map-get($colors, cdark) !important;
 }
