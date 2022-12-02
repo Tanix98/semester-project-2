@@ -30,3 +30,17 @@ footer {
 .form-control-height {
   height: 35px;
 }
+
+.divider {
+  border-top: 2px solid white;
+  border-radius: 5px;
+  opacity: 100;
+  margin: 6px;
+}
+
+.dark-divider {
+  border-top: 2px solid map-get($colors, cdark) !important;
+  border-radius: 5px;
+  opacity: 100;
+  width: 100%;
+}

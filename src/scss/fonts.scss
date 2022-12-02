@@ -1,14 +1,25 @@
 @import "variables";
 
-h1 h2 h3 p {
+h1,
+h2,
+h3,
+p {
   color: map-get($colors, cdark);
 }
 
-h1 {
+h1,
+h2 {
   font-family: "Krub", Helvetica;
   font-weight: 700;
-  font-size: 32px !important;
   text-align: center;
+}
+
+h1 {
+  font-size: 32px !important;
+}
+
+h2 {
+  font-size: 24px !important;
 }
 
 .krub-semiBold {

@@ -1,0 +1,110 @@
+@import "variables";
+
+.listing {
+  max-width: 100%;
+  height: 100%;
+}
+
+.listing-image-container {
+  max-width: 100%;
+  max-height: 400px;
+}
+
+.listing-image-container img {
+  max-width: 100%;
+  max-height: 400px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.listing-title {
+  font-size: 18px;
+}
+
+.listing-desc {
+  font-size: 14px;
+}
+
+.bid {
+  background-color: map-get($colors, cgreyGreen);
+  min-height: 80px;
+  max-width: 250px;
+}
+
+.bid-pfp {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bid-amount {
+  font-size: 18px;
+}
+
+.bidding-button {
+  height: 40px;
+}
+
+.listing-info-container {
+  max-width: 215px;
+}
+
+.seller-container {
+  height: 150px;
+  max-width: 215px;
+}
+
+.seller-pfp {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.listing-tags {
+  font-size: 12px;
+}
+
+.listing-tag {
+  color: white;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.listing-button-medium {
+  width: 105px;
+}
+
+.listing-button-mobile {
+  width: 100%;
+}
+
+.listing-tag:hover {
+  color: map-get($colors, cbody);
+}
+
+@media only screen and (max-width: 740px) {
+  .listing-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .listing-button {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .mobile-listing-element {
+    display: flex !important;
+  }
+}
+
+@media only screen and (max-width: 274px) {
+  .listing-buttons-mobile {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .listing-button-mobile-small {
+    width: 100% !important;
+  }
+}

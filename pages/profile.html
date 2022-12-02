@@ -21,7 +21,10 @@
     <link rel="stylesheet" href="/dist/css/colors.css" />
     <link rel="stylesheet" href="/dist/css/fonts.css" />
     <link rel="stylesheet" href="/dist/css/buttons.css" />
+    <link rel="stylesheet" href="/dist/css/profile.css" />
+    <link rel="stylesheet" href="/dist/css/listings.css" />
     <script defer src="/src/js/header.js" type="module"></script>
+    <script defer src="/src/js/pages/profile.js" type="module"></script>
   </head>
   <body>
     <header class="d-flex align-items-center p-2 p-md-3 gap-1">
@@ -123,16 +126,155 @@
         </div>
       </div>
     </div>
+    <div class="ps-2 pe-2 mt-4 mb-4">
+      <div class="col-sm-10 col-lg-8 m-auto">
+        <div class="d-flex flex-column">
+          <img
+            src="/resources/icons/profile_default.svg"
+            class="profile-img m-auto"
+            alt="Default profile picture"
+          />
+          <div class="d-flex flex-column flex-sm-row mt-3 mb-sm-1">
+            <div class="col-sm-4 col-md-3"></div>
+            <h2 class="col-sm-4 col-md-6 m-auto mb-1 mb-sm-0">Tim324</h2>
+            <button
+              class="col-sm-4 col-md-3 profile-button button-red-border header-buttons rounded-2 inter-semiBold m-auto"
+            >
+              Report user
+            </button>
+            <button
+              class="d-none button-dark-border profile-button col-sm-4 col-md-3 header-buttons rounded-2 inter-semiBold m-auto"
+            >
+              Edit profile picture
+            </button>
+          </div>
+        </div>
+        <hr class="dark-divider mt-3 mb-3 mt-sm-2 mb-sm-2" />
+        <p class="inter-medium text-center mt-3 text-decoration-underline">
+          5 listings
+        </p>
+        <div class="d-flex justify-content-center row">
+          <div class="listing-card mb-3">
+            <div class="d-flex justify-content-center align-items-center">
+              <a
+                href="/pages/listing.html"
+                class="d-flex justify-content-center align-items-center bg-dark rounded-2"
+                ><h2 class="text-white mb-0 position-absolute">Closed</h2>
+                <img
+                  src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
+                  class="rounded-2 opacity-25"
+                  alt="listing image"
+              /></a>
+            </div>
+            <div>
+              <a href="/pages/listing.html" class="krub-bold"
+                >Old vintage Sony TV</a
+              >
+              <div class="d-flex justify-content-between">
+                <a href="/pages/listing.html" class="inter-regular"
+                  >Ended at: 23:59, 02.12</a
+                >
+                <a href="/pages/listing.html" class="inter-regular">Bids: 6</a>
+              </div>
+            </div>
+          </div>
+          <div class="listing-card mb-3">
+            <div class="d-flex justify-content-center align-items-center">
+              <a href="/pages/listing.html"
+                ><img
+                  src="/resources/no_image.svg"
+                  class="rounded-2"
+                  alt="listing image"
+              /></a>
+            </div>
+            <div>
+              <a href="/pages/listing.html" class="krub-bold"
+                >Old vintage Sony TV</a
+              >
+              <div class="d-flex justify-content-between">
+                <a href="/pages/listing.html" class="inter-regular"
+                  >Ends at: 23:59, 02.12</a
+                >
+                <a href="/pages/listing.html" class="inter-regular">Bids: 6</a>
+              </div>
+            </div>
+          </div>
+          <div class="listing-card mb-3">
+            <div class="d-flex justify-content-center align-items-center">
+              <a href="/pages/listing.html"
+                ><img
+                  src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
+                  class="rounded-2"
+                  alt="listing image"
+              /></a>
+            </div>
+            <div>
+              <a href="/pages/listing.html" class="krub-bold"
+                >Old vintage Sony TV</a
+              >
+              <div class="d-flex justify-content-between">
+                <a href="/pages/listing.html" class="inter-regular"
+                  >Ends at: 23:59, 02.12</a
+                >
+                <a href="/pages/listing.html" class="inter-regular">Bids: 6</a>
+              </div>
+            </div>
+          </div>
+          <div class="listing-card mb-3">
+            <div class="d-flex justify-content-center align-items-center">
+              <a href="/pages/listing.html"
+                ><img
+                  src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
+                  class="rounded-2"
+                  alt="listing image"
+              /></a>
+            </div>
+            <div>
+              <a href="/pages/listing.html" class="krub-bold"
+                >Old vintage Sony TV</a
+              >
+              <div class="d-flex justify-content-between">
+                <a href="/pages/listing.html" class="inter-regular"
+                  >Ends at: 23:59, 02.12</a
+                >
+                <a href="/pages/listing.html" class="inter-regular">Bids: 6</a>
+              </div>
+            </div>
+          </div>
+          <div class="listing-card mb-3">
+            <div class="d-flex justify-content-center align-items-center">
+              <a href="/pages/listing.html"
+                ><img
+                  src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
+                  class="rounded-2"
+                  alt="listing image"
+              /></a>
+            </div>
+            <div>
+              <a href="/pages/listing.html" class="krub-bold"
+                >Old vintage Sony TV</a
+              >
+              <div class="d-flex justify-content-between">
+                <a href="/pages/listing.html" class="inter-regular"
+                  >Ends at: 23:59, 02.12</a
+                >
+                <a href="/pages/listing.html" class="inter-regular">Bids: 6</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <footer
-      class="inter-medium d-flex gap-1 gap-sm-0 flex-column flex-sm-row align-items-center p-2"
+      class="inter-regular d-flex gap-1 gap-sm-0 flex-column flex-sm-row align-items-center p-2"
     >
       <p
-        class="col-sm-5 col-md-4 col-lg-3 mb-0 m-auto m-sm-0 text-center text-sm-start"
+        class="col-sm-5 col-md-4 col-lg-3 mb-0 m-auto m-sm-0 text-center text-sm-start text-white"
       >
         ©2004-2022 Scandinavian Auction House
       </p>
       <div class="d-flex col-sm-6 col-md-4 col-md-6 col-md-4 m-auto m-sm-0">
-        <p class="mb-0 m-auto text-center text-sm-start">
+        <p class="mb-0 m-auto text-center text-sm-start text-white">
           Any questions can be sent to<a
             href="mailto:support@sahco.com"
             class="text-white ps-1"

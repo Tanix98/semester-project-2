@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="/dist/css/colors.css" />
     <link rel="stylesheet" href="/dist/css/fonts.css" />
     <link rel="stylesheet" href="/dist/css/buttons.css" />
+    <link rel="stylesheet" href="/dist/css/listing.css" />
     <script defer src="/src/js/header.js" type="module"></script>
+    <script defer src="/src/js/pages/listing.js" type="module"></script>
   </head>
   <body>
     <header class="d-flex align-items-center p-2 p-md-3 gap-1">
@@ -123,16 +125,286 @@
         </div>
       </div>
     </div>
+    <div class="ps-2 pe-2 mt-4 mb-4">
+      <div class="mt-3 m-auto row d-flex justify-content-center">
+        <div class="col-0 col-lg-2 col-xl-3 col-xxl-2"></div>
+        <div class="listing col-12 col-sm-8 col-md-6 col-xl-5">
+          <div class="listing d-flex flex-column justify-content-center">
+            <div class="d-flex flex-column d-sm-none">
+              <div class="mb-2">
+                <div>
+                  <a href="/pages/profile.html"
+                    ><img
+                      src="/resources/icons/profile_default.svg"
+                      class="bid-pfp"
+                      alt="Default profile picture"
+                  /></a>
+                  <a
+                    href="/pages/profile.html"
+                    class="text-decoration-none dark-color krub-bold"
+                  >
+                    Oystein
+                  </a>
+                </div>
+              </div>
+              <div
+                class="d-flex justify-content-between mb-2 gap-2 listing-buttons-mobile"
+              >
+                <button
+                  class="button-greyGreen listing-button-mobile listing-button-mobile-small edit-listing-btn header-buttons rounded-2 inter-semiBold"
+                >
+                  Edit listing
+                </button>
+                <button
+                  class="button-red-border listing-button-mobile listing-button-mobile-small delete-listing-btn header-buttons rounded-2 inter-semiBold"
+                >
+                  Delete listing
+                </button>
+                <button
+                  class="d-none button-red-border header-buttons rounded-2 inter-semiBold w-100"
+                >
+                  Report listing
+                </button>
+              </div>
+            </div>
+            <div
+              class="listing-image-container d-flex justify-content-center"
+              id="open-listing-img"
+            >
+              <img
+                src="/resources/arisa-chattasa-EDCBVN9HhrQ-unsplash.jpg"
+                class="rounded-2"
+                alt="listing image"
+              />
+            </div>
+            <div
+              class="d-none listing-image-container d-flex justify-content-center align-items-center bg-dark rounded-2"
+              id="closed-listing-img"
+            >
+              <h1 class="text-white mb-0 position-absolute">Closed</h1>
+              <img
+                src="/resources/arisa-chattasa-EDCBVN9HhrQ-unsplash.jpg"
+                class="rounded-2 opacity-25"
+                alt="listing image"
+              />
+            </div>
+            <div
+              class="d-none listing-image-container rounded-1 d-flex justify-content-center align-items-center"
+              id="no-listing-img"
+            >
+              <img
+                src="/resources/no_image.svg"
+                class="rounded-2"
+                alt="listing image"
+              />
+            </div>
+            <div class="listing-text-container m-auto p-3 pb-0">
+              <p class="listing-title krub-bold mb-1">
+                China porcelain, late Qing era (1644-1912). Contoured form,
+                decoration in blue-white underglaze
+              </p>
+              <div class="">
+                <p class="inter-regular text-decoration-underline">
+                  Bidding ends at: 23:59, 08.12.2022
+                </p>
+                <p class="listing-desc inter-regular">
+                  Five-colour (wucai) overglaze painted wares of the Kangxi
+                  period became known in Europe as famille verte from the
+                  predominant green colour in their floral decoration. These
+                  wares also included expert imitations of the overglaze
+                  painting of the Chenghua emperor’s reign. Another variety has
+                  floral decoration painted directly on the biscuit (unglazed
+                  pottery body) against a rich black background (famille noire).
+                  Toward the end of the Kangxi reign, a rose-pink made from gold
+                  chloride was introduced from Europe. It was used with other
+                  colours in the decoration of porcelain (famille rose) and in
+                  cloisonné and overglaze painting.
+                </p>
+              </div>
+              <div
+                class="d-flex d-sm-none tags-container background-color-brown rounded-2 p-2 m-auto mb-2"
+              >
+                <div class="d-none text-center">
+                  <p class="inter-medium text-white mb-2">Tags:</p>
+                </div>
+                <div
+                  class="listing-tags inter-regular d-flex flex-wrap gap-1 justify-content-center m-auto"
+                >
+                  <a href="#" class="listing-tag">Porcelain</a>
+                  <a href="#" class="listing-tag">Ceramic</a>
+                  <a href="#" class="listing-tag">Fine china</a>
+                  <a href="#" class="listing-tag">China</a>
+                  <a href="#" class="listing-tag">Chinese</a>
+                  <a href="#" class="listing-tag">Old</a>
+                  <a href="#" class="listing-tag">Qing dynasty</a>
+                </div>
+              </div>
+              <div class="d-flex flex-column d-sm-none">
+                <div class="d-flex gap-1 justify-content-center mb-2">
+                  <p class="inter-semiBold mb-0">Highest bid:</p>
+                  <p class="inter-extraBold green-color mb-0">600</p>
+                </div>
+                <div class="d-flex gap-1 justify-content-center mb-2">
+                  <p class="inter-semiBold mb-0">Your bid:</p>
+                  <p class="inter-extraBold green-color mb-0">500</p>
+                </div>
+                <button
+                  class="bidding-button button-blue rounded-2 inter-semiBold w-100 mb-3"
+                >
+                  Place bid
+                </button>
+              </div>
+              <hr class="dark-divider m-auto" />
+              <p
+                class="inter-regular text-center mt-3 text-decoration-underline"
+              >
+                Bids: 3
+              </p>
+              <div class="bids">
+                <div class="bid m-auto rounded-2">
+                  <div class="p-2 pb-0 d-flex justify-content-center gap-2">
+                    <a href="/pages/profile.html"
+                      ><img
+                        src="/resources/icons/profile_default.svg"
+                        class="bid-pfp"
+                        alt="Default profile picture"
+                    /></a>
+                    <a
+                      href="/pages/profile.html"
+                      class="mt-auto mb-auto text-decoration-none text-white inter-medium"
+                    >
+                      Steve324
+                    </a>
+                  </div>
+                  <p class="bid-amount text-white text-center p-2">
+                    600 credits
+                  </p>
+                </div>
+                <div class="bid m-auto rounded-2">
+                  <div class="p-2 pb-0 d-flex justify-content-center gap-2">
+                    <a href="/pages/profile.html"
+                      ><img
+                        src="/resources/icons/profile_default.svg"
+                        class="bid-pfp"
+                        alt="Default profile picture"
+                    /></a>
+                    <a
+                      href="/pages/profile.html"
+                      class="mt-auto mb-auto text-decoration-none text-white inter-medium"
+                    >
+                      Steve324
+                    </a>
+                  </div>
+                  <p class="bid-amount text-white text-center p-2">
+                    480 credits
+                  </p>
+                </div>
+                <div class="bid m-auto rounded-2">
+                  <div class="p-2 pb-0 d-flex justify-content-center gap-2">
+                    <a href="/pages/profile.html"
+                      ><img
+                        src="/resources/icons/profile_default.svg"
+                        class="bid-pfp"
+                        alt="Default profile picture"
+                    /></a>
+                    <a
+                      href="/pages/profile.html"
+                      class="mt-auto mb-auto text-decoration-none text-white inter-medium"
+                    >
+                      Steve324
+                    </a>
+                  </div>
+                  <p class="bid-amount text-white text-center p-2">
+                    250 credits
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-0 col-sm-4 col-lg-3 col-xxl-2 d-none d-sm-block">
+          <div class="listing-info-container m-auto">
+            <div
+              class="seller-container mb-3 background-color-brown rounded-2 p-2"
+            >
+              <p
+                class="text-white inter-medium text-decoration-underline text-center"
+              >
+                Seller
+              </p>
+              <div class="d-flex flex-column">
+                <a href="/pages/profile.html" class="m-auto"
+                  ><img
+                    src="/resources/icons/profile_default.svg"
+                    class="seller-pfp"
+                    alt="Default profile picture"
+                /></a>
+                <a
+                  href="/pages/profile.html"
+                  class="text-decoration-none text-white krub-bold mt-1 m-auto"
+                >
+                  Oystein
+                </a>
+              </div>
+            </div>
+            <div
+              class="tags-container background-color-brown rounded-2 p-2 m-auto"
+            >
+              <div class="text-center">
+                <p class="inter-medium text-white mb-2">Tags:</p>
+              </div>
+              <div
+                class="listing-tags inter-regular d-flex flex-wrap gap-1 justify-content-center m-auto"
+              >
+                <a href="#" class="listing-tag">Porcelain</a>
+                <a href="#" class="listing-tag">Ceramic</a>
+                <a href="#" class="listing-tag">Fine china</a>
+                <a href="#" class="listing-tag">China</a>
+                <a href="#" class="listing-tag">Chinese</a>
+                <a href="#" class="listing-tag">Old</a>
+                <a href="#" class="listing-tag">Qing dynasty</a>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between listing-buttons mt-2">
+              <button
+                class="d-none button-greyGreen listing-button listing-button-medium edit-listing-btn header-buttons rounded-2 inter-semiBold"
+              >
+                Edit listing
+              </button>
+              <button
+                class="d-none button-red-border listing-button listing-button-medium delete-listing-btn header-buttons rounded-2 inter-semiBold"
+              >
+                Delete listing
+              </button>
+              <button
+                class="button-red-border header-buttons rounded-2 inter-semiBold w-100"
+              >
+                Report listing
+              </button>
+            </div>
+            <div class="d-flex gap-1 justify-content-center mt-4 mb-2">
+              <p class="inter-semiBold mb-0">Highest bid:</p>
+              <p class="inter-extraBold green-color mb-0">600</p>
+            </div>
+            <button
+              class="bidding-button button-blue rounded-2 inter-semiBold w-100"
+            >
+              Place bid
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <footer
-      class="inter-medium d-flex gap-1 gap-sm-0 flex-column flex-sm-row align-items-center p-2"
+      class="inter-regular d-flex gap-1 gap-sm-0 flex-column flex-sm-row align-items-center p-2"
     >
       <p
-        class="col-sm-5 col-md-4 col-lg-3 mb-0 m-auto m-sm-0 text-center text-sm-start"
+        class="col-sm-5 col-md-4 col-lg-3 mb-0 m-auto m-sm-0 text-center text-sm-start text-white"
       >
         ©2004-2022 Scandinavian Auction House
       </p>
       <div class="d-flex col-sm-6 col-md-4 col-md-6 col-md-4 m-auto m-sm-0">
-        <p class="mb-0 m-auto text-center text-sm-start">
+        <p class="mb-0 m-auto text-center text-sm-start text-white">
           Any questions can be sent to<a
             href="mailto:support@sahco.com"
             class="text-white ps-1"

@@ -11,10 +11,12 @@
 .button-blue {
   color: white;
   background-color: map-get($colors, cblue);
+  border: 2px solid map-get($colors, cblue);
 }
 
 .button-blue:hover {
   background-color: map-get($colors, cbluehover);
+  border: 2px solid map-get($colors, cbluehover);
 }
 
 .button-blue-border {
@@ -51,14 +53,9 @@
   border: 2px solid map-get($colors, cgreenhover);
 }
 
-/*.button-dark {
-    color: map-get($colors, cdark);
-    background-color: transparent;
-    border: 3px solid map-get($colors, cdark);
-}*/
 .button-dark {
-  color: white !important;
-  background-color: map-get($colors, cdark) !important;
+  color: map-get($colors, cdark) !important;
+  background-color: transparent;
   border: 3px solid map-get($colors, cdark) !important;
 }
 
@@ -66,4 +63,39 @@
   color: white !important;
   background-color: map-get($colors, cdark) !important;
   border: 3px solid map-get($colors, cdark) !important;
+}
+
+.button-dark-border {
+  color: map-get($colors, cdark);
+  background-color: transparent;
+  border: 2px solid map-get($colors, cdark) !important;
+}
+
+.button-dark-border:hover {
+  color: white;
+  background-color: map-get($colors, cdark) !important;
+  border: 2px solid map-get($colors, cdark) !important;
+}
+
+.button-greyGreen {
+  color: white;
+  background-color: map-get($colors, cgreyGreen);
+  border: 2px solid map-get($colors, cgreyGreen);
+}
+
+.button-greyGreen:hover {
+  background-color: map-get($colors, cgreyGreenhover);
+  border: 2px solid map-get($colors, cgreyGreenhover);
+}
+
+.button-red-border {
+  color: map-get($colors, cred);
+  background-color: transparent;
+  border: 2px solid map-get($colors, cred);
+}
+
+.button-red-border:hover {
+  color: white;
+  background-color: map-get($colors, credhover);
+  border: 2px solid map-get($colors, credhover);
 }

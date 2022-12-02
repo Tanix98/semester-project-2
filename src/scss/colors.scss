@@ -18,3 +18,7 @@
 .red-color {
   color: map-get($colors, cred) !important;
 }
+
+.background-color-brown {
+  background-color: map-get($colors, cbrown);
+}
