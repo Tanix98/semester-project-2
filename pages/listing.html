@@ -56,11 +56,26 @@
       </div>
       <div class="d-block d-sm-none col"></div>
       <div class="d-none col d-sm-flex justify-content-center">
-        <input
-          type="text"
-          class="rounded-1 border-0"
-          id="searchbar-placeholder"
-        />
+        <div class="d-flex align-items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-search position-absolute me-auto ms-1"
+            id="header-search-bar-icon"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
+          <input
+            type="search"
+            class="rounded-1 border-0 header-searchbar"
+            placeholder="Search..."
+          />
+        </div>
       </div>
       <div class="d-none col d-sm-flex justify-content-end">
         <button
@@ -89,12 +104,28 @@
       style="display: none"
     >
       <div class="margin-top">
-        <div class="d-flex justify-content-center mt-5">
-          <input
-            type="text"
-            class="rounded-1 border-0"
-            id="searchbar-placeholder-mobile"
-          />
+        <div class="d-flex mt-5 col justify-content-center">
+          <div class="d-flex align-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-search position-absolute me-auto ms-1"
+              id="header-search-bar-icon"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+              />
+            </svg>
+            <input
+              type="search"
+              class="rounded-1 border-0 header-searchbar"
+              id="header-searchbar-mobile"
+              placeholder="Search..."
+            />
+          </div>
         </div>
         <div
           class="d-none flex-column text-center mt-4"
@@ -280,22 +311,28 @@
                   type="number"
                   name="place-bid"
                   placeholder="Credit amount"
-                  class="form-control form-control-height inter-regular"
+                  class="form-control form-control-height inter-regular mb-1"
                   required
                 />
                 <p
-                  class="inter-medium header-buttons mb-2 mt-1 red-color"
+                  class="d-none inter-medium header-buttons mb-2 mt-1 red-color"
                   id="bid-error-2-mobile"
                 >
                   Error, insufficient credit balance
                 </p>
+                <p
+                  class="d-none inter-medium header-buttons mb-2 mt-1 red-color"
+                  id="bid-error-3-mobile"
+                >
+                  Error, invalid number
+                </p>
                 <button
-                  class="bidding-button button-blue rounded-2 inter-semiBold w-100"
+                  class="bidding-button button-blue rounded-2 inter-semiBold w-100 mt-1"
                 >
                   Place bid
                 </button>
                 <p
-                  class="inter-medium header-buttons mb-2 mt-1 red-color"
+                  class="d-none inter-medium header-buttons mb-2 mt-1 red-color"
                   id="bid-error-1-mobile"
                 >
                   Error, credit amount required
@@ -437,22 +474,28 @@
               type="number"
               name="place-bid"
               placeholder="Credit amount"
-              class="form-control form-control-height inter-regular"
+              class="form-control form-control-height inter-regular mb-1"
               required
             />
             <p
-              class="inter-medium header-buttons mb-2 mt-1 red-color"
+              class="d-none inter-medium header-buttons mb-2 mt-1 red-color"
               id="bid-error-2"
             >
               Error, insufficient credit balance
             </p>
+            <p
+              class="d-none inter-medium header-buttons mb-2 mt-1 red-color"
+              id="bid-error-3"
+            >
+              Error, invalid number
+            </p>
             <button
-              class="bidding-button button-blue rounded-2 inter-semiBold w-100"
+              class="bidding-button button-blue rounded-2 inter-semiBold w-100 mt-1"
             >
               Place bid
             </button>
             <p
-              class="inter-medium header-buttons mb-2 mt-1 red-color"
+              class="d-none inter-medium header-buttons mb-2 mt-1 red-color"
               id="bid-error-1"
             >
               Error, credit amount required
