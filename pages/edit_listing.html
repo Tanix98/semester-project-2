@@ -21,7 +21,13 @@
     <link rel="stylesheet" href="/dist/css/colors.css" />
     <link rel="stylesheet" href="/dist/css/fonts.css" />
     <link rel="stylesheet" href="/dist/css/buttons.css" />
-    <script defer src="/src/js/header.js" type="module"></script>
+    <link rel="stylesheet" href="/dist/css/credits-modal.css" />
+    <script defer src="/src/js/components/header.js" type="module"></script>
+    <script
+      defer
+      src="/src/js/components/credits-modal.js"
+      type="module"
+    ></script>
   </head>
   <body>
     <header class="d-flex align-items-center p-2 p-md-3 gap-1">
@@ -68,7 +74,7 @@
             Create listing
           </button>
           <button
-            class="header-buttons button-green-border rounded-2 inter-semiBold"
+            class="credits-button header-buttons button-green-border rounded-2 inter-semiBold"
           >
             Credits
           </button>
@@ -113,7 +119,12 @@
             >Create listing</a
           >
           <hr class="divider" />
-          <a href="" class="hamburger-nav inter-bold">Credits</a>
+          <a
+            href="#"
+            class="credits-button hamburger-nav inter-bold"
+            id="credits-btn-mobile"
+            >Credits</a
+          >
           <hr class="divider" />
           <a
             href=""
@@ -122,6 +133,22 @@
           >
         </div>
       </div>
+    </div>
+    <div class="credits-modal-container p-1">
+      <div
+        class="d-flex flex-column credits-modal rounded-2 p-3 justify-content-center"
+      >
+        <p class="modal-x ms-auto mb-0" tabindex="0">&times;</p>
+        <h2>Your credits</h2>
+        <p class="inter-medium mb-1 text-center">Credit amount:</p>
+        <p class="green-color inter-extraBold text-center">1000</p>
+        <button
+          class="header-buttons button-green rounded-2 inter-semiBold buy-credits-button"
+        >
+          Buy credits
+        </button>
+      </div>
+      <div class="modal-background"></div>
     </div>
     <div class="container mt-4 mb-4">
       <div class="d-flex justify-content-center">

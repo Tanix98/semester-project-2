@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/dist/css/fonts.css" />
     <link rel="stylesheet" href="/dist/css/buttons.css" />
     <link rel="stylesheet" href="/dist/css/listings.css" />
-    <script defer src="/src/js/header.js" type="module"></script>
+    <script defer src="/src/js/components/header.js" type="module"></script>
   </head>
   <body>
     <header class="d-flex align-items-center p-2 p-md-3 gap-1">
@@ -54,14 +54,14 @@
           id="searchbar-placeholder"
         />
       </div>
-      <div class="d-none col d-sm-flex justify-content-end">
+      <div class="col d-sm-flex justify-content-end">
         <button
-          class="d-none header-buttons button-green-border rounded-2 inter-semiBold"
+          class="d-flex header-buttons button-green-border rounded-2 inter-semiBold"
           id="header-login-button"
         >
           Log in / Register
         </button>
-        <div class="d-flex gap-2">
+        <div class="d-none gap-2">
           <button
             class="header-buttons button-blue-border rounded-2 inter-semiBold"
             id="header-create-listing-button"

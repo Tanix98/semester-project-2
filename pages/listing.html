@@ -22,8 +22,15 @@
     <link rel="stylesheet" href="/dist/css/fonts.css" />
     <link rel="stylesheet" href="/dist/css/buttons.css" />
     <link rel="stylesheet" href="/dist/css/listing.css" />
-    <script defer src="/src/js/header.js" type="module"></script>
+    <link rel="stylesheet" href="/dist/css/credits-modal.css" />
+    <script defer src="/src/js/components/header.js" type="module"></script>
     <script defer src="/src/js/pages/listing.js" type="module"></script>
+    <script defer src="/src/js/components/place-bid.js" type="module"></script>
+    <script
+      defer
+      src="/src/js/components/credits-modal.js"
+      type="module"
+    ></script>
   </head>
   <body>
     <header class="d-flex align-items-center p-2 p-md-3 gap-1">
@@ -70,7 +77,7 @@
             Create listing
           </button>
           <button
-            class="header-buttons button-green-border rounded-2 inter-semiBold"
+            class="credits-button header-buttons button-green-border rounded-2 inter-semiBold"
           >
             Credits
           </button>
@@ -115,7 +122,12 @@
             >Create listing</a
           >
           <hr class="divider" />
-          <a href="" class="hamburger-nav inter-bold">Credits</a>
+          <a
+            href="#"
+            class="credits-button hamburger-nav inter-bold"
+            id="credits-btn-mobile"
+            >Credits</a
+          >
           <hr class="divider" />
           <a
             href=""
@@ -124,6 +136,22 @@
           >
         </div>
       </div>
+    </div>
+    <div class="credits-modal-container p-1">
+      <div
+        class="d-flex flex-column credits-modal rounded-2 p-3 justify-content-center"
+      >
+        <p class="modal-x ms-auto mb-0" tabindex="0">&times;</p>
+        <h2>Your credits</h2>
+        <p class="inter-medium mb-1 text-center">Credit amount:</p>
+        <p class="green-color inter-extraBold text-center">1000</p>
+        <button
+          class="header-buttons button-green rounded-2 inter-semiBold buy-credits-button"
+        >
+          Buy credits
+        </button>
+      </div>
+      <div class="modal-background"></div>
     </div>
     <div class="ps-2 pe-2 mt-4 mb-4">
       <div class="mt-3 m-auto row d-flex justify-content-center">
@@ -159,11 +187,6 @@
                   class="button-red-border listing-button-mobile listing-button-mobile-small delete-listing-btn header-buttons rounded-2 inter-semiBold"
                 >
                   Delete listing
-                </button>
-                <button
-                  class="d-none button-red-border header-buttons rounded-2 inter-semiBold w-100"
-                >
-                  Report listing
                 </button>
               </div>
             </div>
@@ -239,7 +262,12 @@
                   <a href="#" class="listing-tag">Qing dynasty</a>
                 </div>
               </div>
-              <div class="d-flex flex-column d-sm-none">
+              <button
+                class="d-sm-none mt-1 mb-2 button-red-border header-buttons rounded-2 inter-semiBold w-100"
+              >
+                Report listing
+              </button>
+              <div class="d-flex flex-column d-sm-none mb-3">
                 <div class="d-flex gap-1 justify-content-center mb-2">
                   <p class="inter-semiBold mb-0">Highest bid:</p>
                   <p class="inter-extraBold green-color mb-0">600</p>
@@ -248,11 +276,30 @@
                   <p class="inter-semiBold mb-0">Your bid:</p>
                   <p class="inter-extraBold green-color mb-0">500</p>
                 </div>
+                <input
+                  type="number"
+                  name="place-bid"
+                  placeholder="Credit amount"
+                  class="form-control form-control-height inter-regular"
+                  required
+                />
+                <p
+                  class="inter-medium header-buttons mb-2 mt-1 red-color"
+                  id="bid-error-2-mobile"
+                >
+                  Error, insufficient credit balance
+                </p>
                 <button
-                  class="bidding-button button-blue rounded-2 inter-semiBold w-100 mb-3"
+                  class="bidding-button button-blue rounded-2 inter-semiBold w-100"
                 >
                   Place bid
                 </button>
+                <p
+                  class="inter-medium header-buttons mb-2 mt-1 red-color"
+                  id="bid-error-1-mobile"
+                >
+                  Error, credit amount required
+                </p>
               </div>
               <hr class="dark-divider m-auto" />
               <p
@@ -386,11 +433,30 @@
               <p class="inter-semiBold mb-0">Highest bid:</p>
               <p class="inter-extraBold green-color mb-0">600</p>
             </div>
+            <input
+              type="number"
+              name="place-bid"
+              placeholder="Credit amount"
+              class="form-control form-control-height inter-regular"
+              required
+            />
+            <p
+              class="inter-medium header-buttons mb-2 mt-1 red-color"
+              id="bid-error-2"
+            >
+              Error, insufficient credit balance
+            </p>
             <button
               class="bidding-button button-blue rounded-2 inter-semiBold w-100"
             >
               Place bid
             </button>
+            <p
+              class="inter-medium header-buttons mb-2 mt-1 red-color"
+              id="bid-error-1"
+            >
+              Error, credit amount required
+            </p>
           </div>
         </div>
       </div>

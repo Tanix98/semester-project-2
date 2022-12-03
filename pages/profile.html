@@ -23,8 +23,14 @@
     <link rel="stylesheet" href="/dist/css/buttons.css" />
     <link rel="stylesheet" href="/dist/css/profile.css" />
     <link rel="stylesheet" href="/dist/css/listings.css" />
-    <script defer src="/src/js/header.js" type="module"></script>
+    <link rel="stylesheet" href="/dist/css/credits-modal.css" />
+    <script defer src="/src/js/components/header.js" type="module"></script>
     <script defer src="/src/js/pages/profile.js" type="module"></script>
+    <script
+      defer
+      src="/src/js/components/credits-modal.js"
+      type="module"
+    ></script>
   </head>
   <body>
     <header class="d-flex align-items-center p-2 p-md-3 gap-1">
@@ -71,7 +77,7 @@
             Create listing
           </button>
           <button
-            class="header-buttons button-green-border rounded-2 inter-semiBold"
+            class="credits-button header-buttons button-green-border rounded-2 inter-semiBold"
           >
             Credits
           </button>
@@ -116,7 +122,12 @@
             >Create listing</a
           >
           <hr class="divider" />
-          <a href="" class="hamburger-nav inter-bold">Credits</a>
+          <a
+            href="#"
+            class="credits-button hamburger-nav inter-bold"
+            id="credits-btn-mobile"
+            >Credits</a
+          >
           <hr class="divider" />
           <a
             href=""
@@ -126,6 +137,48 @@
         </div>
       </div>
     </div>
+    <div class="credits-modal-container p-1">
+      <div
+        class="d-flex flex-column credits-modal rounded-2 p-3 justify-content-center"
+      >
+        <p class="modal-x ms-auto mb-0" tabindex="0">&times;</p>
+        <h2>Your credits</h2>
+        <p class="inter-medium mb-1 text-center">Credit amount:</p>
+        <p class="green-color inter-extraBold text-center">1000</p>
+        <button
+          class="header-buttons button-green rounded-2 inter-semiBold buy-credits-button"
+        >
+          Buy credits
+        </button>
+      </div>
+      <div class="modal-background"></div>
+    </div>
+    <div class="edit-pfp-modal credits-modal-container">
+      <div
+        class="edit-pfp credits-modal rounded-2 p-3 d-flex flex-column justify-content-center"
+      >
+        <p class="modal-x pfp-modal-x ms-auto mb-0" tabindex="0">&times;</p>
+        <h3 class="mb-3">Edit profile picture</h3>
+        <input
+          type="url"
+          name="imageUrl"
+          placeholder="Image url"
+          class="form-control form-control-height inter-regular mb-1"
+        />
+        <p
+          class="d-none inter-medium header-buttons mb-0 red-color mb-1"
+          id="edit-pfp-error"
+        >
+          Error: invalid url
+        </p>
+        <button
+          class="header-buttons button-green rounded-2 inter-semiBold buy-credits-button mt-1"
+        >
+          Edit profile image
+        </button>
+      </div>
+      <div class="modal-background modal-background-edit-pfp"></div>
+    </div>
     <div class="ps-2 pe-2 mt-4 mb-4">
       <div class="col-sm-10 col-lg-8 m-auto">
         <div class="d-flex flex-column">
@@ -133,17 +186,19 @@
             src="/resources/icons/profile_default.svg"
             class="profile-img m-auto"
             alt="Default profile picture"
+            tabindex="0"
           />
           <div class="d-flex flex-column flex-sm-row mt-3 mb-sm-1">
             <div class="col-sm-4 col-md-3"></div>
             <h2 class="col-sm-4 col-md-6 m-auto mb-1 mb-sm-0">Tim324</h2>
             <button
-              class="col-sm-4 col-md-3 profile-button button-red-border header-buttons rounded-2 inter-semiBold m-auto"
+              class="d-none col-sm-4 col-md-3 profile-button button-red-border header-buttons rounded-2 inter-semiBold m-auto"
             >
               Report user
             </button>
             <button
-              class="d-none button-dark-border profile-button col-sm-4 col-md-3 header-buttons rounded-2 inter-semiBold m-auto"
+              class="button-dark-border profile-button col-sm-4 col-md-3 header-buttons rounded-2 inter-semiBold m-auto"
+              id="edit-pfp-button"
             >
               Edit profile picture
             </button>

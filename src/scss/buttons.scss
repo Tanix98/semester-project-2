@@ -33,12 +33,13 @@
 
 .button-green {
   color: white;
-  background-color: transparent;
   background-color: map-get($colors, cgreen);
+  border: 2px solid map-get($colors, cgreen);
 }
 
 .button-green:hover {
   background-color: map-get($colors, cgreenhover);
+  border: 2px solid map-get($colors, cgreenhover);
 }
 
 .button-green-border {

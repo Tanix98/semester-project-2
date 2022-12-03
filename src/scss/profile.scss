@@ -7,12 +7,21 @@
   max-height: 200px;
   object-fit: cover;
   object-position: center;
+  cursor: pointer;
 
   .profile-button {
     min-width: 120px;
     width: 100%;
     max-width: 200px;
   }
+}
+
+.edit-pfp {
+  z-index: 2;
+}
+
+.edit-pfp-modal {
+  display: none;
 }
 
 @media only screen and (max-width: 575.5px) {

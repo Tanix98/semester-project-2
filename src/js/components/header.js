@@ -17,10 +17,11 @@ const hamburgerMenuButton = document.querySelector(".hamburger-menu-button");
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 
 hamburgerMenuButton.addEventListener("click", () => {
-  console.log("button clicked");
   if (hamburgerMenu.style.display === "none") {
     hamburgerMenu.style.display = "flex";
   } else {
     hamburgerMenu.style.display = "none";
   }
 });
+
+export { hamburgerMenu };
