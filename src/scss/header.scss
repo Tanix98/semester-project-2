@@ -58,11 +58,13 @@ header {
 .header-searchbar {
   padding-left: 25px;
   width: 100%;
+  line-height: 25px;
 }
 
 #header-searchbar-mobile {
   height: 35px;
   font-size: 18px;
+  padding-top: 2px;
 }
 
 #header-search-bar-icon {
