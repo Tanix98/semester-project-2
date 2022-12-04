@@ -55,7 +55,7 @@
         </a>
       </div>
       <div class="d-block d-sm-none col"></div>
-      <div class="d-none col d-sm-flex justify-content-center">
+      <div class="d-none col-sm-2 col-md-auto d-sm-flex justify-content-center">
         <div class="d-flex align-items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +96,32 @@
           >
             Credits
           </button>
+          <img
+            src="/resources/icons/profile_default.svg"
+            class="rounded-circle"
+            id="user-pfp"
+            alt="Default profile picture"
+            tabindex="0"
+          />
+          <div
+            class="flex-column align-items-center inter-medium rounded-1"
+            id="pfp-dropdown-menu"
+            style="display: none"
+          >
+            <a
+              href="/pages/my_profile.html"
+              class="text-black text-decoration-none rounded-top p-2 pb-1 pt-1 text-center"
+              id="my-profile-dropdown-menu"
+              >My profile</a
+            >
+            <hr class="dark-divider m-0" id="divider-dropdown-menu" />
+            <a
+              href="#"
+              class="red-color hamburger-nav-red text-decoration-none rounded-bottom p-2 pb-1 pt-1 text-center"
+              id="log-out-btn-desktop"
+              >Log out</a
+            >
+          </div>
         </div>
       </div>
     </header>
@@ -195,7 +221,7 @@
                   <a href="/pages/profile.html"
                     ><img
                       src="/resources/icons/profile_default.svg"
-                      class="bid-pfp"
+                      class="bid-pfp rounded-circle"
                       alt="Default profile picture"
                   /></a>
                   <a
@@ -350,7 +376,7 @@
                     <a href="/pages/profile.html"
                       ><img
                         src="/resources/icons/profile_default.svg"
-                        class="bid-pfp"
+                        class="bid-pfp rounded-circle"
                         alt="Default profile picture"
                     /></a>
                     <a
@@ -369,7 +395,7 @@
                     <a href="/pages/profile.html"
                       ><img
                         src="/resources/icons/profile_default.svg"
-                        class="bid-pfp"
+                        class="bid-pfp rounded-circle"
                         alt="Default profile picture"
                     /></a>
                     <a
@@ -388,7 +414,7 @@
                     <a href="/pages/profile.html"
                       ><img
                         src="/resources/icons/profile_default.svg"
-                        class="bid-pfp"
+                        class="bid-pfp rounded-circle"
                         alt="Default profile picture"
                     /></a>
                     <a
@@ -420,7 +446,7 @@
                 <a href="/pages/profile.html" class="m-auto"
                   ><img
                     src="/resources/icons/profile_default.svg"
-                    class="seller-pfp"
+                    class="seller-pfp rounded-circle"
                     alt="Default profile picture"
                 /></a>
                 <a

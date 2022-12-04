@@ -57,6 +57,7 @@ header {
 
 .header-searchbar {
   padding-left: 25px;
+  width: 100%;
 }
 
 #header-searchbar-mobile {
@@ -66,4 +67,39 @@ header {
 
 #header-search-bar-icon {
   cursor: pointer;
+}
+
+#user-pfp {
+  width: 27px;
+  height: 27px;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+}
+
+#pfp-dropdown-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid grey;
+  right: 15px;
+  top: 45px;
+}
+
+#log-out-btn-desktop {
+  width: 100%;
+}
+
+#log-out-btn-desktop:hover,
+#my-profile-dropdown-menu:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+#divider-dropdown-menu {
+  border-top: 1px solid grey !important;
+}
+
+@media only screen and (min-width: 576px) {
+  .hamburger-menu {
+    display: none !important;
+  }
 }
