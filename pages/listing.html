@@ -31,6 +31,7 @@
       src="/src/js/components/credits-modal.js"
       type="module"
     ></script>
+    <script defer src="/src/js/components/login-check.js"></script>
   </head>
   <body>
     <header class="d-flex align-items-center p-2 p-md-3 gap-1">
@@ -73,18 +74,19 @@
           <input
             type="search"
             class="rounded-1 border-0 header-searchbar inter-regular"
-            placeholder="Search..."
+            placeholder="Search"
           />
         </div>
       </div>
       <div class="d-none col d-sm-flex justify-content-end">
         <button
-          class="d-none header-buttons button-green-border rounded-2 inter-semiBold"
+          class="header-buttons button-green-border rounded-2 inter-semiBold"
           id="header-login-button"
+          style="display: none"
         >
           Log in / Register
         </button>
-        <div class="d-flex gap-2">
+        <div class="gap-2" id="header-logged-in" style="display: none">
           <button
             class="header-buttons button-blue-border rounded-2 inter-semiBold"
             id="header-create-listing-button"
@@ -109,15 +111,14 @@
             style="display: none"
           >
             <a
-              href="/pages/my_profile.html"
-              class="text-black text-decoration-none rounded-top p-2 pb-1 pt-1 text-center"
-              id="my-profile-dropdown-menu"
+              href="#"
+              class="text-black text-decoration-none rounded-top p-2 pb-1 pt-1 text-center my-profile-btn"
               >My profile</a
             >
             <hr class="dark-divider m-0" id="divider-dropdown-menu" />
             <a
               href="#"
-              class="red-color hamburger-nav-red text-decoration-none rounded-bottom p-2 pb-1 pt-1 text-center"
+              class="red-color hamburger-nav-red text-decoration-none rounded-bottom p-2 pb-1 pt-1 text-center log-out-btn"
               id="log-out-btn-desktop"
               >Log out</a
             >
@@ -149,13 +150,14 @@
               type="search"
               class="rounded-1 border-0 header-searchbar inter-regular"
               id="header-searchbar-mobile"
-              placeholder="Search..."
+              placeholder="Search"
             />
           </div>
         </div>
         <div
-          class="d-none flex-column text-center mt-4"
+          class="flex-column text-center mt-4"
           id="mobile-menu-signed-out"
+          style="display: none"
         >
           <a href="/index.html" class="hamburger-nav inter-bold">Homepage</a>
           <hr class="divider" />
@@ -166,12 +168,13 @@
           >
         </div>
         <div
-          class="d-flex flex-column text-center mt-4"
+          class="flex-column text-center mt-4"
           id="mobile-menu-signed-in"
+          display="none"
         >
           <a href="/index.html" class="hamburger-nav inter-bold">Homepage</a>
           <hr class="divider" />
-          <a href="/pages/my_profile.html" class="hamburger-nav inter-bold"
+          <a href="#" class="hamburger-nav inter-bold my-profile-btn"
             >My profile</a
           >
           <hr class="divider" />
@@ -187,8 +190,8 @@
           >
           <hr class="divider" />
           <a
-            href=""
-            class="hamburger-nav hamburger-nav-red inter-bold red-color"
+            href="#"
+            class="hamburger-nav hamburger-nav-red inter-bold red-color log-out-btn"
             >Log out</a
           >
         </div>

@@ -21,8 +21,9 @@
     <link rel="stylesheet" href="/dist/css/colors.css" />
     <link rel="stylesheet" href="/dist/css/fonts.css" />
     <link rel="stylesheet" href="/dist/css/buttons.css" />
-    <link rel="stylesheet" href="/dist/css/listings.css" />
     <script defer src="/src/js/components/header.js" type="module"></script>
+    <script defer src="/src/js/components/login-check.js"></script>
+    <script defer src="/src/js/pages/login.js" type="module"></script>
   </head>
   <body>
     <header class="d-flex align-items-center p-2 p-md-3 gap-1">
@@ -47,7 +48,7 @@
         </a>
       </div>
       <div class="d-block d-sm-none col"></div>
-      <div class="d-none col d-sm-flex justify-content-center">
+      <div class="d-none col-sm-2 col-md-auto d-sm-flex justify-content-center">
         <div class="d-flex align-items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -65,18 +66,19 @@
           <input
             type="search"
             class="rounded-1 border-0 header-searchbar inter-regular"
-            placeholder="Search..."
+            placeholder="Search"
           />
         </div>
       </div>
       <div class="d-none col d-sm-flex justify-content-end">
         <button
-          class="d-flex header-buttons button-green-border rounded-2 inter-semiBold"
+          class="header-buttons button-green-border rounded-2 inter-semiBold"
           id="header-login-button"
+          style="display: none"
         >
           Log in / Register
         </button>
-        <div class="d-none gap-2">
+        <div class="gap-2" id="header-logged-in" style="display: none">
           <button
             class="header-buttons button-blue-border rounded-2 inter-semiBold"
             id="header-create-listing-button"
@@ -84,10 +86,35 @@
             Create listing
           </button>
           <button
-            class="header-buttons button-green-border rounded-2 inter-semiBold"
+            class="credits-button header-buttons button-green-border rounded-2 inter-semiBold"
           >
             Credits
           </button>
+          <img
+            src="/resources/icons/profile_default.svg"
+            class="rounded-circle"
+            id="user-pfp"
+            alt="Default profile picture"
+            tabindex="0"
+          />
+          <div
+            class="flex-column align-items-center inter-medium rounded-1"
+            id="pfp-dropdown-menu"
+            style="display: none"
+          >
+            <a
+              href="#"
+              class="text-black text-decoration-none rounded-top p-2 pb-1 pt-1 text-center my-profile-btn"
+              >My profile</a
+            >
+            <hr class="dark-divider m-0" id="divider-dropdown-menu" />
+            <a
+              href="#"
+              class="red-color hamburger-nav-red text-decoration-none rounded-bottom p-2 pb-1 pt-1 text-center log-out-btn"
+              id="log-out-btn-desktop"
+              >Log out</a
+            >
+          </div>
         </div>
       </div>
     </header>
@@ -115,13 +142,14 @@
               type="search"
               class="rounded-1 border-0 header-searchbar inter-regular"
               id="header-searchbar-mobile"
-              placeholder="Search..."
+              placeholder="Search"
             />
           </div>
         </div>
         <div
-          class="d-none flex-column text-center mt-4"
+          class="flex-column text-center mt-4"
           id="mobile-menu-signed-out"
+          style="display: none"
         >
           <a href="/index.html" class="hamburger-nav inter-bold">Homepage</a>
           <hr class="divider" />
@@ -132,12 +160,13 @@
           >
         </div>
         <div
-          class="d-flex flex-column text-center mt-4"
+          class="flex-column text-center mt-4"
           id="mobile-menu-signed-in"
+          display="none"
         >
           <a href="/index.html" class="hamburger-nav inter-bold">Homepage</a>
           <hr class="divider" />
-          <a href="/pages/my_profile.html" class="hamburger-nav inter-bold"
+          <a href="#" class="hamburger-nav inter-bold my-profile-btn"
             >My profile</a
           >
           <hr class="divider" />
@@ -145,11 +174,16 @@
             >Create listing</a
           >
           <hr class="divider" />
-          <a href="" class="hamburger-nav inter-bold">Credits</a>
+          <a
+            href="#"
+            class="credits-button hamburger-nav inter-bold"
+            id="credits-btn-mobile"
+            >Credits</a
+          >
           <hr class="divider" />
           <a
-            href=""
-            class="hamburger-nav hamburger-nav-red inter-bold red-color"
+            href="#"
+            class="hamburger-nav hamburger-nav-red inter-bold red-color log-out-btn"
             >Log out</a
           >
         </div>
@@ -160,7 +194,7 @@
         class="d-flex flex-column flex-sm-row gap-3 gap-sm-5 justify-content-center"
       >
         <form
-          class="form-group d-flex flex-column gap-2 m-auto m-sm-0 col-12 col-sm-6 col-md-4"
+          class="form-group d-flex flex-column gap-2 m-auto m-sm-0 col-12 col-sm-6 col-md-4 mb-3"
         >
           <h1 class="text-center">Log in</h1>
           <div>
@@ -170,6 +204,7 @@
               aria-describedby="emailHelp"
               placeholder="Email"
               class="form-control form-control-height inter-regular"
+              id="login-email"
               required
             />
           </div>
@@ -179,12 +214,14 @@
               type="password"
               placeholder="Password"
               class="form-control form-control-height inter-regular"
+              id="login-password"
               required
             />
           </div>
           <button
             type="submit"
             class="button-green form-button-medium inter-medium rounded-2 mt-4 m-auto"
+            id="login-button"
           >
             Log in
           </button>
@@ -200,6 +237,7 @@
               name="name"
               placeholder="Name"
               class="form-control form-control-height inter-regular border-3"
+              id="register-name"
               required
             />
           </div>
@@ -211,6 +249,7 @@
               aria-describedby="emailHelp"
               placeholder="Email"
               class="form-control form-control-height inter-regular"
+              id="register-email"
               required
             />
           </div>
@@ -221,12 +260,14 @@
               name="password"
               placeholder="Password"
               class="form-control form-control-height inter-regular"
+              id="register-password"
               required
             />
           </div>
           <button
             type="submit"
             class="button-blue form-button-medium inter-medium rounded-2 mt-4 m-auto"
+            id="register-button"
           >
             Register
           </button>

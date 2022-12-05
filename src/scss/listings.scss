@@ -32,10 +32,15 @@
 
 .listing-card img {
   height: 170px;
-  max-width: 250px;
+  width: 100%;
   object-fit: cover;
   object-position: center;
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.listing-img-container:hover {
+  background-color: map-get($colors, cdark);
+  opacity: 85%;
 }
 
 @media only screen and (max-width: 415px) {
