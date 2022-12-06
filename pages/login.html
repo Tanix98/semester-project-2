@@ -105,6 +105,7 @@
             <a
               href="#"
               class="text-black text-decoration-none rounded-top p-2 pb-1 pt-1 text-center my-profile-btn"
+              id="my-profile-dropdown-menu"
               >My profile</a
             >
             <hr class="dark-divider m-0" id="divider-dropdown-menu" />
@@ -205,7 +206,6 @@
               placeholder="Email"
               class="form-control form-control-height inter-regular"
               id="login-email"
-              required
             />
           </div>
           <div>
@@ -215,16 +215,27 @@
               placeholder="Password"
               class="form-control form-control-height inter-regular"
               id="login-password"
-              required
             />
           </div>
+          <p
+            class="inter-medium red-color mb-0 mt-0 form-message-size"
+            id="login-error"
+            style="display: none"
+          ></p>
           <button
             type="submit"
-            class="button-green form-button-medium inter-medium rounded-2 mt-4 m-auto"
+            class="button-green form-button-medium inter-medium rounded-2 mt-4 m-auto mb-0"
             id="login-button"
           >
             Log in
           </button>
+          <p
+            class="inter-medium green-color mb-0 mt-1 form-message-size m-auto"
+            id="login-success"
+            style="display: none"
+          >
+            You're now logged in!
+          </p>
         </form>
         <form
           class="form-group d-flex flex-column gap-2 m-auto m-sm-0 col-11 col-sm-6 col-md-4"
@@ -238,7 +249,6 @@
               placeholder="Name"
               class="form-control form-control-height inter-regular border-3"
               id="register-name"
-              required
             />
           </div>
           <div>
@@ -250,7 +260,6 @@
               placeholder="Email"
               class="form-control form-control-height inter-regular"
               id="register-email"
-              required
             />
           </div>
           <div>
@@ -261,9 +270,13 @@
               placeholder="Password"
               class="form-control form-control-height inter-regular"
               id="register-password"
-              required
             />
           </div>
+          <p
+            class="inter-medium red-color mb-0 mt-0 form-message-size"
+            id="register-error"
+            style="display: none"
+          ></p>
           <button
             type="submit"
             class="button-blue form-button-medium inter-medium rounded-2 mt-4 m-auto"
@@ -271,6 +284,13 @@
           >
             Register
           </button>
+          <p
+            class="inter-medium green-color mb-0 mt-1 form-message-size m-auto"
+            id="register-success"
+            style="display: none"
+          >
+            Account created! You may now log in
+          </p>
         </form>
       </div>
     </div>

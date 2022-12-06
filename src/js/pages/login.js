@@ -9,6 +9,11 @@ const regName = document.querySelector("#register-name");
 const regEmail = document.querySelector("#register-email");
 const regPassword = document.querySelector("#register-password");
 
+const loginError = document.querySelector("#login-error");
+const loginSuccess = document.querySelector("#login-success");
+const regError = document.querySelector("#register-error");
+const regSuccess = document.querySelector("#register-success");
+
 async function registerUser() {
   console.log("register user");
   try {
@@ -25,11 +30,15 @@ async function registerUser() {
       },
     });
     const data = await response.json();
-    if (data.statusCode === 400 || data.statusCode === 500) {
-      console.log("placeholder: errors!");
+    if (data.statusCode === 400 || data.statusCode === 401) {
+      regError.style.display = "block";
+      regError.innerHTML = "Error: " + data.errors[0].message;
     } else {
-      console.log("Show success message, wait 3 seconds until reload");
-      document.location.reload();
+      regError.style.display = "none";
+      regSuccess.style.display = "block";
+      setTimeout(function () {
+        document.location.reload();
+      }, 2000);
     }
   } catch (e) {
     console.log(e);
@@ -56,16 +65,18 @@ async function loginUser() {
       },
     });
     const data = await response.json();
-    if (data.statusCode === 400 || data.statusCode === 500) {
-      console.log("placeholder: errors!");
+    if (data.statusCode === 400 || data.statusCode === 401) {
+      loginError.style.display = "block";
+      loginError.innerHTML = "Error: " + data.errors[0].message;
     } else {
-      console.log(
-        "Show success message, wait 3 seconds until redirect to homepage"
-      );
+      loginError.style.display = "none";
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("userName", data.name);
       localStorage.setItem("userAvatar", data.avatar);
-      window.location.href = "/index.html";
+      loginSuccess.style.display = "block";
+      setTimeout(function () {
+        window.location.href = "/index.html";
+      }, 2000);
     }
   } catch (e) {
     console.log(e);
