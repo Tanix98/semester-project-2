@@ -9,19 +9,6 @@ const editListingFunction = function () {
   window.location.href = "/pages/edit_listing.html";
 };
 
-// Edit listing button
-for (let i = 0; i < editListingBtn.length; i++) {
-  editListingBtn[i].addEventListener("click", editListingFunction);
-}
-
-// Delete listing button
-const deleteListing = function () {
-  console.log("This function will later delete the listing");
-};
-for (let i = 0; i < deleteListingBtn.length; i++) {
-  deleteListingBtn[i].addEventListener("click", deleteListing);
-}
-
 // Fetch listing
 const listingContainer = document.querySelector("#listing-container");
 const sellerInfoContainer = document.querySelector("#seller-info-container");
@@ -343,6 +330,19 @@ async function fetchListing(url) {
 }
 
 fetchListing(`${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`);
+
+// Edit listing button
+for (let i = 0; i < editListingBtn.length; i++) {
+  editListingBtn[i].addEventListener("click", editListingFunction);
+}
+
+// Delete listing button
+const deleteListing = function () {
+  console.log("This function will later delete the listing");
+};
+for (let i = 0; i < deleteListingBtn.length; i++) {
+  deleteListingBtn[i].addEventListener("click", deleteListing);
+}
 
 // Place bids button, needs to check if listing has loaded before running
 const placeBidButtonDesktop = document.querySelector("#place-bid-btn-desktop");
