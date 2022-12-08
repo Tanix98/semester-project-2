@@ -39,7 +39,7 @@
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
-.listing-img-container:hover {
+.listing-card:hover img {
   background-color: map-get($colors, cdark);
   opacity: 85%;
 }

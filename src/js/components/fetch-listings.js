@@ -8,11 +8,8 @@ import {
   byEndDateAscending,
 } from "/src/js/components/sort-listings.js";
 
+// Fetch listings function default
 const listingsContainer = document.querySelector("#listings");
-
-const currentDate = new Date();
-
-console.log(currentDate);
 
 /**
  * Description of function
@@ -27,7 +24,12 @@ async function fetchListingsbyDateCreatedDescending(url) {
       },
     });
     const dataRaw = await response.json();
-    const data = dataRaw.sort(byDateCreatedDescending);
+    const activeListings = dataRaw.filter(
+      (x) => Date.parse(x.endsAt) > new Date()
+    );
+    //const closedListings = dataRaw.filter(x => Date.parse(x.endsAt) < new Date());
+    console.log(activeListings);
+    const data = activeListings.sort(byDateCreatedDescending);
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
@@ -154,7 +156,11 @@ async function fetchListingsbydateCreatedAscending(url) {
       },
     });
     const dataRaw = await response.json();
-    const data = dataRaw.sort(byDateCreatedAscending);
+    const activeListings = dataRaw.filter(
+      (x) => Date.parse(x.endsAt) > new Date()
+    );
+    console.log(activeListings);
+    const data = activeListings.sort(byDateCreatedAscending);
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
@@ -275,7 +281,11 @@ async function fetchListingsbyendDateDescending(url) {
       },
     });
     const dataRaw = await response.json();
-    const data = dataRaw.sort(byEndDateDescending);
+    const activeListings = dataRaw.filter(
+      (x) => Date.parse(x.endsAt) > new Date()
+    );
+    console.log(activeListings);
+    const data = activeListings.sort(byEndDateDescending);
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
@@ -396,7 +406,11 @@ async function fetchListingsbyendDateAscending(url) {
       },
     });
     const dataRaw = await response.json();
-    const data = dataRaw.sort(byEndDateAscending);
+    const activeListings = dataRaw.filter(
+      (x) => Date.parse(x.endsAt) > new Date()
+    );
+    console.log(activeListings);
+    const data = activeListings.sort(byEndDateAscending);
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
@@ -528,54 +542,6 @@ dateCreatedDescendingBtn.addEventListener("click", () => {
 dateCreatedAscendingBtn.addEventListener("click", () => {
   try {
     fetchListingsbydateCreatedAscending(`${apiBaseUrl}/listings`);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
-endDateDescendingBtn.addEventListener("click", () => {
-  try {
-    fetchListingsbyendDateDescending(`${apiBaseUrl}/listings`);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
-endDateAscendingBtn.addEventListener("click", () => {
-  try {
-    fetchListingsbyendDateAscending(`${apiBaseUrl}/listings`);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
-endDateDescendingBtn.addEventListener("click", () => {
-  try {
-    fetchListingsbyendDateDescending(`${apiBaseUrl}/listings`);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
-endDateAscendingBtn.addEventListener("click", () => {
-  try {
-    fetchListingsbyendDateAscending(`${apiBaseUrl}/listings`);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
-endDateDescendingBtn.addEventListener("click", () => {
-  try {
-    fetchListingsbyendDateDescending(`${apiBaseUrl}/listings`);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
-endDateAscendingBtn.addEventListener("click", () => {
-  try {
-    fetchListingsbyendDateAscending(`${apiBaseUrl}/listings`);
   } catch (e) {
     console.log(e);
   }
