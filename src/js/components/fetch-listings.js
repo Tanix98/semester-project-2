@@ -40,15 +40,15 @@ async function fetchListingsbyDateCreatedDescending(url) {
                             >
                                 <a
                                     href="/pages/listing.html?id=${data[i].id}"
-                                    class="listing-img-container rounded-2"
+                                    class="listing-img-container rounded-1"
                                     ><img
                                         src="${data[i].media[0]}"
-                                        class="rounded-2"
+                                        class="rounded-1"
                                         alt="listing image"
                                 /></a>
                             </div>
-                            <div>
-                                <a href="/pages/listing.htmlid=${
+                            <div class="listing-text-container">
+                                <a href="/pages/listing.html?id=${
                                   data[i].id
                                 }" class="krub-bold"
                                     >${data[i].title}</a
@@ -87,10 +87,11 @@ async function fetchListingsbyDateCreatedDescending(url) {
                             >
                                 <a
                                     href="/pages/listing.html?id=${data[i].id}"
-                                    class="listing-img-container rounded-2"
+                                    class="listing-img-container rounded-1
+                                    "
                                     ><img
                                         src="/resources/no_image.svg"
-                                        class="rounded-2"
+                                        class="rounded-1"
                                         alt="listing image"
                                 /></a>
                             </div>
@@ -178,7 +179,7 @@ async function fetchListingsbydateCreatedAscending(url) {
                                         alt="listing image"
                                 /></a>
                             </div>
-                            <div>
+                            <div class="listing-text-container">
                                 <a href="/pages/listing.htmlid=${
                                   data[i].id
                                 }" class="krub-bold"

@@ -30,6 +30,13 @@
   font-size: 15px;
 }
 
+.listing-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .listing-card img {
   display: block;
   height: 170px;

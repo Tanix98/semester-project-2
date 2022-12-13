@@ -36,11 +36,6 @@
       src="/src/js/components/credits-modal.js"
       type="module"
     ></script>
-    <script
-      defer
-      src="/src/js/components/fetch-listings.js"
-      type="module"
-    ></script>
     <script defer src="/src/js/components/login-check.js"></script>
   </head>
   <body>
@@ -255,151 +250,12 @@
     </div>
     <div class="ps-2 pe-2 mt-4 mb-4">
       <div class="col-sm-10 col-lg-8 m-auto">
-        <div class="d-flex flex-column">
-          <img
-            src="/resources/icons/profile_default.svg"
-            class="profile-img m-auto rounded-circle"
-            alt="Default profile picture"
-          />
-          <div class="d-flex flex-column flex-sm-row mt-3 mb-sm-1">
-            <div class="col-sm-4 col-md-3"></div>
-            <h2 class="col-sm-4 col-md-6 m-auto mb-1 mb-sm-0">Tim324</h2>
-            <button
-              class="d-none col-sm-4 col-md-3 profile-button button-red-border header-buttons rounded-2 inter-semiBold m-auto"
-            >
-              Report user
-            </button>
-            <button
-              class="button-dark-border profile-button col-sm-4 col-md-3 header-buttons rounded-2 inter-semiBold m-auto"
-              id="edit-pfp-button"
-            >
-              Edit profile picture
-            </button>
-          </div>
+        <div class="d-flex flex-column" id="profile-page-info">
         </div>
         <hr class="dark-divider mt-3 mb-3 mt-sm-2 mb-sm-2" />
-        <p class="inter-medium text-center mt-3 text-decoration-underline">
-          5 listings
-        </p>
-        <div class="d-flex justify-content-center row">
-          <div class="listing-card mb-3">
-            <div
-              class="d-flex justify-content-center align-items-center listing-img-container rounded-2"
-            >
-              <a
-                href="/pages/listing.html"
-                class="d-flex justify-content-center align-items-center bg-dark rounded-2"
-                ><h2 class="text-white mb-0 position-absolute">Closed</h2>
-                <img
-                  src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
-                  class="rounded-2 opacity-25"
-                  alt="listing image"
-              /></a>
-            </div>
-            <div>
-              <a href="/pages/listing.html" class="krub-bold"
-                >Old vintage Sony TV</a
-              >
-              <div class="d-flex justify-content-between">
-                <a href="/pages/listing.html" class="inter-regular"
-                  >Ended at: 23:59, 02.12</a
-                >
-                <a href="/pages/listing.html" class="inter-regular">Bids: 6</a>
-              </div>
-            </div>
-          </div>
-          <div class="listing-card mb-3">
-            <div
-              class="d-flex justify-content-center align-items-center listing-img-container rounded-2"
-            >
-              <a href="/pages/listing.html"
-                ><img
-                  src="/resources/no_image.svg"
-                  class="rounded-2"
-                  alt="listing image"
-              /></a>
-            </div>
-            <div>
-              <a href="/pages/listing.html" class="krub-bold"
-                >Old vintage Sony TV</a
-              >
-              <div class="d-flex justify-content-between">
-                <a href="/pages/listing.html" class="inter-regular"
-                  >Ends at: 23:59, 02.12</a
-                >
-                <a href="/pages/listing.html" class="inter-regular">Bids: 6</a>
-              </div>
-            </div>
-          </div>
-          <div class="listing-card mb-3">
-            <div class="d-flex justify-content-center align-items-center">
-              <a
-                href="/pages/listing.html"
-                class="listing-img-container rounded-2"
-                ><img
-                  src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
-                  class="rounded-2"
-                  alt="listing image"
-              /></a>
-            </div>
-            <div>
-              <a href="/pages/listing.html" class="krub-bold"
-                >Old vintage Sony TV</a
-              >
-              <div class="d-flex justify-content-between">
-                <a href="/pages/listing.html" class="inter-regular"
-                  >Ends at: 23:59, 02.12</a
-                >
-                <a href="/pages/listing.html" class="inter-regular">Bids: 6</a>
-              </div>
-            </div>
-          </div>
-          <div class="listing-card mb-3">
-            <div class="d-flex justify-content-center align-items-center">
-              <a
-                href="/pages/listing.html"
-                class="listing-img-container rounded-2"
-                ><img
-                  src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
-                  class="rounded-2"
-                  alt="listing image"
-              /></a>
-            </div>
-            <div>
-              <a href="/pages/listing.html" class="krub-bold"
-                >Old vintage Sony TV</a
-              >
-              <div class="d-flex justify-content-between">
-                <a href="/pages/listing.html" class="inter-regular"
-                  >Ends at: 23:59, 02.12</a
-                >
-                <a href="/pages/listing.html" class="inter-regular">Bids: 6</a>
-              </div>
-            </div>
-          </div>
-          <div class="listing-card mb-3">
-            <div class="d-flex justify-content-center align-items-center">
-              <a
-                href="/pages/listing.html"
-                class="listing-img-container rounded-2"
-                ><img
-                  src="/resources/possessed-photography-HWhR6lbn5xU-unsplash.jpg"
-                  class="rounded-2"
-                  alt="listing image"
-              /></a>
-            </div>
-            <div>
-              <a href="/pages/listing.html" class="krub-bold"
-                >Old vintage Sony TV</a
-              >
-              <div class="d-flex justify-content-between">
-                <a href="/pages/listing.html" class="inter-regular"
-                  >Ends at: 23:59, 02.12</a
-                >
-                <a href="/pages/listing.html" class="inter-regular">Bids: 6</a>
-              </div>
-            </div>
-          </div>
+        <div class="d-flex justify-content-center row"  id="profile-page-listings">
+          <p class="inter-medium text-center mt-3 text-decoration-underline" id="profile-listings-amount">
+            </p>
         </div>
       </div>
     </div>
