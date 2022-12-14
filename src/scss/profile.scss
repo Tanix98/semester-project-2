@@ -28,3 +28,9 @@
     max-width: 200px;
   }
 }
+@media only screen and (max-width: 233px) {
+  .profile-img {
+    width: 85vw;
+    height: 85vw;
+  }
+}

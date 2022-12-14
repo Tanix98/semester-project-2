@@ -1,4 +1,5 @@
-import { apiBaseUrl, userToken } from "/src/js/api.js";
+import { apiBaseUrl } from "/src/js/api.js";
+import { userToken } from "/src/js/localStorage.js";
 import { listingId } from "/src/js/queryString.js";
 
 function waitForListingPage() {
@@ -19,15 +20,16 @@ function waitForListingPage() {
         const bidErrorMobile2 = document.querySelector("#bid-error-mobile-2");
         const bidErrorMobile3 = document.querySelector("#bid-error-mobile-3");
 
-        async function placeListingBid(url, body) {
+        async function placeListingBid(url, sendBody) {
             const response = await fetch(`${url}`, {
                 method: "POST",
-                body: `${body}`,
+                body: `${sendBody}`,
                 headers: {
-                Authorization: "bearer " + userToken,
-                "Content-Type": "application/json",
+                    "Authorization": userToken,
+                    "Content-Type": "application/json"
                 },
             });
+            console.log(`${sendBody}` + "'s type is: " + typeof `${sendBody}`);
             const data = await response.json();
             console.log(data);
             if (data.statusCode == 500 || data.statusCode == 400) {
@@ -49,18 +51,18 @@ function waitForListingPage() {
 
         placeBidButtonDesktop.addEventListener("click", () => {
             const sendBody = {
-            amount: bidCreditAmountDesktop.value,
+                "amount": parseFloat(bidCreditAmountDesktop.value),
             };
             placeListingBid(`${apiBaseUrl}/listings/${listingId}/bids`, sendBody);
             console.log(bidCreditAmountDesktop.value);
+            console.log(sendBody);
+            console.log("Type is: " + typeof parseFloat(bidCreditAmountMobile.value));
         });
-
         placeBidButtonMobile.addEventListener("click", () => {
             const sendBody = {
             amount: bidCreditAmountMobile.value,
             };
             placeListingBid(`${apiBaseUrl}/listings/${listingId}/bids`, sendBody);
-            console.log(bidCreditAmountMobile.value);
         });
     } catch (e) {
         console.log(e);

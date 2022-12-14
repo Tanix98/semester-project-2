@@ -1,4 +1,5 @@
-import { apiBaseUrl, userName, userToken } from "/src/js/api.js";
+import { apiBaseUrl, userName } from "/src/js/api.js";
+import { userToken } from "/src/js/localStorage.js";
 export { hamburgerMenu };
 
 // Login button
@@ -118,7 +119,7 @@ const modalUserCreditAmount = document.querySelector("#user-credit-amount");
     const response = await fetch(`${apiBaseUrl}/profiles/${userName}`, {
       method: "GET",
       headers: {
-        Authorization: "Bearer " + userToken,
+        "Authorization": userToken
       },
     });
     const data = await response.json();

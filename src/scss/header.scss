@@ -56,9 +56,9 @@ header {
 }
 
 .header-searchbar {
-  padding-left: 25px;
+  padding-left: 30px;
   width: 100%;
-  line-height: 25px;
+  line-height: 33px;
 }
 
 #header-searchbar-mobile {
@@ -72,11 +72,15 @@ header {
 }
 
 #user-pfp {
-  width: 27px;
-  height: 27px;
+  width: 35px;
+  height: 35px;
   object-fit: cover;
   object-position: center;
   cursor: pointer;
+}
+
+#header-login-button {
+  height: 35px;
 }
 
 #pfp-dropdown-menu {
@@ -84,7 +88,7 @@ header {
   background-color: white;
   border: 1px solid grey;
   right: 16px;
-  top: 45px;
+  top: 50px;
 }
 
 #log-out-btn-desktop {

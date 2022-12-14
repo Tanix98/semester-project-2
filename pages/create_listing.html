@@ -34,6 +34,11 @@
       type="module"
     ></script>
     <script defer src="/src/js/components/login-check.js"></script>
+    <script
+      defer
+      src="/src/js/pages/create_listing.js"
+      type="module"
+    ></script>
   </head>
   <body>
     <header class="d-flex align-items-center p-2 p-md-3 gap-1">
@@ -65,7 +70,7 @@
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-search position-absolute me-auto ms-1"
+            class="bi bi-search position-absolute me-auto ms-2"
             id="header-search-bar-icon"
             viewBox="0 0 16 16"
           >
@@ -82,7 +87,7 @@
       </div>
       <div class="d-none col d-sm-flex justify-content-end">
         <button
-          class="header-buttons button-green-border rounded-2 inter-semiBold"
+          class="header-buttons button-green-border rounded-2 inter-semiBold align-items-center"
           id="header-login-button"
           style="display: none"
         >
@@ -141,7 +146,7 @@
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-search position-absolute me-auto ms-1"
+              class="bi bi-search position-absolute me-auto ms-2"
               id="header-search-bar-icon"
               viewBox="0 0 16 16"
             >
@@ -232,17 +237,17 @@
               name="title"
               placeholder="Title"
               class="form-control form-control-height inter-regular border-3"
-              required
+              id="title-input"
             />
           </div>
           <div>
             <label for="endDate" class="inter-medium">End date*</label>
             <input
-              type="date"
+              type="text"
               name="endDate"
               placeholder="End date"
               class="form-control form-control-height inter-regular"
-              required
+              id="end-date-input"
             />
           </div>
           <div>
@@ -252,6 +257,7 @@
               name="imageUrl"
               placeholder="Image url"
               class="form-control form-control-height inter-regular"
+              id="image-url-input"
             />
           </div>
           <div>
@@ -261,6 +267,7 @@
               name="tags"
               placeholder="Tags"
               class="form-control form-control-height inter-regular"
+              id="tags-input"
             />
           </div>
           <div>
@@ -271,14 +278,17 @@
               name="description"
               placeholder="Description"
               class="form-control inter-regular"
+              id="description-input"
             ></textarea>
           </div>
           <button
             type="submit"
             class="button-blue form-button-medium inter-medium rounded-2 mt-4 m-auto"
+            id="create-listing-btn"
           >
             Post listing
           </button>
+          <p class="inter-medium mb-2 mt-1 m-auto" id="create-listing-message" style="display: none"></p>
         </form>
       </div>
     </div>

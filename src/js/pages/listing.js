@@ -1,9 +1,6 @@
-import { apiBaseUrl, userName, userToken } from "/src/js/api.js";
+import { apiBaseUrl, userName } from "/src/js/api.js";
 import { listingId } from "/src/js/queryString.js";
-
-const editListingBtn = document.getElementsByClassName("edit-listing-btn");
-
-const deleteListingBtn = document.getElementsByClassName("delete-listing-btn");
+import { userToken } from "/src/js/localStorage.js";
 
 const editListingFunction = function () {
   window.location.href = "/pages/edit_listing.html";
@@ -23,8 +20,11 @@ async function fetchListing(url) {
     });
     const data = await response.json();
     console.log(data);
+    if (data.status == "Too Many Requests") {
+      listingContainer.innerHTML = `<h4 class="red-color mt-4">Error: too many requests. Please wait a minute before trying again.</h4>`
+    }
     const listingBids = data.bids;
-  
+    document.title = data.title + " - Scandinavian Auction House";
     // Get highest listing bid
     function getHighestBid(bids) {
       let highestBid;
@@ -36,13 +36,11 @@ async function fetchListing(url) {
       return highestBid;
     }
     const highestBid = getHighestBid(`${listingBids}`);
-    console.log("Highest listing bid: " + highestBid);
   
     // Get highest user bid
     const userBids = listingBids.find(function(bid) {
       return bid.bidderName == userName;
     });
-    console.log(userBids);
     function getHighestUserBid() {
       if (userBids) {
         const highestUserBid = userBids.amount;
@@ -57,24 +55,33 @@ async function fetchListing(url) {
     const [highestUserBid, userBidDisplay] = getHighestUserBid();
   
     // Generate listing
+    function displayListingBtns() {
+      let displayReportListingBtn;
+      let displayEditDeleteListingBtns;
+      if (data.seller.name == userName) {
+        displayReportListingBtn = "none";
+        displayEditDeleteListingBtns = "block";
+      } else {
+        displayReportListingBtn = "block";
+        displayEditDeleteListingBtns = "none";
+      }
+      return [displayReportListingBtn, displayEditDeleteListingBtns];
+    }
+    const [displayReportListingBtn, displayEditDeleteListingBtns] = displayListingBtns();
+
     function checkForImgAndAvatar() {
-      console.log(`${data.seller.avatar}` + " q-.-p " + `${data.media[0]}`)
       let sellerAvatar;
       let listingImg;
       if (`${data.seller.avatar}`) {
         sellerAvatar = `${data.seller.avatar}`;
-        console.log("Avatar detected");
       } 
       if (`${data.seller.avatar}` === "null" || `${data.seller.avatar}` === "" || `${data.seller.avatar}` === "undefined") {
         sellerAvatar = "/resources/icons/profile_default.svg";
-        console.log("No avatar detected");
       }
       if (`${data.media.length}` > 0) {
         listingImg = `${data.media[0]}`;
-        console.log("Listing image detected");
       } else {
         listingImg = "/resources/no_image.svg";
-        console.log("No listing image detected");
       }
       return [sellerAvatar, listingImg];
     };
@@ -84,8 +91,8 @@ async function fetchListing(url) {
       let listingDesc;
       if (`${data.description}`) {
         listingDesc = `${data.description}`;
-      } 
-      if (`${data.seller.avatar}` === "null" || `${data.seller.avatar}` === "" || `${data.seller.avatar}` === "undefined") {
+      }
+      if (`${data.description}` === "null" || `${data.description}` === "" || `${data.description}` === "undefined") {
         listingDesc = "";
       }
       return [listingDesc];
@@ -94,8 +101,7 @@ async function fetchListing(url) {
           listingContainer.innerHTML = `
                 <div class="listing d-flex flex-column justify-content-center">
                   <div class="d-flex flex-column d-sm-none">
-                    <div class="mb-2">
-                      <div>
+                    <div class="mb-2 d-flex align-items-center gap-2">
                         <a href="/pages/profile.html?user=${data.seller.name}"
                           ><img
                             src="${sellerAvatar}"
@@ -108,18 +114,21 @@ async function fetchListing(url) {
                         >
                           ${data.seller.name}
                         </a>
-                      </div>
                     </div>
                     <div
                       class="d-flex justify-content-between mb-2 gap-2 listing-buttons-mobile"
                     >
                       <button
                         class="button-greyGreen listing-button-mobile listing-button-mobile-small edit-listing-btn header-buttons rounded-2 inter-semiBold"
+                        id="edit-listing-btn-mobile"
+                        style="display: ${displayEditDeleteListingBtns}"
                       >
                         Edit listing
                       </button>
                       <button
                         class="button-red-border listing-button-mobile listing-button-mobile-small delete-listing-btn header-buttons rounded-2 inter-semiBold"
+                        id="delete-listing-btn-mobile"
+                        style="display: ${displayEditDeleteListingBtns}"
                       >
                         Delete listing
                       </button>
@@ -143,16 +152,6 @@ async function fetchListing(url) {
                     <img
                       src="${listingImg}"
                       class="rounded-2 opacity-25"
-                      alt="listing image"
-                    />
-                  </div>
-                  <div
-                    class="d-none listing-image-container rounded-1 d-flex justify-content-center align-items-center"
-                    id="no-listing-img"
-                  >
-                    <img
-                      src="${listingImg}"
-                      class="rounded-2"
                       alt="listing image"
                     />
                   </div>
@@ -189,6 +188,7 @@ async function fetchListing(url) {
                     </div>
                     <button
                       class="d-sm-none mt-1 mb-2 button-red-border header-buttons rounded-2 inter-semiBold w-100"
+                      style="display: ${displayReportListingBtn}"
                     >
                       Report listing
                     </button>
@@ -254,13 +254,8 @@ async function fetchListing(url) {
                 <div
                   class="seller-container mb-3 background-color-brown rounded-2 p-2"
                 >
-                  <p
-                    class="text-white inter-medium text-decoration-underline text-center"
-                  >
-                    Seller
-                  </p>
                   <div class="d-flex flex-column">
-                    <a href="/pages/profile.html?user=${data.seller.name}" class="m-auto"
+                    <a href="/pages/profile.html?user=${data.seller.name}" class="m-auto mt-2"
                       ><img
                         src="${sellerAvatar}"
                         class="seller-pfp rounded-circle"
@@ -289,17 +284,22 @@ async function fetchListing(url) {
                     </div>
                 <div class="d-flex justify-content-between listing-buttons mt-2">
                   <button
-                    class="d-none button-greyGreen listing-button listing-button-medium edit-listing-btn header-buttons rounded-2 inter-semiBold"
+                    class="button-greyGreen listing-button listing-button-medium edit-listing-btn header-buttons rounded-2 inter-semiBold"
+                    id="edit-listing-btn-mobile"
+                    style="display: ${displayEditDeleteListingBtns}"
                   >
                     Edit listing
                   </button>
                   <button
-                    class="d-none button-red-border listing-button listing-button-medium delete-listing-btn header-buttons rounded-2 inter-semiBold"
+                    class="button-red-border listing-button listing-button-medium delete-listing-btn header-buttons rounded-2 inter-semiBold"
+                    id="delete-listing-btn-desktop"
+                    style="display: ${displayEditDeleteListingBtns}"
                   >
                     Delete listing
                   </button>
                   <button
                     class="button-red-border header-buttons rounded-2 inter-semiBold w-100"
+                    style="display: ${displayReportListingBtn}"
                   >
                     Report listing
                   </button>
@@ -357,7 +357,7 @@ async function fetchListing(url) {
 
 fetchListing(`${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`);
 
-// Fetch listing tags
+// Fetch listing tags and bids
 async function fetchListingsTags(url) {
   const listingTagsDesktop = document.querySelector("#listing-tags-desktop");
   const listingTagsMobile = document.querySelector("#listing-tags-mobile");
@@ -372,7 +372,6 @@ async function fetchListingsTags(url) {
     });
     const data = await response.json();
     for (let i = 0; i < data.tags.length; i++) {
-      console.log(data.tags[i]);
       if (data.tags.length < 0 || data.tags[i] === "") {
         listingTagsContainerMobile.style.display = "none";
         listingTagsContainerDesktop.style.display = "none";
@@ -387,26 +386,7 @@ async function fetchListingsTags(url) {
       <a href="#" class="listing-tag">${data.tags[i]}</a>
     `;
     }
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-setTimeout(function () {
-  fetchListingsTags(`${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`);
-}, 600);
-
-// Fetch listing bids
-async function fetchListingBids(url) {
-  try {
     const bidsContainer = document.querySelector("#bids");
-    const response = await fetch(`${url}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
     const listingBids = data.bids;
     for (let i = listingBids.length - 1; i >= 0; i--) {
         bidsContainer.innerHTML += `
@@ -430,21 +410,45 @@ async function fetchListingBids(url) {
   } catch (e) {
     console.log(e);
   }
+  try {
+    async function deleteListing() {
+      const response = await fetch(`${apiBaseUrl}/listings/${listingId}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": userToken,
+          "Content-Type": "application/json"
+        },
+      });
+      const listingPage = document.querySelector("#listing-page");
+      listingPage.innerHTML = "";
+      listingPage.innerHTML = `<h2 class="red-color mt-5">Listing deleted</h2>`;
+      setTimeout(function () {
+        window.location.href = "/index.html";
+      }, 3000);
+    };
+    document.addEventListener("click", function(e){
+      const target1 = e.target.closest("#edit-listing-btn-mobile"); // Or any other selector.
+      if(target1){
+        window.location.href = `/pages/edit_listing.html?id=${listingId}`;
+      }
+      const target2 = e.target.closest("#edit-listing-btn-desktop"); // Or any other selector.
+      if(target2){
+        window.location.href = `/pages/edit_listing.html?id=${listingId}`;
+      }
+      const target3 = e.target.closest("#delete-listing-btn-mobile"); // Or any other selector.
+      if(target3){
+        deleteListing();
+      }
+      const target4 = e.target.closest("#delete-listing-btn-desktop"); // Or any other selector.
+      if(target4){
+        deleteListing();
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 setTimeout(function () {
-  fetchListingBids(`${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`);
-}, 600);
-
-// Edit listing button
-for (let i = 0; i < editListingBtn.length; i++) {
-  editListingBtn[i].addEventListener("click", editListingFunction);
-}
-
-// Delete listing button
-const deleteListing = function () {
-  console.log("This function will later delete the listing");
-};
-for (let i = 0; i < deleteListingBtn.length; i++) {
-  deleteListingBtn[i].addEventListener("click", deleteListing);
-}
+  fetchListingsTags(`${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`);
+}, 800);

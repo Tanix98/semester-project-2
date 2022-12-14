@@ -4,10 +4,11 @@ const headerLoggedOut = document.querySelector("#header-login-button");
 const headerLoggedIn = document.querySelector("#header-logged-in");
 
 try {
-  /**
-   * Checks for an accessToken in local storage to determine if user is logged in or not, and then displays different header buttons for logged in or logged out users.
-   */
-  (function () {
+  (
+    /**
+     * Checks for an accessToken in local storage to determine if user is logged in or not, and then displays different header buttons for logged in or logged out users.
+     */
+    function () {
     if (
       localStorage.getItem("accessToken") === "" ||
       localStorage.getItem("accessToken") === null

@@ -8,11 +8,10 @@ import {
   byEndDateAscending,
 } from "/src/js/components/sort-listings.js";
 
-// Fetch listings function default
 const listingsContainer = document.querySelector("#listings");
 
 /**
- * Description of function
+ * Default listing list. Sorted by date created descending. Fetches all listings from api, creates list that's been filtered of all listings with end date older than current date, and then generates html using that list. 
  */
 async function fetchListingsbyDateCreatedDescending(url) {
   listingsContainer.innerHTML = "";
@@ -24,11 +23,14 @@ async function fetchListingsbyDateCreatedDescending(url) {
       },
     });
     const dataRaw = await response.json();
+    console.log(dataRaw);
+    if (dataRaw.status == "Too Many Requests") {
+      listingsContainer.innerHTML = `<h4 class="red-color mt-4">Error: too many requests. Please wait a minute before trying again.</h4>`
+    }
     const activeListings = dataRaw.filter(
       (x) => Date.parse(x.endsAt) > new Date()
     );
     //const closedListings = dataRaw.filter(x => Date.parse(x.endsAt) < new Date());
-    console.log(activeListings);
     const data = activeListings.sort(byDateCreatedDescending);
     for (let i = 0; i < data.length; i++) {
       try {
@@ -145,8 +147,9 @@ try {
   console.log(e);
 }
 
-// Other fetch listing functions sorted differently
-
+/**
+ * Alternate sorted listing list. Sorted by date created ascending. Fetches all listings from api, creates list that's been filtered of all listings with end date older than current date, and then generates html using that list. 
+ */
 async function fetchListingsbydateCreatedAscending(url) {
   listingsContainer.innerHTML = "";
   try {
@@ -272,6 +275,9 @@ async function fetchListingsbydateCreatedAscending(url) {
   }
 }
 
+/**
+ * Alternate sorted listing list. Sorted by end date descending. Fetches all listings from api, creates list that's been filtered of all listings with end date older than current date, and then generates html using that list. 
+ */
 async function fetchListingsbyendDateDescending(url) {
   listingsContainer.innerHTML = "";
   try {
@@ -397,6 +403,9 @@ async function fetchListingsbyendDateDescending(url) {
   }
 }
 
+/**
+ * Alternate sorted listing list. Sorted by end date ascending. Fetches all listings from api, creates list that's been filtered of all listings with end date older than current date, and then generates html using that list. 
+ */
 async function fetchListingsbyendDateAscending(url) {
   listingsContainer.innerHTML = "";
   try {
