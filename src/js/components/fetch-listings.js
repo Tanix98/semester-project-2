@@ -25,7 +25,7 @@ async function fetchListingsbyDateCreatedDescending(url) {
     const dataRaw = await response.json();
     console.log(dataRaw);
     if (dataRaw.status == "Too Many Requests") {
-      listingsContainer.innerHTML = `<h4 class="red-color mt-4">Error: too many requests. Please wait a minute before trying again.</h4>`
+      listingsContainer.innerHTML = `<h4 class="red-color mt-4">Error: ${dataRaw.status}. Please wait a minute before trying again.</h4>`
     }
     const activeListings = dataRaw.filter(
       (x) => Date.parse(x.endsAt) > new Date()

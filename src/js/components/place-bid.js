@@ -4,8 +4,6 @@ import { listingId } from "/src/js/queryString.js";
 
 function waitForListingPage() {
     try {
-        const placeBidButtonDesktop = document.querySelector("#place-bid-btn-desktop");
-        const placeBidButtonMobile = document.querySelector("#place-bid-btn-mobile");
         const bidCreditAmountDesktop = document.querySelector(
         "#bid-credit-input-desktop"
         );
@@ -13,57 +11,49 @@ function waitForListingPage() {
         "#bid-credit-input-mobile"
         );
 
-        const bidErrorDesktop1 = document.querySelector("#bid-error-desktop-1");
-        const bidErrorDesktop2 = document.querySelector("#bid-error-desktop-2");
-        const bidErrorDesktop3 = document.querySelector("#bid-error-desktop-3");
-        const bidErrorMobile1 = document.querySelector("#bid-error-mobile-1");
-        const bidErrorMobile2 = document.querySelector("#bid-error-mobile-2");
-        const bidErrorMobile3 = document.querySelector("#bid-error-mobile-3");
+        const placeBidMessageMobile = document.querySelector("#place-bid-message-mobile");
+        const placeBidMessageDesktop = document.querySelector("#place-bid-message-desktop");
 
         async function placeListingBid(url, sendBody) {
             const response = await fetch(`${url}`, {
                 method: "POST",
-                body: `${sendBody}`,
+                body: JSON.stringify(sendBody),
                 headers: {
                     "Authorization": userToken,
                     "Content-Type": "application/json"
                 },
             });
-            console.log(`${sendBody}` + "'s type is: " + typeof `${sendBody}`);
             const data = await response.json();
-            console.log(data);
-            if (data.statusCode == 500 || data.statusCode == 400) {
-                bidErrorDesktop1.style.display = "block";
-                bidErrorDesktop2.style.display = "block";
-                bidErrorDesktop3.style.display = "block";
-                bidErrorMobile1.style.display = "block";
-                bidErrorMobile2.style.display = "block";
-                bidErrorMobile3.style.display = "block";
-            } else {
-                bidErrorDesktop1.style.display = "none";
-                bidErrorDesktop2.style.display = "none";
-                bidErrorDesktop3.style.display = "none";
-                bidErrorMobile1.style.display = "none";
-                bidErrorMobile2.style.display = "none";
-                bidErrorMobile3.style.display = "none";
+            if (data.errors) {
+                placeBidMessageMobile.style.display = "block";
+                placeBidMessageDesktop.style.display = "block";
+                placeBidMessageMobile.classList.add("red-color");
+                placeBidMessageMobile.innerHTML = "Error: " + data.status;
+                placeBidMessageDesktop.classList.add("red-color");
+                placeBidMessageDesktop.innerHTML = "Error: " + data.status;
+            }
+            else {
+                placeBidMessageMobile.style.display = "none";
+                placeBidMessageDesktop.style.display = "none";
+                location.reload();
             }
         }
-
-        placeBidButtonDesktop.addEventListener("click", () => {
-            const sendBody = {
-                "amount": parseFloat(bidCreditAmountDesktop.value),
-            };
-            placeListingBid(`${apiBaseUrl}/listings/${listingId}/bids`, sendBody);
-            console.log(bidCreditAmountDesktop.value);
-            console.log(sendBody);
-            console.log("Type is: " + typeof parseFloat(bidCreditAmountMobile.value));
-        });
-        placeBidButtonMobile.addEventListener("click", () => {
-            const sendBody = {
-            amount: bidCreditAmountMobile.value,
-            };
-            placeListingBid(`${apiBaseUrl}/listings/${listingId}/bids`, sendBody);
-        });
+        document.addEventListener("click", function(e){
+            const target1 = e.target.closest("#place-bid-btn-desktop");
+            if(target1){
+                const sendBody = {
+                    amount: parseFloat(bidCreditAmountDesktop.value),
+                };
+                placeListingBid(`${apiBaseUrl}/listings/${listingId}/bids`, sendBody);
+            }
+            const target2 = e.target.closest("#place-bid-btn-mobile");
+            if(target2){
+                const sendBody = {
+                    amount: parseFloat(bidCreditAmountMobile.value),
+                };
+                placeListingBid(`${apiBaseUrl}/listings/${listingId}/bids`, sendBody);
+            }
+          });
     } catch (e) {
         console.log(e);
     }
@@ -71,4 +61,4 @@ function waitForListingPage() {
 
 setTimeout(function () {
     waitForListingPage();
-  }, 800);
+  }, 3000);

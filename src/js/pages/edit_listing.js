@@ -50,14 +50,15 @@ editListingBtn.addEventListener("click", function (e) {
 
 async function editListing(url) {
     try {
+        const sendBody = {
+            title: `${titleInput.value}`,
+            description: `${descriptionInput.value}`,
+            tags: [`${tagsInput.value}`],
+            media: [`${mediaUrlInput.value}`]
+        };
         const response = await fetch(`${url}`, {
             method: "PUT",
-            body: {
-                "title": `${titleInput.value}`,
-                "description": `${descriptionInput.value}`,
-                "tags": [`${tagsInput.value}`],
-                "media": [`${mediaUrlInput.value}`]
-            },
+            body: JSON.stringify(sendBody),
             headers: {
                 "Authorization": userToken,
                 "Content-Type": "application/json"
@@ -69,9 +70,10 @@ async function editListing(url) {
         if (data.errors) {
             editListingMessage.classList.add("red-color");
             editListingMessage.innerHTML = "Error: " + data.status;
-        } else {
+        }
+        else {
             editListingMessage.innerHTML = "Listing updated!";
-            window.location.href = `/pages/listing?id=${listingId}`;
+            window.location.href = `/pages/listing.html?id=${listingId}`;
         }
     } catch (e) {
         console.log(e);

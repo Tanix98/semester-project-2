@@ -34,12 +34,14 @@ confirmPfpEditBtn.addEventListener("click", function () {
 });
 
 async function updateProfilePicture(url) {
+  const sendBody = {
+    avatar: `${mediaUrlInput.value}`,
+  };
   try {
     const response = await fetch(`${url}`, {
       method: "PUT",
-      body: {
-          "media": [`${mediaUrlInput.value}`]
-      },
+      body: 
+        JSON.stringify(sendBody),
       headers: {
           "Authorization": userToken,
           "Content-Type": "application/json",
@@ -52,10 +54,12 @@ async function updateProfilePicture(url) {
     if (data.errors) {
       editPfpMessage.classList.add("red-color");
       editPfpMessage.innerHTML = "Error: " + data.status;
-    } else {
-      localStorage.setItem("userAvatar", data.avatar);
-      editListingMessage.innerHTML = "Profile picture updated!";
+    }
+    else {
+      editPfpMessage.innerHTML = "Profile picture updated!";
       setTimeout(function () {
+        localStorage.removeItem("userAvatar");
+        localStorage.setItem("userAvatar", data.avatar);
         location.reload();
       }, 1500);
     }

@@ -1,4 +1,4 @@
-import { apiBaseUrl, userName } from "/src/js/api.js";
+import { apiBaseUrl, userName, userAvatar } from "/src/js/api.js";
 import { userToken } from "/src/js/localStorage.js";
 export { hamburgerMenu };
 
@@ -46,6 +46,13 @@ try {
 const userPfp = document.querySelector("#user-pfp");
 const pfpDropdownMenu = document.querySelector("#pfp-dropdown-menu");
 const pageBody = document.body;
+
+if (userAvatar == "") {
+  userPfp.src = "/resources/icons/profile_default.svg";
+} else {
+  userPfp.src = userAvatar;
+  userPfp.style.border = "1px solid white";
+}
 
 try {
   userPfp.addEventListener("click", () => {

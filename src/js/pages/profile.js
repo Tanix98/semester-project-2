@@ -29,7 +29,7 @@ async function fetchListing(url) {
           const data = await response.json();
           console.log(data);
           if (data.status == "Too Many Requests" || data.statusCode == 429) {
-            profilePageInfo.innerHTML = `<h4 class="red-color mt-4">Error: too many requests. Please wait a minute before trying again.</h4>`
+            profilePageListings.innerHTML = `<h4 class="red-color mt-4">Error: ${dataRaw.status}. Please wait a minute before trying again.</h4>`;
           }
           // Display report or edit pfp button
           function displayProfileBtns() {
@@ -87,18 +87,30 @@ async function fetchListing(url) {
           const activeListings = data.listings.filter(
             (x) => Date.parse(x.endsAt) > new Date()
           );
-          //const closedListings = data.filter(x => Date.parse(x.endsAt) < new Date());
+          const closedListings = data.listings.filter(x => Date.parse(x.endsAt) < new Date());
           const activeListingsSorted = activeListings.sort(byEndDateDescending);
           // Fetch profile listings
           const profileListingsAmount = document.querySelector("#profile-listings-amount");
-          if (`${activeListingsSorted.length}` > 1) {
-            profileListingsAmount.innerHTML = `${activeListingsSorted.length} listings`;
-          } 
-          if (`${activeListingsSorted.length}` === 1) {
-            profileListingsAmount.innerHTML = "1 listing";
+          profileListingsAmount.innerHTML = `
+            <p class="inter-semiBold text-center mt-3 text-decoration-underline" id="profile-active-listings">${activeListings.length} open listings</p>
+            <p class="inter-semiBold text-center mt-3 text-decoration-underline" id="profile-closed-listings">${closedListings.length} closed listings</p>
+          `;
+          if (`${activeListings.length}` == 1 && `${closedListings.length}` == 1) {
+            profileListingsAmount.innerHTML = `
+            <p class="inter-semiBold text-center mt-3 text-decoration-underline" id="profile-active-listings">1 open listing</p>
+            <p class="inter-semiBold text-center mt-3 text-decoration-underline" id="profile-closed-listings">1 closed listing</p>`;
+          }
+          if (`${activeListings.length}` > 1 && `${closedListings.length}` == 1) {
+            profileListingsAmount.innerHTML = `
+            <p class="inter-semiBold text-center mt-3 text-decoration-underline" id="profile-active-listings">${activeListings.length} open listings</p>
+            <p class="inter-semiBold text-center mt-3 text-decoration-underline" id="profile-closed-listings">1 closed listing</p>`;
+          }
+          if (`${activeListings.length}` == 1 && `${closedListings.length}` > 1) {
+            profileListingsAmount.innerHTML = `
+            <p class="inter-semiBold text-center mt-3 text-decoration-underline" id="profile-active-listings">1 open listing</p>
+            <p class="inter-semiBold text-center mt-3 text-decoration-underline" id="profile-closed-listings">${closedListings.length} closed listings</p>`;
           }
           // Generate profile page listings HTML
-          console.log(data.listings.length);
           for (let i = 0; i < activeListingsSorted.length; i++) {
             if (`${activeListingsSorted[i].media.length}` > 0) {
               profilePageListings.innerHTML += `

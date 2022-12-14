@@ -21,7 +21,10 @@ async function fetchListing(url) {
     const data = await response.json();
     console.log(data);
     if (data.status == "Too Many Requests") {
-      listingContainer.innerHTML = `<h4 class="red-color mt-4">Error: too many requests. Please wait a minute before trying again.</h4>`
+      listingContainer.innerHTML = `<h4 class="red-color mt-4">Error: ${dataRaw.status}. Please wait a minute before trying again.</h4>`;
+    }
+    if (data.statusCode == 400) {
+      listingContainer.innerHTML = `<h2 class="red-color mt-4">This listing does not exist</h2>`;
     }
     const listingBids = data.bids;
     document.title = data.title + " - Scandinavian Auction House";
@@ -205,38 +208,19 @@ async function fetchListing(url) {
                       </div>
                       <input
                         type="number"
+                        min="0"
                         name="place-bid"
                         placeholder="Credit amount"
                         class="form-control form-control-height inter-regular mb-1"
                         id="bid-credit-input-mobile"
                         required
                       />
-                      <p
-                        class="inter-medium header-buttons mb-2 mt-1 red-color"
-                        id="bid-error-3-mobile"
-                        style="display: none"
-                      >
-                        Error, insufficient credit balance
-                      </p>
-                      <p
-                        class="inter-medium header-buttons mb-2 mt-1 red-color"
-                        id="bid-error-2-mobile"
-                        style="display: none"
-                      >
-                        Error, invalid number
-                      </p>
                       <button
                         class="bidding-button button-blue rounded-2 inter-semiBold w-100 mt-1" id="place-bid-btn-mobile"
                       >
                         Place bid
                       </button>
-                      <p
-                        class="inter-medium header-buttons mb-2 mt-1 red-color"
-                        id="bid-error-1-mobile"
-                        style="display: none"
-                      >
-                        Error, credit amount required
-                      </p>
+                      <p class="inter-medium mb-2 mt-1 text-center" id="place-bid-message-mobile" style="display: none"></p>
                     </div>
                     <hr class="dark-divider m-auto" />
                     <p
@@ -316,38 +300,19 @@ async function fetchListing(url) {
                     </div>
                 <input
                   type="number"
+                  min="0"
                   name="place-bid"
                   placeholder="Credit amount"
                   class="form-control form-control-height inter-regular mb-1"
                   id="bid-credit-input-desktop"
                   required
                 />
-                <p
-                  class="inter-medium header-buttons mb-2 mt-1 red-color"
-                  id="bid-error-3-desktop"
-                  style="display: none"
-                >
-                  Error, insufficient credit balance
-                </p>
-                <p
-                  class="inter-medium header-buttons mb-2 mt-1 red-color"
-                  id="bid-error-2-desktop"
-                  style="display: none"
-                >
-                  Error, invalid number
-                </p>
                 <button
                   class="bidding-button button-blue rounded-2 inter-semiBold w-100 mt-1" id="place-bid-btn-desktop"
                 >
                   Place bid
                 </button>
-                <p
-                  class="inter-medium header-buttons mb-2 mt-1 red-color"
-                  id="bid-error-1-desktop"
-                  style="display: none"
-                >
-                  Error, credit amount required
-                </p>
+                <p class="inter-medium mb-2 mt-1 text-center" id="place-bid-message-desktop" style="display: none"></p>
               </div>
         `;
   } catch (e) {
@@ -423,23 +388,23 @@ async function fetchListingsTags(url) {
       listingPage.innerHTML = "";
       listingPage.innerHTML = `<h2 class="red-color mt-5">Listing deleted</h2>`;
       setTimeout(function () {
-        window.location.href = "/index.html";
+        window.location.href = `/pages/profile.html?user=${userName}`;
       }, 3000);
     };
     document.addEventListener("click", function(e){
-      const target1 = e.target.closest("#edit-listing-btn-mobile"); // Or any other selector.
+      const target1 = e.target.closest("#edit-listing-btn-mobile");
       if(target1){
         window.location.href = `/pages/edit_listing.html?id=${listingId}`;
       }
-      const target2 = e.target.closest("#edit-listing-btn-desktop"); // Or any other selector.
+      const target2 = e.target.closest("#edit-listing-btn-desktop");
       if(target2){
         window.location.href = `/pages/edit_listing.html?id=${listingId}`;
       }
-      const target3 = e.target.closest("#delete-listing-btn-mobile"); // Or any other selector.
+      const target3 = e.target.closest("#delete-listing-btn-mobile");
       if(target3){
         deleteListing();
       }
-      const target4 = e.target.closest("#delete-listing-btn-desktop"); // Or any other selector.
+      const target4 = e.target.closest("#delete-listing-btn-desktop");
       if(target4){
         deleteListing();
       }
