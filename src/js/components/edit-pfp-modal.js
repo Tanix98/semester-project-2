@@ -40,11 +40,10 @@ async function updateProfilePicture(url) {
   try {
     const response = await fetch(`${url}`, {
       method: "PUT",
-      body: 
-        JSON.stringify(sendBody),
+      body: JSON.stringify(sendBody),
       headers: {
-          "Authorization": userToken,
-          "Content-Type": "application/json",
+        Authorization: userToken,
+        "Content-Type": "application/json",
       },
     });
     const data = await response.json();
@@ -54,8 +53,7 @@ async function updateProfilePicture(url) {
     if (data.errors) {
       editPfpMessage.classList.add("red-color");
       editPfpMessage.innerHTML = "Error: " + data.status;
-    }
-    else {
+    } else {
       editPfpMessage.innerHTML = "Profile picture updated!";
       setTimeout(function () {
         localStorage.removeItem("userAvatar");

@@ -39,9 +39,9 @@ async function fetchListing(url) {
       return highestBid;
     }
     const highestBid = getHighestBid(`${listingBids}`);
-  
+
     // Get highest user bid
-    const userBids = listingBids.find(function(bid) {
+    const userBids = listingBids.find(function (bid) {
       return bid.bidderName == userName;
     });
     function getHighestUserBid() {
@@ -56,7 +56,7 @@ async function fetchListing(url) {
       }
     }
     const [highestUserBid, userBidDisplay] = getHighestUserBid();
-  
+
     // Generate listing
     function displayListingBtns() {
       let displayReportListingBtn;
@@ -70,15 +70,20 @@ async function fetchListing(url) {
       }
       return [displayReportListingBtn, displayEditDeleteListingBtns];
     }
-    const [displayReportListingBtn, displayEditDeleteListingBtns] = displayListingBtns();
+    const [displayReportListingBtn, displayEditDeleteListingBtns] =
+      displayListingBtns();
 
     function checkForImgAndAvatar() {
       let sellerAvatar;
       let listingImg;
       if (`${data.seller.avatar}`) {
         sellerAvatar = `${data.seller.avatar}`;
-      } 
-      if (`${data.seller.avatar}` === "null" || `${data.seller.avatar}` === "" || `${data.seller.avatar}` === "undefined") {
+      }
+      if (
+        `${data.seller.avatar}` === "null" ||
+        `${data.seller.avatar}` === "" ||
+        `${data.seller.avatar}` === "undefined"
+      ) {
         sellerAvatar = "/resources/icons/profile_default.svg";
       }
       if (`${data.media.length}` > 0) {
@@ -87,7 +92,7 @@ async function fetchListing(url) {
         listingImg = "/resources/no_image.svg";
       }
       return [sellerAvatar, listingImg];
-    };
+    }
     const [sellerAvatar, listingImg] = checkForImgAndAvatar();
 
     function checkForDesc() {
@@ -95,13 +100,17 @@ async function fetchListing(url) {
       if (`${data.description}`) {
         listingDesc = `${data.description}`;
       }
-      if (`${data.description}` === "null" || `${data.description}` === "" || `${data.description}` === "undefined") {
+      if (
+        `${data.description}` === "null" ||
+        `${data.description}` === "" ||
+        `${data.description}` === "undefined"
+      ) {
         listingDesc = "";
       }
       return [listingDesc];
-    };
+    }
     const [listingDesc] = checkForDesc();
-          listingContainer.innerHTML = `
+    listingContainer.innerHTML = `
                 <div class="listing d-flex flex-column justify-content-center">
                   <div class="d-flex flex-column d-sm-none">
                     <div class="mb-2 d-flex align-items-center gap-2">
@@ -167,10 +176,10 @@ async function fetchListing(url) {
                         Bidding ends at: ${data.endsAt.substring(
                           11,
                           16
-                        )}, ${data.endsAt.substring(8, 10)}.${data.endsAt.substring(
-            5,
-            7
-          )}.${data.endsAt.substring(0, 4)}
+                        )}, ${data.endsAt.substring(
+      8,
+      10
+    )}.${data.endsAt.substring(5, 7)}.${data.endsAt.substring(0, 4)}
                       </p>
                       <p class="inter-regular" id="listing-desc">
                         ${listingDesc}
@@ -202,9 +211,7 @@ async function fetchListing(url) {
                       </div>
                       <div class="gap-1 justify-content-center mb-2" style="display: ${userBidDisplay}">
                         <p class="inter-semiBold mb-0">Your bid:</p>
-                        <p class="inter-extraBold green-color mb-0" id="user-bid">${
-                          highestUserBid
-                        }</p>
+                        <p class="inter-extraBold green-color mb-0" id="user-bid">${highestUserBid}</p>
                       </div>
                       <input
                         type="number"
@@ -233,7 +240,7 @@ async function fetchListing(url) {
                   </div>
                 </div>
           `;
-        sellerInfoContainer.innerHTML = `
+    sellerInfoContainer.innerHTML = `
         <div class="listing-info-container m-auto">
                 <div
                   class="seller-container mb-3 background-color-brown rounded-2 p-2"
@@ -294,9 +301,7 @@ async function fetchListing(url) {
                 </div>
                 <div class="gap-1 justify-content-center mb-2" style="display: ${userBidDisplay}">
                       <p class="inter-semiBold mb-0">Your bid:</p>
-                      <p class="inter-extraBold green-color mb-0" id="user-bid">${
-                        highestUserBid
-                      }</p>
+                      <p class="inter-extraBold green-color mb-0" id="user-bid">${highestUserBid}</p>
                     </div>
                 <input
                   type="number"
@@ -326,8 +331,12 @@ fetchListing(`${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`);
 async function fetchListingsTags(url) {
   const listingTagsDesktop = document.querySelector("#listing-tags-desktop");
   const listingTagsMobile = document.querySelector("#listing-tags-mobile");
-  const listingTagsContainerDesktop = document.querySelector("#listing-tags-container-desktop");
-  const listingTagsContainerMobile = document.querySelector("#listing-tags-container-mobile");
+  const listingTagsContainerDesktop = document.querySelector(
+    "#listing-tags-container-desktop"
+  );
+  const listingTagsContainerMobile = document.querySelector(
+    "#listing-tags-container-mobile"
+  );
   try {
     const response = await fetch(`${url}`, {
       method: "GET",
@@ -354,13 +363,11 @@ async function fetchListingsTags(url) {
     const bidsContainer = document.querySelector("#bids");
     const listingBids = data.bids;
     for (let i = listingBids.length - 1; i >= 0; i--) {
-        bidsContainer.innerHTML += `
+      bidsContainer.innerHTML += `
         <div class="bid d-flex flex-column m-auto rounded-2 p-2 mb-2 justify-content-between">
           <div class=" pb-0 d-flex justify-content-center gap-2">
             <a
-              href="/pages/profile.html?user=${
-                listingBids[i].bidderName
-              }"
+              href="/pages/profile.html?user=${listingBids[i].bidderName}"
               class="mt-auto mb-auto text-decoration-none text-white krub-semiBold"
             >
               ${listingBids[i].bidderName}
@@ -370,7 +377,7 @@ async function fetchListingsTags(url) {
             ${listingBids[i].amount} credits
           </p>
         </div>
-        `
+        `;
     }
   } catch (e) {
     console.log(e);
@@ -380,8 +387,8 @@ async function fetchListingsTags(url) {
       const response = await fetch(`${apiBaseUrl}/listings/${listingId}`, {
         method: "DELETE",
         headers: {
-          "Authorization": userToken,
-          "Content-Type": "application/json"
+          Authorization: userToken,
+          "Content-Type": "application/json",
         },
       });
       const listingPage = document.querySelector("#listing-page");
@@ -390,22 +397,22 @@ async function fetchListingsTags(url) {
       setTimeout(function () {
         window.location.href = `/pages/profile.html?user=${userName}`;
       }, 3000);
-    };
-    document.addEventListener("click", function(e){
+    }
+    document.addEventListener("click", function (e) {
       const target1 = e.target.closest("#edit-listing-btn-mobile");
-      if(target1){
+      if (target1) {
         window.location.href = `/pages/edit_listing.html?id=${listingId}`;
       }
       const target2 = e.target.closest("#edit-listing-btn-desktop");
-      if(target2){
+      if (target2) {
         window.location.href = `/pages/edit_listing.html?id=${listingId}`;
       }
       const target3 = e.target.closest("#delete-listing-btn-mobile");
-      if(target3){
+      if (target3) {
         deleteListing();
       }
       const target4 = e.target.closest("#delete-listing-btn-desktop");
-      if(target4){
+      if (target4) {
         deleteListing();
       }
     });
@@ -415,5 +422,7 @@ async function fetchListingsTags(url) {
 }
 
 setTimeout(function () {
-  fetchListingsTags(`${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`);
+  fetchListingsTags(
+    `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`
+  );
 }, 800);

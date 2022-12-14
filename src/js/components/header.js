@@ -126,7 +126,7 @@ const modalUserCreditAmount = document.querySelector("#user-credit-amount");
     const response = await fetch(`${apiBaseUrl}/profiles/${userName}`, {
       method: "GET",
       headers: {
-        "Authorization": userToken
+        Authorization: userToken,
       },
     });
     const data = await response.json();
