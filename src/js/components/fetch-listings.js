@@ -1,5 +1,7 @@
 /* eslint-disable-line */
 
+export { listingsContainer };
+
 import { apiBaseUrl } from "/src/js/api.js";
 import {
   byDateCreatedDescending,
@@ -7,6 +9,7 @@ import {
   byEndDateDescending,
   byEndDateAscending,
 } from "/src/js/components/sort-listings.js";
+import { listingsTag, listingsSearch } from "/src/js/queryString.js";
 
 const listingsContainer = document.querySelector("#listings");
 
@@ -14,8 +17,8 @@ const listingsContainer = document.querySelector("#listings");
  * Default listing list. Sorted by date created descending. Fetches all listings from api, creates list that's been filtered of all listings with end date older than current date, and then generates html using that list.
  */
 async function fetchListingsbyDateCreatedDescending(url) {
-  listingsContainer.innerHTML = "";
   try {
+    listingsContainer.innerHTML = "";
     const response = await fetch(`${url}`, {
       method: "GET",
       headers: {
@@ -35,102 +38,122 @@ async function fetchListingsbyDateCreatedDescending(url) {
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
-          listingsContainer.innerHTML += `
-                        <div class="listing-card mb-3">
-                            <div
-                                class="d-flex justify-content-center align-items-center"
-                            >
-                                <a
-                                    href="/pages/listing.html?id=${data[i].id}"
-                                    class="listing-img-container rounded-1"
-                                    ><img
-                                        src="${data[i].media[0]}"
-                                        class="rounded-1"
-                                        alt="listing image"
-                                /></a>
-                            </div>
-                            <div class="listing-text-container">
-                                <a href="/pages/listing.html?id=${
-                                  data[i].id
-                                }" class="krub-bold"
-                                    >${data[i].title}</a
-                                >
-                                <div class="d-flex justify-content-between">
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular" title="${data[
-            i
-          ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(8, 10)}.${data[
-            i
-          ].endsAt.substring(5, 7)}.${data[i].endsAt.substring(0, 4)}"
-                                        >Ends at: ${data[i].endsAt.substring(
-                                          11,
-                                          16
-                                        )}, ${data[i].endsAt.substring(
-            8,
-            10
-          )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
-            2,
-            4
-          )}</a
-                                    >
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular"
-                                        >Bids: ${data[i]._count.bids}</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    `;
+          try {
+            listingsContainer.innerHTML += `
+                          <div class="listing-card mb-3">
+                              <div
+                                  class="d-flex justify-content-center align-items-center"
+                              >
+                                  <a
+                                      href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }"
+                                      class="listing-img-container rounded-1"
+                                      ><img
+                                          src="${data[i].media[0]}"
+                                          class="rounded-1"
+                                          alt="listing image"
+                                  /></a>
+                              </div>
+                              <div class="listing-text-container">
+                                  <a href="/pages/listing.html?id=${
+                                    data[i].id
+                                  }" class="krub-bold"
+                                      >${data[i].title}</a
+                                  >
+                                  <div class="d-flex justify-content-between">
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular" title="${data[
+              i
+            ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              0,
+              4
+            )}"
+                                          >Ends at: ${data[i].endsAt.substring(
+                                            11,
+                                            16
+                                          )}, ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              2,
+              4
+            )}</a
+                                      >
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular"
+                                          >Bids: ${data[i]._count.bids}</a
+                                      >
+                                  </div>
+                              </div>
+                          </div>
+                      `;
+          } catch (e) {
+            console.log(e);
+          }
         } else {
-          listingsContainer.innerHTML += `<div class="listing-card mb-3">
-                            <div class="d-flex justify-content-center align-items-center"
-                            >
-                                <a
-                                    href="/pages/listing.html?id=${data[i].id}"
-                                    class="listing-img-container rounded-1
-                                    "
-                                    ><img
-                                        src="/resources/no_image.svg"
-                                        class="rounded-1"
-                                        alt="listing image"
-                                /></a>
-                            </div>
-                            <div>
-                                <a href="/pages/listing.htmlid=${
-                                  data[i].id
-                                }" class="krub-bold"
-                                    >${data[i].title}</a
-                                >
-                                <div class="d-flex justify-content-between">
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular" title="${data[
-            i
-          ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(8, 10)}.${data[
-            i
-          ].endsAt.substring(5, 7)}.${data[i].endsAt.substring(0, 4)}"
-                                        >Ends at: ${data[i].endsAt.substring(
-                                          11,
-                                          16
-                                        )}, ${data[i].endsAt.substring(
-            8,
-            10
-          )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
-            2,
-            4
-          )}</a
-                                    >
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular"
-                                        >Bids: ${data[i]._count.bids}</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    `;
+          try {
+            listingsContainer.innerHTML += `<div class="listing-card mb-3">
+                              <div class="d-flex justify-content-center align-items-center"
+                              >
+                                  <a
+                                      href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }"
+                                      class="listing-img-container rounded-1
+                                      "
+                                      ><img
+                                          src="/resources/no_image.svg"
+                                          class="rounded-1"
+                                          alt="listing image"
+                                  /></a>
+                              </div>
+                              <div class="listing-text-container">
+                                  <a href="/pages/listing.htmlid=${
+                                    data[i].id
+                                  }" class="krub-bold"
+                                      >${data[i].title}</a
+                                  >
+                                  <div class="d-flex justify-content-between">
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular" title="${data[
+              i
+            ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              0,
+              4
+            )}"
+                                          >Ends at: ${data[i].endsAt.substring(
+                                            11,
+                                            16
+                                          )}, ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              2,
+              4
+            )}</a
+                                      >
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular"
+                                          >Bids: ${data[i]._count.bids}</a
+                                      >
+                                  </div>
+                              </div>
+                          </div>
+                      `;
+          } catch (e) {
+            console.log(e);
+          }
         }
       } catch (e) {
         console.log(e);
@@ -141,10 +164,15 @@ async function fetchListingsbyDateCreatedDescending(url) {
   }
 }
 
-try {
+if (listingsTag) {
+  fetchListingsbyDateCreatedDescending(
+    `${apiBaseUrl}/listings?_tag=${listingsTag}`
+  );
+}
+if (listingsSearch) {
+  listingsContainer.innerHTML = "";
+} else {
   fetchListingsbyDateCreatedDescending(`${apiBaseUrl}/listings`);
-} catch (e) {
-  console.log(e);
 }
 
 /**
@@ -168,103 +196,123 @@ async function fetchListingsbydateCreatedAscending(url) {
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
-          listingsContainer.innerHTML += `
-                        <div class="listing-card mb-3">
-                            <div
-                                class="d-flex justify-content-center align-items-center"
-                            >
-                                <a
-                                    href="/pages/listing.html?id=${data[i].id}"
-                                    class="listing-img-container rounded-2"
-                                    ><img
-                                        src="${data[i].media[0]}"
-                                        class="rounded-2"
-                                        alt="listing image"
-                                /></a>
-                            </div>
-                            <div class="listing-text-container">
-                                <a href="/pages/listing.htmlid=${
-                                  data[i].id
-                                }" class="krub-bold"
-                                    >${data[i].title}</a
-                                >
-                                <div class="d-flex justify-content-between">
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular" title="${data[
-            i
-          ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(8, 10)}.${data[
-            i
-          ].endsAt.substring(5, 7)}.${data[i].endsAt.substring(0, 4)}"
-                                        >Ends at: ${data[i].endsAt.substring(
-                                          11,
-                                          16
-                                        )}, ${data[i].endsAt.substring(
-            8,
-            10
-          )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
-            2,
-            4
-          )}</a
-                                    >
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular"
-                                        >Bids: ${data[i]._count.bids}</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    `;
+          try {
+            listingsContainer.innerHTML += `
+                          <div class="listing-card mb-3">
+                              <div
+                                  class="d-flex justify-content-center align-items-center"
+                              >
+                                  <a
+                                      href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }"
+                                      class="listing-img-container rounded-2"
+                                      ><img
+                                          src="${data[i].media[0]}"
+                                          class="rounded-2"
+                                          alt="listing image"
+                                  /></a>
+                              </div>
+                              <div class="listing-text-container">
+                                  <a href="/pages/listing.htmlid=${
+                                    data[i].id
+                                  }" class="krub-bold"
+                                      >${data[i].title}</a
+                                  >
+                                  <div class="d-flex justify-content-between">
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular" title="${data[
+              i
+            ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              0,
+              4
+            )}"
+                                          >Ends at: ${data[i].endsAt.substring(
+                                            11,
+                                            16
+                                          )}, ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              2,
+              4
+            )}</a
+                                      >
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular"
+                                          >Bids: ${data[i]._count.bids}</a
+                                      >
+                                  </div>
+                              </div>
+                          </div>
+                      `;
+          } catch (e) {
+            console.log(e);
+          }
         } else {
-          listingsContainer.innerHTML += `
-                        <div class="listing-card mb-3">
-                            <div
-                                class="d-flex justify-content-center align-items-center"
-                            >
-                                <a
-                                    href="/pages/listing.html?id=${data[i].id}"
-                                    class="listing-img-container rounded-2"
-                                    ><img
-                                        src="/resources/no_image.svg"
-                                        class="rounded-2"
-                                        alt="listing image"
-                                /></a>
-                            </div>
-                            <div>
-                                <a href="/pages/listing.htmlid=${
-                                  data[i].id
-                                }" class="krub-bold"
-                                    >${data[i].title}</a
-                                >
-                                <div class="d-flex justify-content-between">
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular" title="${data[
-            i
-          ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(8, 10)}.${data[
-            i
-          ].endsAt.substring(5, 7)}.${data[i].endsAt.substring(0, 4)}"
-                                        >Ends at: ${data[i].endsAt.substring(
-                                          11,
-                                          16
-                                        )}, ${data[i].endsAt.substring(
-            8,
-            10
-          )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
-            2,
-            4
-          )}</a
-                                    >
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular"
-                                        >Bids: ${data[i]._count.bids}</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    `;
+          try {
+            listingsContainer.innerHTML += `
+                          <div class="listing-card mb-3">
+                              <div
+                                  class="d-flex justify-content-center align-items-center"
+                              >
+                                  <a
+                                      href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }"
+                                      class="listing-img-container rounded-2"
+                                      ><img
+                                          src="/resources/no_image.svg"
+                                          class="rounded-2"
+                                          alt="listing image"
+                                  /></a>
+                              </div>
+                              <div>
+                                  <a href="/pages/listing.htmlid=${
+                                    data[i].id
+                                  }" class="krub-bold"
+                                      >${data[i].title}</a
+                                  >
+                                  <div class="d-flex justify-content-between">
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular" title="${data[
+              i
+            ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              0,
+              4
+            )}"
+                                          >Ends at: ${data[i].endsAt.substring(
+                                            11,
+                                            16
+                                          )}, ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              2,
+              4
+            )}</a
+                                      >
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular"
+                                          >Bids: ${data[i]._count.bids}</a
+                                      >
+                                  </div>
+                              </div>
+                          </div>
+                      `;
+          } catch (e) {
+            console.log(e);
+          }
         }
       } catch (e) {
         console.log(e);
@@ -296,103 +344,123 @@ async function fetchListingsbyendDateDescending(url) {
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
-          listingsContainer.innerHTML += `
-                        <div class="listing-card mb-3">
-                            <div
-                                class="d-flex justify-content-center align-items-center"
-                            >
-                                <a
-                                    href="/pages/listing.html?id=${data[i].id}"
-                                    class="listing-img-container rounded-2"
-                                    ><img
-                                        src="${data[i].media[0]}"
-                                        class="rounded-2"
-                                        alt="listing image"
-                                /></a>
-                            </div>
-                            <div>
-                                <a href="/pages/listing.htmlid=${
-                                  data[i].id
-                                }" class="krub-bold"
-                                    >${data[i].title}</a
-                                >
-                                <div class="d-flex justify-content-between">
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular" title="${data[
-            i
-          ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(8, 10)}.${data[
-            i
-          ].endsAt.substring(5, 7)}.${data[i].endsAt.substring(0, 4)}"
-                                        >Ends at: ${data[i].endsAt.substring(
-                                          11,
-                                          16
-                                        )}, ${data[i].endsAt.substring(
-            8,
-            10
-          )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
-            2,
-            4
-          )}</a
-                                    >
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular"
-                                        >Bids: ${data[i]._count.bids}</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    `;
+          try {
+            listingsContainer.innerHTML += `
+                          <div class="listing-card mb-3">
+                              <div
+                                  class="d-flex justify-content-center align-items-center"
+                              >
+                                  <a
+                                      href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }"
+                                      class="listing-img-container rounded-2"
+                                      ><img
+                                          src="${data[i].media[0]}"
+                                          class="rounded-2"
+                                          alt="listing image"
+                                  /></a>
+                              </div>
+                              <div class="listing-text-container">
+                                  <a href="/pages/listing.htmlid=${
+                                    data[i].id
+                                  }" class="krub-bold"
+                                      >${data[i].title}</a
+                                  >
+                                  <div class="d-flex justify-content-between">
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular" title="${data[
+              i
+            ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              0,
+              4
+            )}"
+                                          >Ends at: ${data[i].endsAt.substring(
+                                            11,
+                                            16
+                                          )}, ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              2,
+              4
+            )}</a
+                                      >
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular"
+                                          >Bids: ${data[i]._count.bids}</a
+                                      >
+                                  </div>
+                              </div>
+                          </div>
+                      `;
+          } catch (e) {
+            console.log(e);
+          }
         } else {
-          listingsContainer.innerHTML += `
-                        <div class="listing-card mb-3">
-                            <div
-                                class="d-flex justify-content-center align-items-center"
-                            >
-                                <a
-                                    href="/pages/listing.html?id=${data[i].id}"
-                                    class="listing-img-container rounded-2"
-                                    ><img
-                                        src="/resources/no_image.svg"
-                                        class="rounded-2"
-                                        alt="listing image"
-                                /></a>
-                            </div>
-                            <div>
-                                <a href="/pages/listing.htmlid=${
-                                  data[i].id
-                                }" class="krub-bold"
-                                    >${data[i].title}</a
-                                >
-                                <div class="d-flex justify-content-between">
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular" title="${data[
-            i
-          ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(8, 10)}.${data[
-            i
-          ].endsAt.substring(5, 7)}.${data[i].endsAt.substring(0, 4)}"
-                                        >Ends at: ${data[i].endsAt.substring(
-                                          11,
-                                          16
-                                        )}, ${data[i].endsAt.substring(
-            8,
-            10
-          )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
-            2,
-            4
-          )}</a
-                                    >
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular"
-                                        >Bids: ${data[i]._count.bids}</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    `;
+          try {
+            listingsContainer.innerHTML += `
+                          <div class="listing-card mb-3">
+                              <div
+                                  class="d-flex justify-content-center align-items-center"
+                              >
+                                  <a
+                                      href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }"
+                                      class="listing-img-container rounded-2"
+                                      ><img
+                                          src="/resources/no_image.svg"
+                                          class="rounded-2"
+                                          alt="listing image"
+                                  /></a>
+                              </div>
+                              <div>
+                                  <a href="/pages/listing.htmlid=${
+                                    data[i].id
+                                  }" class="krub-bold"
+                                      >${data[i].title}</a
+                                  >
+                                  <div class="d-flex justify-content-between">
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular" title="${data[
+              i
+            ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              0,
+              4
+            )}"
+                                          >Ends at: ${data[i].endsAt.substring(
+                                            11,
+                                            16
+                                          )}, ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              2,
+              4
+            )}</a
+                                      >
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular"
+                                          >Bids: ${data[i]._count.bids}</a
+                                      >
+                                  </div>
+                              </div>
+                          </div>
+                      `;
+          } catch (e) {
+            console.log(e);
+          }
         }
       } catch (e) {
         console.log(e);
@@ -424,103 +492,123 @@ async function fetchListingsbyendDateAscending(url) {
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
-          listingsContainer.innerHTML += `
-                        <div class="listing-card mb-3">
-                            <div
-                                class="d-flex justify-content-center align-items-center"
-                            >
-                                <a
-                                    href="/pages/listing.html?id=${data[i].id}"
-                                    class="listing-img-container rounded-2"
-                                    ><img
-                                        src="${data[i].media[0]}"
-                                        class="rounded-2"
-                                        alt="listing image"
-                                /></a>
-                            </div>
-                            <div>
-                                <a href="/pages/listing.htmlid=${
-                                  data[i].id
-                                }" class="krub-bold"
-                                    >${data[i].title}</a
-                                >
-                                <div class="d-flex justify-content-between">
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular" title="${data[
-            i
-          ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(8, 10)}.${data[
-            i
-          ].endsAt.substring(5, 7)}.${data[i].endsAt.substring(0, 4)}"
-                                        >Ends at: ${data[i].endsAt.substring(
-                                          11,
-                                          16
-                                        )}, ${data[i].endsAt.substring(
-            8,
-            10
-          )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
-            2,
-            4
-          )}</a
-                                    >
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular"
-                                        >Bids: ${data[i]._count.bids}</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    `;
+          try {
+            listingsContainer.innerHTML += `
+                          <div class="listing-card mb-3">
+                              <div
+                                  class="d-flex justify-content-center align-items-center"
+                              >
+                                  <a
+                                      href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }"
+                                      class="listing-img-container rounded-2"
+                                      ><img
+                                          src="${data[i].media[0]}"
+                                          class="rounded-2"
+                                          alt="listing image"
+                                  /></a>
+                              </div>
+                              <div class="listing-text-container">
+                                  <a href="/pages/listing.htmlid=${
+                                    data[i].id
+                                  }" class="krub-bold"
+                                      >${data[i].title}</a
+                                  >
+                                  <div class="d-flex justify-content-between">
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular" title="${data[
+              i
+            ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              0,
+              4
+            )}"
+                                          >Ends at: ${data[i].endsAt.substring(
+                                            11,
+                                            16
+                                          )}, ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              2,
+              4
+            )}</a
+                                      >
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular"
+                                          >Bids: ${data[i]._count.bids}</a
+                                      >
+                                  </div>
+                              </div>
+                          </div>
+                      `;
+          } catch (e) {
+            console.log(e);
+          }
         } else {
-          listingsContainer.innerHTML += `
-                        <div class="listing-card mb-3">
-                            <div
-                                class="d-flex justify-content-center align-items-center"
-                            >
-                                <a
-                                    href="/pages/listing.html?id=${data[i].id}"
-                                    class="listing-img-container rounded-2"
-                                    ><img
-                                        src="/resources/no_image.svg"
-                                        class="rounded-2"
-                                        alt="listing image"
-                                /></a>
-                            </div>
-                            <div>
-                                <a href="/pages/listing.htmlid=${
-                                  data[i].id
-                                }" class="krub-bold"
-                                    >${data[i].title}</a
-                                >
-                                <div class="d-flex justify-content-between">
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular" title="${data[
-            i
-          ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(8, 10)}.${data[
-            i
-          ].endsAt.substring(5, 7)}.${data[i].endsAt.substring(0, 4)}"
-                                        >Ends at: ${data[i].endsAt.substring(
-                                          11,
-                                          16
-                                        )}, ${data[i].endsAt.substring(
-            8,
-            10
-          )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
-            2,
-            4
-          )}</a
-                                    >
-                                    <a href="/pages/listing.html?id=${
-                                      data[i].id
-                                    }" class="inter-regular"
-                                        >Bids: ${data[i]._count.bids}</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    `;
+          try {
+            listingsContainer.innerHTML += `
+                          <div class="listing-card mb-3">
+                              <div
+                                  class="d-flex justify-content-center align-items-center"
+                              >
+                                  <a
+                                      href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }"
+                                      class="listing-img-container rounded-2"
+                                      ><img
+                                          src="/resources/no_image.svg"
+                                          class="rounded-2"
+                                          alt="listing image"
+                                  /></a>
+                              </div>
+                              <div>
+                                  <a href="/pages/listing.htmlid=${
+                                    data[i].id
+                                  }" class="krub-bold"
+                                      >${data[i].title}</a
+                                  >
+                                  <div class="d-flex justify-content-between">
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular" title="${data[
+              i
+            ].endsAt.substring(11, 16)} ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              0,
+              4
+            )}"
+                                          >Ends at: ${data[i].endsAt.substring(
+                                            11,
+                                            16
+                                          )}, ${data[i].endsAt.substring(
+              8,
+              10
+            )}.${data[i].endsAt.substring(5, 7)}.${data[i].endsAt.substring(
+              2,
+              4
+            )}</a
+                                      >
+                                      <a href="/pages/listing.html?id=${
+                                        data[i].id
+                                      }" class="inter-regular"
+                                          >Bids: ${data[i]._count.bids}</a
+                                      >
+                                  </div>
+                              </div>
+                          </div>
+                      `;
+          } catch (e) {
+            console.log(e);
+          }
         }
       } catch (e) {
         console.log(e);
@@ -541,34 +629,90 @@ const dateCreatedAscendingBtn = document.querySelector(
 const endDateDescendingBtn = document.querySelector("#end-date-descending");
 const endDateAscendingBtn = document.querySelector("#end-date-ascending");
 
-dateCreatedDescendingBtn.addEventListener("click", () => {
-  try {
-    fetchListingsbyDateCreatedDescending(`${apiBaseUrl}/listings`);
-  } catch (e) {
-    console.log(e);
-  }
-});
+try {
+  dateCreatedDescendingBtn.addEventListener("click", () => {
+    if (listingsTag) {
+      try {
+        fetchListingsbyDateCreatedDescending(
+          `${apiBaseUrl}/listings?_tag=${listingsTag}`
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      try {
+        fetchListingsbyDateCreatedDescending(`${apiBaseUrl}/listings`);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  });
+} catch (e) {
+  console.log(e);
+}
 
-dateCreatedAscendingBtn.addEventListener("click", () => {
-  try {
-    fetchListingsbydateCreatedAscending(`${apiBaseUrl}/listings`);
-  } catch (e) {
-    console.log(e);
-  }
-});
+try {
+  dateCreatedAscendingBtn.addEventListener("click", () => {
+    if (listingsTag) {
+      try {
+        fetchListingsbydateCreatedAscending(
+          `${apiBaseUrl}/listings?_tag=${listingsTag}`
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      try {
+        fetchListingsbydateCreatedAscending(`${apiBaseUrl}/listings`);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  });
+} catch (e) {
+  console.log(e);
+}
 
-endDateDescendingBtn.addEventListener("click", () => {
-  try {
-    fetchListingsbyendDateDescending(`${apiBaseUrl}/listings`);
-  } catch (e) {
-    console.log(e);
-  }
-});
+try {
+  endDateDescendingBtn.addEventListener("click", () => {
+    if (listingsTag) {
+      try {
+        fetchListingsbyendDateDescending(
+          `${apiBaseUrl}/listings?_tag=${listingsTag}`
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      try {
+        fetchListingsbyendDateDescending(`${apiBaseUrl}/listings`);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  });
+} catch (e) {
+  console.log(e);
+}
 
-endDateAscendingBtn.addEventListener("click", () => {
-  try {
-    fetchListingsbyendDateAscending(`${apiBaseUrl}/listings`);
-  } catch (e) {
-    console.log(e);
-  }
-});
+try {
+  endDateAscendingBtn.addEventListener("click", () => {
+    if (listingsTag) {
+      try {
+        fetchListingsbyendDateAscending(
+          `${apiBaseUrl}/listings?_tag=${listingsTag}`
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      try {
+        fetchListingsbyendDateAscending(`${apiBaseUrl}/listings`);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  });
+} catch (e) {
+  console.log(e);
+}

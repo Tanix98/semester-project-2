@@ -1,6 +1,6 @@
 import { apiBaseUrl, userName, userAvatar } from "/src/js/api.js";
 import { userToken } from "/src/js/localStorage.js";
-export { hamburgerMenu };
+export { hamburgerMenu, searchBar };
 
 // Login button
 const headerLoginButton = document.querySelector("#header-login-button");
@@ -24,6 +24,24 @@ try {
   });
 } catch (e) {
   console.log(e);
+}
+
+// Search bar
+const searchBarBtn = document.querySelectorAll(".header-search-bar-icon");
+const searchBar = document.querySelectorAll(".header-searchbar");
+
+for (let i = 0; i < searchBar.length; i++) {
+  searchBarBtn[i].addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("a search has been made");
+    location.href = `../index.html?search=${searchBar[i].value}`;
+  });
+  searchBar[i].addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      searchBarBtn[i].dispatchEvent(new Event("click"));
+    }
+  });
 }
 
 // Hamburger menu button
@@ -98,9 +116,7 @@ const myProfileBtn = document.querySelectorAll(".my-profile-btn");
 
 try {
   for (let i = 0; i < myProfileBtn.length; i++) {
-    myProfileBtn[i].addEventListener("click", () => {
-      window.location.href = `/pages/profile.html?user=${userName}`;
-    });
+    myProfileBtn[i].href = `/pages/profile.html?user=${userName}`;
   }
 } catch (e) {
   console.log(e);

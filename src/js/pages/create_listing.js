@@ -28,6 +28,9 @@ async function createListing(url) {
       },
     });
     const data = await response.json();
+    console.log(
+      JSON.stringify(sendBody) + " ------------- " + `${tagsInput.value}`
+    );
     createListingMessage.style.display = "block";
     if (data.errors) {
       createListingMessage.classList.add("red-color");

@@ -8,6 +8,7 @@
     "watch": "sass --watch src/scss:dist/css",
     "format": "prettier -w src/**/*.js",
     "lint": "eslint src/**/*.js",
+    "lint-fix": "eslint src/**/*.js --cache --fix",
     "test": "npm run test-e2e",
     "test-e2e": "cypress open"
   },

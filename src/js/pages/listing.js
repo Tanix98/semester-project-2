@@ -20,19 +20,21 @@ async function fetchListing(url) {
     });
     const data = await response.json();
     console.log(data);
-    if (data.status == "Too Many Requests") {
-      listingContainer.innerHTML = `<h4 class="red-color mt-4">Error: ${dataRaw.status}. Please wait a minute before trying again.</h4>`;
+    document.title = data.title + " - Scandinavian Auction House";
+    if (data.status == "Too Many Requests" || data.statusCode == 429) {
+      listingContainer.innerHTML = `<h4 class="red-color mt-4">Error: ${data.status}. Please wait a minute before trying again.</h4>`;
     }
     if (data.statusCode == 400) {
       listingContainer.innerHTML = `<h2 class="red-color mt-4">This listing does not exist</h2>`;
     }
-    const listingBids = data.bids;
-    document.title = data.title + " - Scandinavian Auction House";
+
     // Get highest listing bid
+    const listingBids = data.bids;
+    listingBids.sort((a, b) => parseFloat(b.amount) - parseFloat(a.amount));
     function getHighestBid(bids) {
       let highestBid;
       if (bids) {
-        highestBid = `${listingBids[listingBids.length - 1].amount}`;
+        highestBid = `${listingBids[0].amount}`;
       } else {
         highestBid = "none";
       }
@@ -41,9 +43,11 @@ async function fetchListing(url) {
     const highestBid = getHighestBid(`${listingBids}`);
 
     // Get highest user bid
+    console.log(listingBids);
     const userBids = listingBids.find(function (bid) {
       return bid.bidderName == userName;
     });
+    console.log(userBids);
     function getHighestUserBid() {
       if (userBids) {
         const highestUserBid = userBids.amount;
@@ -148,7 +152,6 @@ async function fetchListing(url) {
                   </div>
                   <div
                     class="listing-image-container d-flex justify-content-center"
-                    id="open-listing-img"
                   >
                     <img
                       src="${listingImg}"
@@ -156,16 +159,14 @@ async function fetchListing(url) {
                       alt="listing image"
                     />
                   </div>
-                  <div
-                    class="d-none listing-image-container d-flex justify-content-center align-items-center bg-dark rounded-2"
-                    id="closed-listing-img"
-                  >
-                    <h1 class="text-white mb-0 position-absolute">Closed</h1>
-                    <img
-                      src="${listingImg}"
-                      class="rounded-2 opacity-25"
-                      alt="listing image"
-                    />
+                  <div class="d-none align-items-center gap-2 m-auto mt-2" id="img-gallery-navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16" id="img-arrow-left">
+                        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                    </svg>
+                    <p class="inter-medium mb-0" id="image-count">1 / X</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16" id="img-arrow-right">
+                        <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                    </svg>
                   </div>
                   <div class="listing-text-container m-auto pt-2 p-sm-3 pb-0">
                     <p class="listing-title krub-bold mb-1">
@@ -327,6 +328,76 @@ async function fetchListing(url) {
 
 fetchListing(`${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`);
 
+// Image gallery carousel
+async function imgGalleryWait(event) {
+  const listingImagesContainer = document.querySelector(
+    ".listing-image-container"
+  );
+  const imgGalleryNavigation = document.querySelector(
+    "#img-gallery-navigation"
+  );
+  const imageCount = document.querySelector("#image-count");
+  try {
+    const response = await fetch(
+      `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    if (data.media.length > 1) {
+      imgGalleryNavigation.classList.remove("d-none");
+      imgGalleryNavigation.classList.add("d-flex");
+    }
+    let currentImageNumber = 1;
+    /*if (event.type === "click") {
+      if ((event.target.id = "img-arrow-left")) {
+        currentImageNumber--;
+      }
+      if ((event.target.id = "img-arrow-right")) {
+        currentImageNumber++;
+      }
+    }*/
+    if (data.media) {
+      for (let i = 0; i < data.media.length; i++) {
+        imageCount.innerHTML = `${currentImageNumber} / ${data.media.length}`;
+        listingImagesContainer.innerHTML = `<img
+            src="${data.media[0]}"
+            class="rounded-2"
+            alt="listing image"
+        />`;
+      }
+    }
+    return currentImageNumber;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+setTimeout(function () {
+  imgGalleryWait();
+}, 800);
+
+document.addEventListener("click", function (e) {
+  const target1 = e.target.closest("#img-arrow-left");
+  if (target1) {
+    console.log("left arrow clicked");
+    imgGalleryWait(
+      `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`
+    );
+  }
+  const target2 = e.target.closest("#img-arrow-right");
+  if (target2) {
+    console.log("right arrow clicked");
+    imgGalleryWait(
+      `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`
+    );
+  }
+});
+
 // Fetch listing tags and bids
 async function fetchListingsTags(url) {
   const listingTagsDesktop = document.querySelector("#listing-tags-desktop");
@@ -354,15 +425,17 @@ async function fetchListingsTags(url) {
         listingTagsContainerDesktop.style.display = "block";
       }
       listingTagsDesktop.innerHTML += `
-        <a href="#" class="listing-tag">${data.tags[i]}</a>
+        <a href="/index.html?tag=${data.tags[i]}" class="listing-tag">${data.tags[i]}</a>
       `;
       listingTagsMobile.innerHTML += `
-      <a href="#" class="listing-tag">${data.tags[i]}</a>
+      <a href="/index.html?tag=${data.tags[i]}" class="listing-tag">${data.tags[i]}</a>
     `;
     }
     const bidsContainer = document.querySelector("#bids");
     const listingBids = data.bids;
-    for (let i = listingBids.length - 1; i >= 0; i--) {
+    listingBids.sort((a, b) => parseFloat(b.amount) - parseFloat(a.amount));
+    console.log(listingBids);
+    for (let i = 0; i < listingBids.length; i++) {
       bidsContainer.innerHTML += `
         <div class="bid d-flex flex-column m-auto rounded-2 p-2 mb-2 justify-content-between">
           <div class=" pb-0 d-flex justify-content-center gap-2">

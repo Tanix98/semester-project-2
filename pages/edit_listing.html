@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/dist/css/buttons.css" />
     <link rel="stylesheet" href="/dist/css/credits-modal.css" />
     <script defer src="/src/js/components/header.js" type="module"></script>
+    <script defer src="/src/js/components/search.js" type="module"></script>
     <script
       defer
       src="/src/js/components/credits-modal.js"
@@ -66,9 +67,9 @@
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-search position-absolute me-auto ms-2"
-            id="header-search-bar-icon"
+            class="bi bi-search position-absolute me-auto ms-2 header-search-bar-icon"
             viewBox="0 0 16 16"
+            id="searchbar-button-desktop"
           >
             <path
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
@@ -78,6 +79,7 @@
             type="search"
             class="rounded-1 border-0 header-searchbar inter-regular"
             placeholder="Search"
+            id="searchbar-desktop"
           />
         </div>
       </div>
@@ -143,9 +145,9 @@
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-search position-absolute me-auto ms-2"
-              id="header-search-bar-icon"
+              class="bi bi-search position-absolute me-auto ms-2 header-search-bar-icon"
               viewBox="0 0 16 16"
+              id="searchbar-button-mobile"
             >
               <path
                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
@@ -154,8 +156,8 @@
             <input
               type="search"
               class="rounded-1 border-0 header-searchbar inter-regular"
-              id="header-searchbar-mobile"
               placeholder="Search"
+              id="searchbar-mobile"
             />
           </div>
         </div>
@@ -163,19 +165,6 @@
           class="flex-column text-center mt-4"
           id="mobile-menu-signed-out"
           style="display: none"
-        >
-          <a href="/index.html" class="hamburger-nav inter-bold">Homepage</a>
-          <hr class="divider" />
-          <a
-            href="/pages/login.html"
-            class="hamburger-nav hamburger-nav-green inter-bold green-color"
-            >Log in / Register</a
-          >
-        </div>
-        <div
-          class="flex-column text-center mt-4"
-          id="mobile-menu-signed-in"
-          display="none"
         >
           <a href="/index.html" class="hamburger-nav inter-bold">Homepage</a>
           <hr class="divider" />
@@ -275,7 +264,11 @@
           >
             Edit listing
           </button>
-          <p class="inter-medium mb-2 mt-1 m-auto" id="edit-listing-message" style="display: none"></p>
+          <p
+            class="inter-medium mb-2 mt-1 m-auto"
+            id="edit-listing-message"
+            style="display: none"
+          ></p>
         </form>
       </div>
     </div>

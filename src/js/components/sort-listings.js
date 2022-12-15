@@ -58,12 +58,16 @@ const endDateDescending = document.querySelector("#end-date-descending");
 
 const endDateAscending = document.querySelector("#end-date-ascending");*/
 
-dropdownList.addEventListener("click", function handleClick(event) {
-  for (let i = 0; i < dropdownList.getElementsByTagName("a").length; i++) {
-    dropdownList
-      .getElementsByTagName("a")
-      [i].classList.remove("dropdown-sort-item-selected");
-  }
-  event.target.classList.add("dropdown-sort-item-selected");
-  dropdownMenuBtn.innerHTML = event.target.innerHTML;
-});
+try {
+  dropdownList.addEventListener("click", function handleClick(event) {
+    for (let i = 0; i < dropdownList.getElementsByTagName("a").length; i++) {
+      dropdownList
+        .getElementsByTagName("a")
+        [i].classList.remove("dropdown-sort-item-selected");
+    }
+    event.target.classList.add("dropdown-sort-item-selected");
+    dropdownMenuBtn.innerHTML = event.target.innerHTML;
+  });
+} catch (e) {
+  console.log(e);
+}

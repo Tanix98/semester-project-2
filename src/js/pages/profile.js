@@ -29,7 +29,7 @@ async function fetchListing(url) {
     const data = await response.json();
     console.log(data);
     if (data.status == "Too Many Requests" || data.statusCode == 429) {
-      profilePageListings.innerHTML = `<h4 class="red-color mt-4">Error: ${dataRaw.status}. Please wait a minute before trying again.</h4>`;
+      profilePageListings.innerHTML = `<h4 class="red-color mt-4">Error: ${data.status}. Please wait a minute before trying again.</h4>`;
     }
     // Display report or edit pfp button
     function displayProfileBtns() {

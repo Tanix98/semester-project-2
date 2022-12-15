@@ -22,6 +22,14 @@
   object-position: center;
 }
 
+#img-arrow-left,
+#img-arrow-right {
+  width: 30px;
+  height: 30px;
+  opacity: 90%;
+  cursor: pointer;
+}
+
 .listing-title {
   font-size: 18px;
 }
@@ -78,6 +86,7 @@
 
 .listing-button-medium {
   width: 105px;
+  white-space: nowrap;
 }
 
 .listing-button-mobile {
@@ -125,7 +134,7 @@
 @media only screen and (max-width: 415px) {
   .mobile-listing-element {
     display: flex !important;
-  } 
+  }
 }
 
 @media only screen and (max-width: 274px) {
