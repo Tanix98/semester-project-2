@@ -10,6 +10,7 @@ import {
   byEndDateAscending,
 } from "/src/js/components/sort-listings.js";
 import { listingsTag, listingsSearch } from "/src/js/queryString.js";
+import { loadingWheel } from "/src/js/pages/profile.js";
 
 const listingsContainer = document.querySelector("#listings");
 
@@ -28,6 +29,7 @@ async function fetchListingsbyDateCreatedDescending(url) {
     const dataRaw = await response.json();
     console.log(dataRaw);
     if (dataRaw.status == "Too Many Requests") {
+      loadingWheel.classList.add("d-none");
       listingsContainer.innerHTML = `<h4 class="red-color mt-4">Error: ${dataRaw.status}. Please wait a minute before trying again.</h4>`;
     }
     const activeListings = dataRaw.filter(
@@ -35,6 +37,7 @@ async function fetchListingsbyDateCreatedDescending(url) {
     );
     //const closedListings = dataRaw.filter(x => Date.parse(x.endsAt) < new Date());
     const data = activeListings.sort(byDateCreatedDescending);
+    loadingWheel.classList.add("d-none");
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
@@ -188,11 +191,16 @@ async function fetchListingsbydateCreatedAscending(url) {
       },
     });
     const dataRaw = await response.json();
+    if (dataRaw.status == "Too Many Requests") {
+      loadingWheel.classList.add("d-none");
+      listingsContainer.innerHTML = `<h4 class="red-color mt-4">Error: ${dataRaw.status}. Please wait a minute before trying again.</h4>`;
+    }
     const activeListings = dataRaw.filter(
       (x) => Date.parse(x.endsAt) > new Date()
     );
     console.log(activeListings);
     const data = activeListings.sort(byDateCreatedAscending);
+    loadingWheel.classList.add("d-none");
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
@@ -336,11 +344,16 @@ async function fetchListingsbyendDateDescending(url) {
       },
     });
     const dataRaw = await response.json();
+    if (dataRaw.status == "Too Many Requests") {
+      loadingWheel.classList.add("d-none");
+      listingsContainer.innerHTML = `<h4 class="red-color mt-4">Error: ${dataRaw.status}. Please wait a minute before trying again.</h4>`;
+    }
     const activeListings = dataRaw.filter(
       (x) => Date.parse(x.endsAt) > new Date()
     );
     console.log(activeListings);
     const data = activeListings.sort(byEndDateDescending);
+    loadingWheel.classList.add("d-none");
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
@@ -484,11 +497,16 @@ async function fetchListingsbyendDateAscending(url) {
       },
     });
     const dataRaw = await response.json();
+    if (dataRaw.status == "Too Many Requests") {
+      loadingWheel.classList.add("d-none");
+      listingsContainer.innerHTML = `<h4 class="red-color mt-4">Error: ${dataRaw.status}. Please wait a minute before trying again.</h4>`;
+    }
     const activeListings = dataRaw.filter(
       (x) => Date.parse(x.endsAt) > new Date()
     );
     console.log(activeListings);
     const data = activeListings.sort(byEndDateAscending);
+    loadingWheel.classList.add("d-none");
     for (let i = 0; i < data.length; i++) {
       try {
         if (`${data[i].media.length}` > 0) {
@@ -631,6 +649,8 @@ const endDateAscendingBtn = document.querySelector("#end-date-ascending");
 
 try {
   dateCreatedDescendingBtn.addEventListener("click", () => {
+    loadingWheel.classList.remove("d-none");
+    loadingWheel.classList.add("d-block");
     if (listingsTag) {
       try {
         fetchListingsbyDateCreatedDescending(
@@ -653,6 +673,8 @@ try {
 
 try {
   dateCreatedAscendingBtn.addEventListener("click", () => {
+    loadingWheel.classList.remove("d-none");
+    loadingWheel.classList.add("d-block");
     if (listingsTag) {
       try {
         fetchListingsbydateCreatedAscending(
@@ -675,6 +697,8 @@ try {
 
 try {
   endDateDescendingBtn.addEventListener("click", () => {
+    loadingWheel.classList.remove("d-none");
+    loadingWheel.classList.add("d-block");
     if (listingsTag) {
       try {
         fetchListingsbyendDateDescending(
@@ -697,6 +721,8 @@ try {
 
 try {
   endDateAscendingBtn.addEventListener("click", () => {
+    loadingWheel.classList.remove("d-none");
+    loadingWheel.classList.add("d-block");
     if (listingsTag) {
       try {
         fetchListingsbyendDateAscending(

@@ -44,3 +44,29 @@ footer {
   opacity: 100;
   width: 100%;
 }
+
+.loader-container {
+  top: 150px;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
+.loader {
+  margin: auto;
+  border: 13px solid #cfcfcf;
+  border-radius: 50%;
+  border-top: 13px solid map-get($colors, cdark);
+  width: 100px;
+  height: 100px;
+  animation: spinner 2s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

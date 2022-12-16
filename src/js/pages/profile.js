@@ -1,6 +1,7 @@
 import { apiBaseUrl } from "/src/js/api.js";
 import { userToken, userName } from "/src/js/localStorage.js";
 import { profileUserName } from "/src/js/queryString.js";
+export { loadingWheel };
 // Trying to import byDateCreatedDescending from sort-listings.js breaks the entire script somehow, so I have to just copy & paste the byDateCreatedDescending function instead;
 function byEndDateDescending(a, b) {
   if (a.endsAt > b.endsAt) {
@@ -14,10 +15,12 @@ function byEndDateDescending(a, b) {
 
 document.title = profileUserName + "'s profile - Scandinavian Auction House";
 
+const loadingWheel = document.querySelector(".loader-container");
+
 const profilePageInfo = document.querySelector("#profile-page-info");
 const profilePageListings = document.querySelector("#profile-page-listings");
 
-async function fetchListing(url) {
+async function fetchProfile(url) {
   try {
     const response = await fetch(`${url}`, {
       method: "GET",
@@ -29,6 +32,7 @@ async function fetchListing(url) {
     const data = await response.json();
     console.log(data);
     if (data.status == "Too Many Requests" || data.statusCode == 429) {
+      loadingWheel.classList.add("d-none");
       profilePageListings.innerHTML = `<h4 class="red-color mt-4">Error: ${data.status}. Please wait a minute before trying again.</h4>`;
     }
     // Display report or edit pfp button
@@ -62,6 +66,7 @@ async function fetchListing(url) {
     }
     const [profileAvatar] = getProfileAvatar();
     // Generate profile page HTML
+    loadingWheel.classList.add("d-none");
     profilePageInfo.innerHTML = `
                 <img
                     src="${profileAvatar}"
@@ -209,4 +214,4 @@ async function fetchListing(url) {
   }
 }
 
-fetchListing(`${apiBaseUrl}/profiles/${profileUserName}?_listings=true`);
+fetchProfile(`${apiBaseUrl}/profiles/${profileUserName}?_listings=true`);
