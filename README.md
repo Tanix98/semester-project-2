@@ -18,10 +18,6 @@
 - Vanilla JavaScript
 - Bootstrap
 - Sass
-- Prettier
-- ESLint
-- Husky
-- Cypress
 
 ### Setting up the project locally
 

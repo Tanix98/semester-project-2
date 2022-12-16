@@ -45,13 +45,13 @@ async function fetchListingsbyDateCreatedDescending(url) {
             listingsContainer.innerHTML += `
                           <div class="listing-card mb-3">
                               <div
-                                  class="d-flex justify-content-center align-items-center"
+                                  class="d-flex justify-content-center align-items-center listing-img-container rounded-1"
                               >
                                   <a
                                       href="/pages/listing.html?id=${
                                         data[i].id
                                       }"
-                                      class="listing-img-container rounded-1"
+                                      class="rounded-1"
                                       ><img
                                           src="${data[i].media[0]}"
                                           class="rounded-1"
@@ -102,13 +102,13 @@ async function fetchListingsbyDateCreatedDescending(url) {
         } else {
           try {
             listingsContainer.innerHTML += `<div class="listing-card mb-3">
-                              <div class="d-flex justify-content-center align-items-center"
+                              <div class="d-flex justify-content-center align-items-center listing-img-container rounded-1"
                               >
                                   <a
                                       href="/pages/listing.html?id=${
                                         data[i].id
                                       }"
-                                      class="listing-img-container rounded-1
+                                      class="rounded-1
                                       "
                                       ><img
                                           src="/resources/no_image.svg"
@@ -208,16 +208,16 @@ async function fetchListingsbydateCreatedAscending(url) {
             listingsContainer.innerHTML += `
                           <div class="listing-card mb-3">
                               <div
-                                  class="d-flex justify-content-center align-items-center"
+                                  class="d-flex justify-content-center align-items-center listing-img-container rounded-1"
                               >
                                   <a
                                       href="/pages/listing.html?id=${
                                         data[i].id
                                       }"
-                                      class="listing-img-container rounded-2"
+                                      class="rounded-1"
                                       ><img
                                           src="${data[i].media[0]}"
-                                          class="rounded-2"
+                                          class="rounded-1"
                                           alt="listing image"
                                   /></a>
                               </div>
@@ -267,16 +267,16 @@ async function fetchListingsbydateCreatedAscending(url) {
             listingsContainer.innerHTML += `
                           <div class="listing-card mb-3">
                               <div
-                                  class="d-flex justify-content-center align-items-center"
+                                  class="d-flex justify-content-center align-items-center listing-img-container rounded-1"
                               >
                                   <a
                                       href="/pages/listing.html?id=${
                                         data[i].id
                                       }"
-                                      class="listing-img-container rounded-2"
+                                      class="rounded-1"
                                       ><img
                                           src="/resources/no_image.svg"
-                                          class="rounded-2"
+                                          class="rounded-1"
                                           alt="listing image"
                                   /></a>
                               </div>
@@ -361,16 +361,16 @@ async function fetchListingsbyendDateDescending(url) {
             listingsContainer.innerHTML += `
                           <div class="listing-card mb-3">
                               <div
-                                  class="d-flex justify-content-center align-items-center"
+                                  class="d-flex justify-content-center align-items-center listing-img-container rounded-1"
                               >
                                   <a
                                       href="/pages/listing.html?id=${
                                         data[i].id
                                       }"
-                                      class="listing-img-container rounded-2"
+                                      class="rounded-1"
                                       ><img
                                           src="${data[i].media[0]}"
-                                          class="rounded-2"
+                                          class="rounded-1"
                                           alt="listing image"
                                   /></a>
                               </div>
@@ -429,7 +429,7 @@ async function fetchListingsbyendDateDescending(url) {
                                       class="listing-img-container rounded-2"
                                       ><img
                                           src="/resources/no_image.svg"
-                                          class="rounded-2"
+                                          class="rounded-1"
                                           alt="listing image"
                                   /></a>
                               </div>
@@ -514,13 +514,13 @@ async function fetchListingsbyendDateAscending(url) {
             listingsContainer.innerHTML += `
                           <div class="listing-card mb-3">
                               <div
-                                  class="d-flex justify-content-center align-items-center"
+                                  class="d-flex justify-content-center align-items-center listing-img-container rounded-1"
                               >
                                   <a
                                       href="/pages/listing.html?id=${
                                         data[i].id
                                       }"
-                                      class="listing-img-container rounded-2"
+                                      class="rounded-1"
                                       ><img
                                           src="${data[i].media[0]}"
                                           class="rounded-2"

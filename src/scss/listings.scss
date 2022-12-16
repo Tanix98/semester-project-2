@@ -37,6 +37,16 @@
   overflow: hidden;
 }
 
+.listing-img-container {
+  height: 170px;
+  width: 226px;
+  overflow: hidden;
+}
+
+.listing-img-container:hover {
+  background-color: map-get($colors, cdark);
+}
+
 .listing-card img {
   display: block;
   height: 170px;
@@ -44,16 +54,21 @@
   object-fit: cover;
   object-position: center;
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 0.3s ease;
 }
 
 .listing-card:hover img {
-  background-color: map-get($colors, cdark);
-  opacity: 85%;
+  opacity: 95%;
+  transform: scale(1.1);
 }
 
 @media only screen and (max-width: 508px) {
   .listing-card {
     height: 100%;
+    width: 100%;
+  }
+  .listing-img-container {
+    height: 200px;
     width: 100%;
   }
   .listing-card img {
