@@ -1,7 +1,7 @@
 import { apiBaseUrl } from "/src/js/api.js";
 import { userToken, userName } from "/src/js/localStorage.js";
 import { profileUserName } from "/src/js/queryString.js";
-export { loadingWheel };
+import { loadingWheel } from "/src/js/variables.js";
 // Trying to import byDateCreatedDescending from sort-listings.js breaks the entire script somehow, so I have to just copy & paste the byDateCreatedDescending function instead;
 function byEndDateDescending(a, b) {
   if (a.endsAt > b.endsAt) {
@@ -14,8 +14,6 @@ function byEndDateDescending(a, b) {
 }
 
 document.title = profileUserName + "'s profile - Scandinavian Auction House";
-
-const loadingWheel = document.querySelector(".loader-container");
 
 const profilePageInfo = document.querySelector("#profile-page-info");
 const profilePageListings = document.querySelector("#profile-page-listings");

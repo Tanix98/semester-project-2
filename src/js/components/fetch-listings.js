@@ -10,7 +10,7 @@ import {
   byEndDateAscending,
 } from "/src/js/components/sort-listings.js";
 import { listingsTag, listingsSearch } from "/src/js/queryString.js";
-import { loadingWheel } from "/src/js/pages/profile.js";
+import { loadingWheel } from "/src/js/variables.js";
 
 const listingsContainer = document.querySelector("#listings");
 

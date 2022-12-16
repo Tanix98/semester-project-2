@@ -2,6 +2,7 @@ import { apiBaseUrl } from "/src/js/api.js";
 import { listingsContainer } from "/src/js/components/fetch-listings.js";
 import { listingsSearch } from "/src/js/queryString.js";
 import { searchBar } from "/src/js/components/header.js";
+import { loadingWheel } from "/src/js/variables.js";
 
 async function listingSearch(url) {
   try {
@@ -19,6 +20,7 @@ async function listingSearch(url) {
       listing.title.toLowerCase().match(`${listingsSearch.toLowerCase()}`)
     );
     listingsContainer.innerHTML = "";
+    loadingWheel.classList.add("d-none");
     if (filteredData.length > 0) {
       for (let i = 0; i < filteredData.length; i++) {
         if (`${filteredData[i].media.length}` > 0) {
@@ -138,13 +140,16 @@ async function listingSearch(url) {
       }
     }
     if (filteredData.length == 0) {
-      listingsContainer.innerHTML = `<h2>No search results for "${searchBar.value}"</h2>`;
+      loadingWheel.classList.add("d-none");
+      listingsContainer.innerHTML = `<h2>No search results for "${listingsSearch}"</h2>`;
     }
     if (data.statusCode === 429 || data.status == "Too Many Requests") {
+      loadingWheel.classList.add("d-none");
       listingsContainer.innerHTML = `<h2 class="red-color inter-medium mb-0 text-center">Error: " + ${data.errors[0].message}</h2>`;
     }
   } catch (e) {
     console.log(e);
+    loadingWheel.classList.add("d-none");
     listingsContainer.innerHTML = `<h2 class="red-color inter-medium mb-0 text-center">Error: Too Many Requests. Please wait a minute before trying again</h2>`;
   }
 }
