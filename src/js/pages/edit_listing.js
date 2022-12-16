@@ -1,10 +1,13 @@
 import { apiBaseUrl } from "/src/js/api.js";
 import { listingId } from "/src/js/queryString.js";
 import { userToken } from "/src/js/localStorage.js";
+import {
+  tagList,
+  mediaList,
+  createListingMediaContainer,
+} from "/src/js/components/create-tags-and-media-array.js";
 
 const titleInput = document.querySelector("#title-input");
-const mediaUrlInput = document.querySelector("#image-url-input");
-const tagsInput = document.querySelector("#tags-input");
 const descriptionInput = document.querySelector("#description-input");
 
 async function fetchListing(url) {
@@ -19,8 +22,6 @@ async function fetchListing(url) {
     console.log(data);
 
     const listingTitle = data.title;
-    const listingMediaUrl = data.media;
-    const listingTags = data.tags;
     const listingDescription = data.description;
     if (
       listingTitle !== "" ||
@@ -30,17 +31,13 @@ async function fetchListing(url) {
     ) {
       titleInput.value = listingTitle;
     }
-    if (listingTags.length > 0) {
-      tagsInput.value = listingTags;
+    /*if (listingTags.length > 0) {
+      tagList = listingTags;
     }
     if (listingMediaUrl !== "") {
       mediaUrlInput.value = listingMediaUrl;
-    }
-    if (
-      listingDescription !== "" ||
-      listingDescription !== null ||
-      listingDescription !== undefined
-    ) {
+    }*/
+    if (listingDescription !== "") {
       descriptionInput.value = listingDescription;
     }
   } catch (e) {
@@ -62,8 +59,8 @@ async function editListing(url) {
     const sendBody = {
       title: `${titleInput.value}`,
       description: `${descriptionInput.value}`,
-      tags: [`${tagsInput.value}`],
-      media: [`${mediaUrlInput.value}`],
+      tags: tagList,
+      media: mediaList,
     };
     const response = await fetch(`${url}`, {
       method: "PUT",

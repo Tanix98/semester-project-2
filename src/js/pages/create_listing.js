@@ -1,22 +1,26 @@
 import { apiBaseUrl } from "/src/js/api.js";
 import { userToken } from "/src/js/localStorage.js";
+import {
+  tagList,
+  mediaList,
+} from "/src/js/components/create-tags-and-media-array.js";
 
 const titleInput = document.querySelector("#title-input");
 const endDateInput = document.querySelector("#end-date-input");
 const mediaUrlInput = document.querySelector("#image-url-input");
-const tagsInput = document.querySelector("#tags-input");
 const descriptionInput = document.querySelector("#description-input");
 
 endDateInput.value = "2023-12-01T00:00:00.000Z";
 const createListingMessage = document.querySelector("#create-listing-message");
 
+// Create listing
 async function createListing(url) {
   try {
     const sendBody = {
       title: `${titleInput.value}`,
       description: `${descriptionInput.value}`,
-      tags: [`${tagsInput.value}`],
-      media: [`${mediaUrlInput.value}`],
+      tags: tagList,
+      media: mediaList,
       endsAt: `${endDateInput.value}`,
     };
     const response = await fetch(`${url}`, {
@@ -28,9 +32,6 @@ async function createListing(url) {
       },
     });
     const data = await response.json();
-    console.log(
-      JSON.stringify(sendBody) + " ------------- " + `${tagsInput.value}`
-    );
     createListingMessage.style.display = "block";
     if (data.errors) {
       createListingMessage.classList.add("red-color");

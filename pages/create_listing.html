@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/dist/css/fonts.css" />
     <link rel="stylesheet" href="/dist/css/buttons.css" />
     <link rel="stylesheet" href="/dist/css/credits-modal.css" />
+    <link rel="stylesheet" href="/dist/css/edit-create-listing.css" />
     <script defer src="/src/js/components/header.js" type="module"></script>
     <script defer src="/src/js/components/search.js" type="module"></script>
     <script
@@ -35,6 +36,11 @@
       type="module"
     ></script>
     <script defer src="/src/js/components/login-check.js"></script>
+    <script
+      defer
+      src="/src/js/components/create-tag-and-media-array.js"
+      type="module"
+    ></script>
     <script defer src="/src/js/pages/create_listing.js" type="module"></script>
   </head>
   <body>
@@ -250,24 +256,34 @@
             />
           </div>
           <div>
-            <label for="imageUrl" class="inter-medium">Image url</label>
-            <input
-              type="url"
-              name="imageUrl"
-              placeholder="Image url"
-              class="form-control form-control-height inter-regular"
-              id="image-url-input"
-            />
+            <label for="media" class="inter-medium">Media url</label>
+            <div class="media-container rounded-1">
+              <div class="listing-media-container d-flex flex-wrap rounded-1">
+                <input
+                  type="text"
+                  aria-describedby="mediaInput"
+                  class="inter-regular rounded-1 m-1 ps-2"
+                  placeholder="Add url"
+                  name="media"
+                  id="media-input-field"
+                />
+              </div>
+            </div>
           </div>
           <div>
             <label for="tags" class="inter-medium">Tags</label>
-            <input
-              type="textarea"
-              name="tags"
-              placeholder="Tags"
-              class="form-control form-control-height inter-regular"
-              id="tags-input"
-            />
+            <div class="tags-container rounded-1">
+              <div class="listing-tags-container d-flex flex-wrap rounded-1">
+                <input
+                  type="text"
+                  aria-describedby="tagsInput"
+                  class="inter-regular rounded-1 m-1 ps-2"
+                  placeholder="Add tag"
+                  name="tags"
+                  id="tags-input-field"
+                />
+              </div>
+            </div>
           </div>
           <div>
             <label for="description" class="inter-medium">Description</label>

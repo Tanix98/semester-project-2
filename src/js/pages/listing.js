@@ -518,15 +518,11 @@ async function imgGalleryButtonClick() {
       currentImageNumber += valueToAdd;
       return currentImageNumber;
     };
-    if (imgNavigation == "previous-img") {
-      if (currentImageNumber !== 1) {
-        add(-1);
-      }
+    if (imgNavigation == "previous-img" && currentImageNumber > 1) {
+      add(-1);
     }
-    if (imgNavigation == "next-img") {
-      if (currentImageNumber !== data.media.length) {
-        add(1);
-      }
+    if (imgNavigation == "next-img" && currentImageNumber < data.media.length) {
+      add(1);
     }
     console.log(currentImageNumber);
     imageCount.innerHTML = `${currentImageNumber} / ${data.media.length}`;
