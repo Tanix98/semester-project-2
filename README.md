@@ -21,10 +21,10 @@
 
 ### Setting up the project locally
 
-1. Clone the dev branch:
+1. Clone the repository:
 
 ```bash
-git clone -b dev --single-branch https://github.com/Tanix98/semester-project-2
+git clone https://github.com/Tanix98/semester-project-2.git
 ```
 
 2. Install dependencies

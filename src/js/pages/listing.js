@@ -1,6 +1,7 @@
 import { apiBaseUrl, userName } from "/src/js/api.js";
 import { listingId } from "/src/js/queryString.js";
 import { userToken } from "/src/js/localStorage.js";
+import { loadingWheel } from "/src/js/variables.js";
 
 const editListingFunction = function () {
   window.location.href = "/pages/edit_listing.html";
@@ -9,6 +10,8 @@ const editListingFunction = function () {
 // Fetch listing
 const listingContainer = document.querySelector("#listing-container");
 const sellerInfoContainer = document.querySelector("#seller-info-container");
+
+let currentImageNumber = 1;
 
 async function fetchListing(url) {
   try {
@@ -22,9 +25,11 @@ async function fetchListing(url) {
     console.log(data);
     document.title = data.title + " - Scandinavian Auction House";
     if (data.status == "Too Many Requests" || data.statusCode == 429) {
+      loadingWheel.classList.add("d-none");
       listingContainer.innerHTML = `<h4 class="red-color mt-4">Error: ${data.status}. Please wait a minute before trying again.</h4>`;
     }
     if (data.statusCode == 400) {
+      loadingWheel.classList.add("d-none");
       listingContainer.innerHTML = `<h2 class="red-color mt-4">This listing does not exist</h2>`;
     }
 
@@ -47,7 +52,6 @@ async function fetchListing(url) {
     const userBids = listingBids.find(function (bid) {
       return bid.bidderName == userName;
     });
-    console.log(userBids);
     function getHighestUserBid() {
       if (userBids) {
         const highestUserBid = userBids.amount;
@@ -114,6 +118,7 @@ async function fetchListing(url) {
       return [listingDesc];
     }
     const [listingDesc] = checkForDesc();
+    loadingWheel.classList.add("d-none");
     listingContainer.innerHTML = `
                 <div class="listing d-flex flex-column justify-content-center">
                   <div class="d-flex flex-column d-sm-none">
@@ -172,8 +177,8 @@ async function fetchListing(url) {
                     <p class="listing-title krub-bold mb-1">
                       ${data.title}
                     </p>
-                    <div class="">
-                      <p class="inter-regular text-decoration-underline">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                      <p class="inter-medium text-decoration-underline mb-0 pe-3">
                         Bidding ends at: ${data.endsAt.substring(
                           11,
                           16
@@ -182,10 +187,19 @@ async function fetchListing(url) {
       10
     )}.${data.endsAt.substring(5, 7)}.${data.endsAt.substring(0, 4)}
                       </p>
-                      <p class="inter-regular" id="listing-desc">
-                        ${listingDesc}
+                      <p class="inter-regular text-decoration-underline mb-0" id="listing-created">
+                        Created: ${data.created.substring(
+                          11,
+                          16
+                        )}, ${data.created.substring(
+      8,
+      10
+    )}.${data.created.substring(5, 7)}.${data.created.substring(0, 4)}
                       </p>
                     </div>
+                    <p class="inter-regular" id="listing-desc">
+                        ${listingDesc}
+                    </p>
                     <div style="display: none" id="listing-tags-container-mobile" class="text-center">
                       <div class="d-flex d-sm-none m-auto background-color-brown rounded-2 p-2 mb-2">
                         <div
@@ -328,76 +342,6 @@ async function fetchListing(url) {
 
 fetchListing(`${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`);
 
-// Image gallery carousel
-async function imgGalleryWait(event) {
-  const listingImagesContainer = document.querySelector(
-    ".listing-image-container"
-  );
-  const imgGalleryNavigation = document.querySelector(
-    "#img-gallery-navigation"
-  );
-  const imageCount = document.querySelector("#image-count");
-  try {
-    const response = await fetch(
-      `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    if (data.media.length > 1) {
-      imgGalleryNavigation.classList.remove("d-none");
-      imgGalleryNavigation.classList.add("d-flex");
-    }
-    let currentImageNumber = 1;
-    /*if (event.type === "click") {
-      if ((event.target.id = "img-arrow-left")) {
-        currentImageNumber--;
-      }
-      if ((event.target.id = "img-arrow-right")) {
-        currentImageNumber++;
-      }
-    }*/
-    if (data.media) {
-      for (let i = 0; i < data.media.length; i++) {
-        imageCount.innerHTML = `${currentImageNumber} / ${data.media.length}`;
-        listingImagesContainer.innerHTML = `<img
-            src="${data.media[0]}"
-            class="rounded-2"
-            alt="listing image"
-        />`;
-      }
-    }
-    return currentImageNumber;
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-setTimeout(function () {
-  imgGalleryWait();
-}, 800);
-
-document.addEventListener("click", function (e) {
-  const target1 = e.target.closest("#img-arrow-left");
-  if (target1) {
-    console.log("left arrow clicked");
-    imgGalleryWait(
-      `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`
-    );
-  }
-  const target2 = e.target.closest("#img-arrow-right");
-  if (target2) {
-    console.log("right arrow clicked");
-    imgGalleryWait(
-      `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`
-    );
-  }
-});
-
 // Fetch listing tags and bids
 async function fetchListingsTags(url) {
   const listingTagsDesktop = document.querySelector("#listing-tags-desktop");
@@ -499,3 +443,118 @@ setTimeout(function () {
     `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`
   );
 }, 800);
+
+// Image gallery carousel
+
+async function imgGalleryWait(event) {
+  const listingImagesContainer = document.querySelector(
+    ".listing-image-container"
+  );
+  const imageCount = document.querySelector("#image-count");
+  const imgGalleryNavigation = document.querySelector(
+    "#img-gallery-navigation"
+  );
+  try {
+    const response = await fetch(
+      `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    if (data.media.length > 1) {
+      imgGalleryNavigation.classList.remove("d-none");
+      imgGalleryNavigation.classList.add("d-flex");
+    }
+    /*if (event.type === "click") {
+      if ((event.target.id = "img-arrow-left")) {
+        currentImageNumber--;
+      }
+      if ((event.target.id = "img-arrow-right")) {
+        currentImageNumber++;
+      }
+    }*/
+    if (data.media) {
+      for (let i = 0; i < data.media.length; i++) {
+        imageCount.innerHTML = `${currentImageNumber} / ${data.media.length}`;
+        listingImagesContainer.innerHTML = `<img
+            src="${data.media[0]}"
+            class="rounded-2"
+            alt="listing image"
+        />`;
+      }
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  return currentImageNumber;
+}
+
+setTimeout(function () {
+  imgGalleryWait();
+}, 800);
+
+async function imgGalleryButtonClick() {
+  try {
+    const listingImagesContainer = document.querySelector(
+      ".listing-image-container"
+    );
+    const imageCount = document.querySelector("#image-count");
+    const response = await fetch(
+      `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    const imgNavigation = window.localStorage.getItem("imgNavigation");
+    const add = function (valueToAdd) {
+      currentImageNumber += valueToAdd;
+      return currentImageNumber;
+    };
+    if (imgNavigation == "previous-img") {
+      if (currentImageNumber !== 1) {
+        add(-1);
+      }
+    }
+    if (imgNavigation == "next-img") {
+      if (currentImageNumber !== data.media.length) {
+        add(1);
+      }
+    }
+    console.log(currentImageNumber);
+    imageCount.innerHTML = `${currentImageNumber} / ${data.media.length}`;
+    listingImagesContainer.innerHTML = `<img
+      src="${data.media[currentImageNumber - 1]}"
+      class="rounded-2"
+      alt="listing image"
+    />`;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+document.addEventListener("click", function (e) {
+  const target1 = e.target.closest("#img-arrow-left");
+  if (target1) {
+    window.localStorage.removeItem("imgNavigation");
+    window.localStorage.setItem("imgNavigation", "previous-img");
+    imgGalleryButtonClick(
+      `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`
+    );
+  }
+  const target2 = e.target.closest("#img-arrow-right");
+  if (target2) {
+    window.localStorage.removeItem("imgNavigation");
+    window.localStorage.setItem("imgNavigation", "next-img");
+    imgGalleryButtonClick(
+      `${apiBaseUrl}/listings/${listingId}?_seller=true&_bids=true`
+    );
+  }
+});
