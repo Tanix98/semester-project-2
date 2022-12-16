@@ -1,0 +1,78 @@
+@import "variables";
+
+#date-ascending:checked + label {
+  color: rgb(243, 13, 13);
+}
+
+.dropdown-sort-item {
+  height: 32px;
+}
+
+.dropdown-button-custom {
+  width: 160px;
+  height: 32px;
+}
+
+.dropdown-sort-item-selected {
+  color: map-get($colors, cbluehover);
+  font-family: "Inter", Arial !important;
+  font-weight: 700 !important;
+}
+
+.listing-card {
+  min-height: 220px;
+  width: 250px;
+}
+
+.listing-card a {
+  color: map-get($colors, cdark) !important;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.listing-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.listing-img-container {
+  height: 170px;
+  width: 226px;
+  overflow: hidden;
+}
+
+.listing-img-container:hover {
+  background-color: map-get($colors, cdark);
+}
+
+.listing-card img {
+  display: block;
+  height: 170px;
+  width: 226px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 0.3s ease;
+}
+
+.listing-card:hover img {
+  opacity: 95%;
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 508px) {
+  .listing-card {
+    height: 100%;
+    width: 100%;
+  }
+  .listing-img-container {
+    height: 200px;
+    width: 100%;
+  }
+  .listing-card img {
+    height: 200px;
+    width: 95vw;
+  }
+}

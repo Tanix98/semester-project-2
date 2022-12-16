@@ -1,0 +1,42 @@
+@import "variables";
+
+.tag-x,
+.media-x {
+  font-size: 20px;
+  line-height: 10px;
+  font-weight: bolder;
+}
+
+.media-x {
+  position: absolute;
+  left: 0;
+  top: 9px;
+}
+
+.tags-container,
+.media-container {
+  background-color: white;
+}
+
+.listing-tags-container,
+.listing-tag,
+.listing-media-container,
+.listing-media {
+  color: white;
+  border: 1px solid map-get($colors, cdark);
+}
+
+.listing-tag,
+.listing-media {
+  background-color: map-get($colors, cdark);
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+#tags-input-field,
+#media-input-field {
+  max-width: 116px;
+}

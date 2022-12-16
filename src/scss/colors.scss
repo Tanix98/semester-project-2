@@ -1,0 +1,24 @@
+@import "variables";
+
+.brown-color {
+  color: map-get($colors, cbrown) !important;
+}
+.greyGreen-color {
+  color: map-get($colors, cgreyGreen) !important;
+}
+.dark-color {
+  color: map-get($colors, cdark) !important;
+}
+.blue-color {
+  color: map-get($colors, cblue) !important;
+}
+.green-color {
+  color: map-get($colors, cgreen) !important;
+}
+.red-color {
+  color: map-get($colors, cred) !important;
+}
+
+.background-color-brown {
+  background-color: map-get($colors, cbrown);
+}
