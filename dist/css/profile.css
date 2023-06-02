@@ -1,0 +1,35 @@
+.profile-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+.profile-img .profile-button {
+  min-width: 120px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.edit-pfp {
+  z-index: 2;
+}
+
+.edit-pfp-modal {
+  display: none;
+}
+
+@media only screen and (max-width: 575.5px) {
+  .profile-button {
+    min-width: 120px;
+    width: 100%;
+    max-width: 200px;
+  }
+}
+@media only screen and (max-width: 233px) {
+  .profile-img {
+    width: 85vw;
+    height: 85vw;
+  }
+}
+
+/*# sourceMappingURL=profile.css.map */

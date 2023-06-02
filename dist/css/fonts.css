@@ -1,0 +1,65 @@
+h1,
+h2,
+h3,
+h4,
+p {
+  color: #2f2f2f;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Krub", Helvetica;
+  font-weight: 700;
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px !important;
+}
+
+h2 {
+  font-size: 24px !important;
+}
+
+.krub-semiBold {
+  font-family: "Krub", Helvetica;
+  font-weight: 600;
+}
+
+.krub-bold {
+  font-family: "Krub", Helvetica;
+  font-weight: 700;
+}
+
+.inter-regular {
+  font-family: "Inter", Arial;
+  font-weight: 400;
+}
+
+.inter-medium {
+  font-family: "Inter", Arial;
+  font-weight: 500;
+}
+
+.inter-semiBold {
+  font-family: "Inter", Arial;
+  font-weight: 600;
+}
+
+.inter-bold {
+  font-family: "Inter", Arial;
+  font-weight: 700;
+}
+
+.inter-extraBold {
+  font-family: "Inter", Arial;
+  font-weight: 800;
+}
+
+.form-message-size {
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=fonts.css.map */
