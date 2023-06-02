@@ -1,0 +1,57 @@
+.credits-modal-container {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  height: 100%;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.credits-modal {
+  background-color: #f8f4f1;
+  z-index: 2;
+  width: 260px;
+  max-height: 95vh;
+}
+
+.buy-credits-button {
+  min-height: 35px;
+}
+
+.modal-background,
+.modal-background-edit-pfp {
+  position: fixed;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.modal-background,
+.credits-modal-container {
+  width: 100%;
+}
+
+.modal-x {
+  font-size: 40px;
+  line-height: 30px;
+  font-weight: bolder;
+  color: var(--white);
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 625px) {
+  .credits-modal {
+    max-width: 98%;
+    max-height: 75%;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .modal-x {
+    right: 0px;
+    left: 23px;
+  }
+}
+
+/*# sourceMappingURL=credits-modal.css.map */

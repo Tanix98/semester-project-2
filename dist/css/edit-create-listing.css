@@ -1,0 +1,42 @@
+.tag-x,
+.media-x {
+  font-size: 20px;
+  line-height: 10px;
+  font-weight: bolder;
+}
+
+.media-x {
+  position: absolute;
+  left: 0;
+  top: 9px;
+}
+
+.tags-container,
+.media-container {
+  background-color: white;
+}
+
+.listing-tags-container,
+.listing-tag,
+.listing-media-container,
+.listing-media {
+  color: white;
+  border: 1px solid #2f2f2f;
+}
+
+.listing-tag,
+.listing-media {
+  background-color: #2f2f2f;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+#tags-input-field,
+#media-input-field {
+  max-width: 116px;
+}
+
+/*# sourceMappingURL=edit-create-listing.css.map */
