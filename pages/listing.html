@@ -1,262 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Listing - Scandinavian Auction House</title>
-    <link rel="icon" href="/resources/icons/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Krub:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="/dist/css/styles.css" />
-    <link rel="stylesheet" href="/dist/css/header.css" />
-    <link rel="stylesheet" href="/dist/css/colors.css" />
-    <link rel="stylesheet" href="/dist/css/fonts.css" />
-    <link rel="stylesheet" href="/dist/css/buttons.css" />
-    <link rel="stylesheet" href="/dist/css/listing.css" />
-    <link rel="stylesheet" href="/dist/css/credits-modal.css" />
-    <script defer src="/src/js/components/header.js" type="module"></script>
-    <script defer src="/src/js/components/search.js" type="module"></script>
-    <script defer src="/src/js/pages/listing.js" type="module"></script>
-    <script defer src="/src/js/components/place-bid.js" type="module"></script>
-    <script
-      defer
-      src="/src/js/components/credits-modal.js"
-      type="module"
-    ></script>
-    <script defer src="/src/js/components/login-check.js"></script>
-  </head>
-  <body>
-    <header class="d-flex align-items-center p-2 p-md-3 gap-1">
-      <div class="d-flex d-sm-none col ps-3">
-        <input
-          type="image"
-          src="/resources/icons/hamburger_menu_button.svg"
-          class="hamburger-menu-button"
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Listing - Scandinavian Auction House</title>
+        <link rel="icon" href="/resources/icons/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Krub:wght@600;700&display=swap"
+            rel="stylesheet"
         />
-      </div>
-      <div class="col m-auto m-sm-0">
-        <a
-          href="/index.html"
-          class="m-auto d-flex d-sm-block justify-content-center"
-        >
-          <img
-            src="/resources/icons/logo.svg"
-            role="img"
-            alt="Scandiavian Auction House logo"
-            class="header-logo"
-          />
-        </a>
-      </div>
-      <div class="d-block d-sm-none col"></div>
-      <div class="d-none col-sm-2 col-md-auto d-sm-flex justify-content-center">
-        <div class="d-flex align-items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-search position-absolute me-auto ms-2 header-search-bar-icon"
-            viewBox="0 0 16 16"
-            id="searchbar-button-desktop"
-          >
-            <path
-              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-            />
-          </svg>
-          <input
-            type="search"
-            class="rounded-1 border-0 header-searchbar inter-regular"
-            placeholder="Search"
-            id="searchbar-desktop"
-          />
-        </div>
-      </div>
-      <div class="d-none col d-sm-flex justify-content-end">
-        <button
-          class="header-buttons button-green-border rounded-2 inter-semiBold align-items-center"
-          id="header-login-button"
-          style="display: none"
-        >
-          Log in / Register
-        </button>
-        <div class="gap-2" id="header-logged-in" style="display: none">
-          <button
-            class="header-buttons button-blue-border rounded-2 inter-semiBold"
-            id="header-create-listing-button"
-          >
-            Create listing
-          </button>
-          <button
-            class="credits-button header-buttons button-green-border rounded-2 inter-semiBold"
-          >
-            Credits
-          </button>
-          <img
-            src=""
-            class="rounded-circle"
-            id="user-pfp"
-            alt="Default profile picture"
-            tabindex="0"
-            style="border: 0"
-          />
-          <div
-            class="flex-column align-items-center inter-medium rounded-1"
-            id="pfp-dropdown-menu"
+        <link rel="stylesheet" href="/dist/bootstrap.min.css" />
+        <link rel="stylesheet" href="/dist/css/styles.css" />
+        <link rel="stylesheet" href="/dist/css/header.css" />
+        <link rel="stylesheet" href="/dist/css/colors.css" />
+        <link rel="stylesheet" href="/dist/css/fonts.css" />
+        <link rel="stylesheet" href="/dist/css/buttons.css" />
+        <link rel="stylesheet" href="/dist/css/listing.css" />
+        <link rel="stylesheet" href="/dist/css/credits-modal.css" />
+        <script defer src="/src/js/components/header.js" type="module"></script>
+        <script defer src="/src/js/components/search.js" type="module"></script>
+        <script defer src="/src/js/pages/listing.js" type="module"></script>
+        <script
+            defer
+            src="/src/js/components/place-bid.js"
+            type="module"
+        ></script>
+        <script
+            defer
+            src="/src/js/components/credits-modal.js"
+            type="module"
+        ></script>
+        <script defer src="/src/js/components/login-check.js"></script>
+    </head>
+    <body>
+        <header class="d-flex align-items-center p-2 p-md-3 gap-1">
+            <div class="d-flex d-sm-none col ps-3">
+                <input
+                    type="image"
+                    src="/resources/icons/hamburger_menu_button.svg"
+                    class="hamburger-menu-button"
+                />
+            </div>
+            <div class="col m-auto m-sm-0">
+                <a
+                    href="/index.html"
+                    class="m-auto d-flex d-sm-block justify-content-center"
+                >
+                    <img
+                        src="/resources/icons/logo.svg"
+                        role="img"
+                        alt="Scandiavian Auction House logo"
+                        class="header-logo"
+                    />
+                </a>
+            </div>
+            <div class="d-block d-sm-none col"></div>
+            <div
+                class="d-none col-sm-2 col-md-auto d-sm-flex justify-content-center"
+            >
+                <div class="d-flex align-items-center">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-search position-absolute me-auto ms-2 header-search-bar-icon"
+                        viewBox="0 0 16 16"
+                        id="searchbar-button-desktop"
+                    >
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                        />
+                    </svg>
+                    <input
+                        type="search"
+                        class="rounded-1 border-0 header-searchbar inter-regular"
+                        placeholder="Search"
+                        id="searchbar-desktop"
+                    />
+                </div>
+            </div>
+            <div class="d-none col d-sm-flex justify-content-end">
+                <button
+                    class="header-buttons button-green-border rounded-2 inter-semiBold align-items-center"
+                    id="header-login-button"
+                    style="display: none"
+                >
+                    Log in / Register
+                </button>
+                <div class="gap-2" id="header-logged-in" style="display: none">
+                    <button
+                        class="header-buttons button-blue-border rounded-2 inter-semiBold"
+                        id="header-create-listing-button"
+                    >
+                        Create listing
+                    </button>
+                    <button
+                        class="credits-button header-buttons button-green-border rounded-2 inter-semiBold"
+                    >
+                        Credits
+                    </button>
+                    <img
+                        src=""
+                        class="rounded-circle"
+                        id="user-pfp"
+                        alt="Default profile picture"
+                        tabindex="0"
+                        style="border: 0"
+                    />
+                    <div
+                        class="flex-column align-items-center inter-medium rounded-1"
+                        id="pfp-dropdown-menu"
+                        style="display: none"
+                    >
+                        <a
+                            href="#"
+                            class="text-black text-decoration-none rounded-top p-2 pb-1 pt-1 text-center my-profile-btn"
+                            id="my-profile-dropdown-menu"
+                            >My profile</a
+                        >
+                        <hr
+                            class="dark-divider m-0"
+                            id="divider-dropdown-menu"
+                        />
+                        <a
+                            href="#"
+                            class="red-color hamburger-nav-red text-decoration-none rounded-bottom p-2 pb-1 pt-1 text-center log-out-btn"
+                            id="log-out-btn-desktop"
+                            >Log out</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div
+            class="hamburger-menu flex-column align-items-center"
             style="display: none"
-          >
-            <a
-              href="#"
-              class="text-black text-decoration-none rounded-top p-2 pb-1 pt-1 text-center my-profile-btn"
-              id="my-profile-dropdown-menu"
-              >My profile</a
-            >
-            <hr class="dark-divider m-0" id="divider-dropdown-menu" />
-            <a
-              href="#"
-              class="red-color hamburger-nav-red text-decoration-none rounded-bottom p-2 pb-1 pt-1 text-center log-out-btn"
-              id="log-out-btn-desktop"
-              >Log out</a
-            >
-          </div>
-        </div>
-      </div>
-    </header>
-    <div
-      class="hamburger-menu flex-column align-items-center"
-      style="display: none"
-    >
-      <div class="margin-top">
-        <div class="d-flex mt-5 col justify-content-center">
-          <div class="d-flex align-items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-search position-absolute me-auto ms-2 header-search-bar-icon"
-              viewBox="0 0 16 16"
-              id="searchbar-button-mobile"
-            >
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-              />
-            </svg>
-            <input
-              type="search"
-              class="rounded-1 border-0 header-searchbar inter-regular"
-              placeholder="Search"
-              id="searchbar-mobile"
-            />
-          </div>
-        </div>
-        <div
-          class="flex-column text-center mt-4"
-          id="mobile-menu-signed-out"
-          style="display: none"
         >
-          <a href="/index.html" class="hamburger-nav inter-bold">Homepage</a>
-          <hr class="divider" />
-          <a
-            href="/pages/login.html"
-            class="hamburger-nav hamburger-nav-green inter-bold green-color"
-            >Log in / Register</a
-          >
+            <div class="margin-top">
+                <div class="d-flex mt-5 col justify-content-center">
+                    <div class="d-flex align-items-center">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-search position-absolute me-auto ms-2 header-search-bar-icon"
+                            viewBox="0 0 16 16"
+                            id="searchbar-button-mobile"
+                        >
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                            />
+                        </svg>
+                        <input
+                            type="search"
+                            class="rounded-1 border-0 header-searchbar inter-regular"
+                            placeholder="Search"
+                            id="searchbar-mobile"
+                        />
+                    </div>
+                </div>
+                <div
+                    class="flex-column text-center mt-4"
+                    id="mobile-menu-signed-out"
+                    style="display: none"
+                >
+                    <a href="/index.html" class="hamburger-nav inter-bold"
+                        >Homepage</a
+                    >
+                    <hr class="divider" />
+                    <a
+                        href="/pages/login.html"
+                        class="hamburger-nav hamburger-nav-green inter-bold green-color"
+                        >Log in / Register</a
+                    >
+                </div>
+                <div
+                    class="flex-column text-center mt-4"
+                    id="mobile-menu-signed-in"
+                    display="none"
+                >
+                    <a href="/index.html" class="hamburger-nav inter-bold"
+                        >Homepage</a
+                    >
+                    <hr class="divider" />
+                    <a href="#" class="hamburger-nav inter-bold my-profile-btn"
+                        >My profile</a
+                    >
+                    <hr class="divider" />
+                    <a
+                        href="/pages/create_listing.html"
+                        class="hamburger-nav inter-bold"
+                        >Create listing</a
+                    >
+                    <hr class="divider" />
+                    <a
+                        href="#"
+                        class="credits-button hamburger-nav inter-bold"
+                        id="credits-btn-mobile"
+                        >Credits</a
+                    >
+                    <hr class="divider" />
+                    <a
+                        href="#"
+                        class="hamburger-nav hamburger-nav-red inter-bold red-color log-out-btn"
+                        >Log out</a
+                    >
+                </div>
+            </div>
         </div>
-        <div
-          class="flex-column text-center mt-4"
-          id="mobile-menu-signed-in"
-          display="none"
+        <div class="credits-modal-container p-1">
+            <div
+                class="d-flex flex-column credits-modal rounded-2 p-3 justify-content-center"
+            >
+                <p class="modal-x ms-auto mb-0" tabindex="0">&times;</p>
+                <h2>Your credits</h2>
+                <p class="inter-medium mb-1 text-center">Credit amount:</p>
+                <p
+                    class="green-color inter-extraBold text-center"
+                    id="user-credit-amount"
+                ></p>
+                <button
+                    class="header-buttons button-green rounded-2 inter-semiBold buy-credits-button"
+                >
+                    Buy credits
+                </button>
+            </div>
+            <div class="modal-background"></div>
+        </div>
+        <div class="ps-2 pe-2 mt-4 mb-4">
+            <div
+                class="mt-3 m-auto row d-flex justify-content-center"
+                id="listing-page"
+            >
+                <div class="loader-container text-center mt-5">
+                    <div class="loader"></div>
+                    <p class="inter-medium mt-2">Loading...</p>
+                </div>
+                <div class="col-0 col-lg-2 col-xl-3 col-xxl-2"></div>
+                <div
+                    class="listing col-12 col-sm-8 col-md-6 col-xl-5"
+                    id="listing-container"
+                ></div>
+                <div
+                    class="col-0 col-sm-4 col-lg-3 col-xxl-2 d-none d-sm-block"
+                    id="seller-info-container"
+                ></div>
+            </div>
+        </div>
+        <footer
+            class="inter-regular d-flex gap-1 gap-sm-0 flex-column flex-sm-row align-items-center p-2"
         >
-          <a href="/index.html" class="hamburger-nav inter-bold">Homepage</a>
-          <hr class="divider" />
-          <a href="#" class="hamburger-nav inter-bold my-profile-btn"
-            >My profile</a
-          >
-          <hr class="divider" />
-          <a href="/pages/create_listing.html" class="hamburger-nav inter-bold"
-            >Create listing</a
-          >
-          <hr class="divider" />
-          <a
-            href="#"
-            class="credits-button hamburger-nav inter-bold"
-            id="credits-btn-mobile"
-            >Credits</a
-          >
-          <hr class="divider" />
-          <a
-            href="#"
-            class="hamburger-nav hamburger-nav-red inter-bold red-color log-out-btn"
-            >Log out</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="credits-modal-container p-1">
-      <div
-        class="d-flex flex-column credits-modal rounded-2 p-3 justify-content-center"
-      >
-        <p class="modal-x ms-auto mb-0" tabindex="0">&times;</p>
-        <h2>Your credits</h2>
-        <p class="inter-medium mb-1 text-center">Credit amount:</p>
-        <p
-          class="green-color inter-extraBold text-center"
-          id="user-credit-amount"
-        ></p>
-        <button
-          class="header-buttons button-green rounded-2 inter-semiBold buy-credits-button"
-        >
-          Buy credits
-        </button>
-      </div>
-      <div class="modal-background"></div>
-    </div>
-    <div class="ps-2 pe-2 mt-4 mb-4">
-      <div
-        class="mt-3 m-auto row d-flex justify-content-center"
-        id="listing-page"
-      >
-        <div class="loader-container text-center mt-5">
-          <div class="loader"></div>
-          <p class="inter-medium mt-2">Loading...</p>
-        </div>
-        <div class="col-0 col-lg-2 col-xl-3 col-xxl-2"></div>
-        <div
-          class="listing col-12 col-sm-8 col-md-6 col-xl-5"
-          id="listing-container"
-        ></div>
-        <div
-          class="col-0 col-sm-4 col-lg-3 col-xxl-2 d-none d-sm-block"
-          id="seller-info-container"
-        ></div>
-      </div>
-    </div>
-    <footer
-      class="inter-regular d-flex gap-1 gap-sm-0 flex-column flex-sm-row align-items-center p-2"
-    >
-      <p
-        class="col-sm-5 col-md-4 col-lg-3 mb-0 m-auto m-sm-0 text-center text-sm-start text-white"
-      >
-        ©2004-2022 Scandinavian Auction House
-      </p>
-      <div class="d-flex col-sm-6 col-md-4 col-md-6 col-md-4 m-auto m-sm-0">
-        <p class="mb-0 m-auto text-center text-sm-start text-white">
-          Any questions can be sent to<a
-            href="mailto:support@sahco.com"
-            class="text-white ps-1"
-            >support@sahco.com</a
-          >
-        </p>
-      </div>
-    </footer>
-  </body>
+            <p
+                class="col-sm-5 col-md-4 col-lg-3 mb-0 m-auto m-sm-0 text-center text-sm-start text-white"
+            >
+                ©2004-2022 Scandinavian Auction House
+            </p>
+            <div
+                class="d-flex col-sm-6 col-md-4 col-md-6 col-md-4 m-auto m-sm-0"
+            >
+                <p class="mb-0 m-auto text-center text-sm-start text-white">
+                    Any questions can be sent to<a
+                        href="mailto:support@sahco.com"
+                        class="text-white ps-1"
+                        >support@sahco.com</a
+                    >
+                </p>
+            </div>
+        </footer>
+    </body>
 </html>
