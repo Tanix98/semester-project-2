@@ -6,7 +6,9 @@
 
 ### Website created for a fictional company called Scandinavian Auction House. Users can register, create listings and bid on them with credits. Unregistered users can only view listings.
 
-[Credit to icons8.com for the "no image" icon](https://icons8.com/icon/122635/no-image "icons8.com")
+[Click here for hosted build](scandinavian-auction-house.netlify.app)
+
+[Credit to icons8.com for the "no image" icon](https://icons8.com/icon/122635/no-image 'icons8.com')
 
 ---
 
@@ -14,10 +16,10 @@
 
 ### Built with:
 
-- HTML
-- Vanilla JavaScript
-- Bootstrap
-- Sass
+-   HTML
+-   Vanilla JavaScript
+-   Bootstrap
+-   Sass
 
 ### Setting up the project locally
 
